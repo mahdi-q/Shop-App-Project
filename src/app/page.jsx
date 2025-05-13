@@ -1,3 +1,5 @@
 export default function Home() {
-  return <div className="text-center text-xl mt-4">Shop App Project</div>;
+  return (
+    <h1 className="mt-4 text-center text-3xl font-bold">Shop App Project</h1>
+  );
 }
