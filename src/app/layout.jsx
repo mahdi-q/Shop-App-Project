@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import vazirFont from "@/constants/localFont";
 import "@/styles/globals.css";
 
@@ -13,7 +14,9 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
         className={`${vazirFont.variable} font-sans`}
       >
-        {children}
+        <Header />
+
+        <div className="container xl:max-w-screen-xl">{children}</div>
       </body>
     </html>
   );
