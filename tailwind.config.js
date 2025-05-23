@@ -11,11 +11,8 @@ function withOpacity(variableName) {
 }
 
 module.exports = {
-  content: [
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/common/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+
   theme: {
     extend: {
       colors: {
@@ -30,6 +27,7 @@ module.exports = {
           200: withOpacity("--color-primary-200"),
           100: withOpacity("--color-primary-100"),
         },
+
         secondary: {
           900: withOpacity("--color-secondary-900"),
           800: withOpacity("--color-secondary-800"),
@@ -40,7 +38,11 @@ module.exports = {
           300: withOpacity("--color-secondary-300"),
           200: withOpacity("--color-secondary-200"),
           100: withOpacity("--color-secondary-100"),
+          50: withOpacity("--color-secondary-50"),
         },
+
+        white: withOpacity("--color-white"),
+        black: withOpacity("--color-black"),
         success: withOpacity("--color-success"),
         warning: withOpacity("--color-warning"),
         error: withOpacity("--color-error"),

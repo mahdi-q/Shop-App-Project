@@ -25,6 +25,8 @@
     --color-secondary-200: 191, 192, 203;
     --color-secondary-100: 212, 213, 221;
     --color-secondary-50: 223, 223, 229;
+    --color-white: 255, 255, 255;
+    --color-black: 0, 0, 0;
     --color-success: 0, 192, 115;
     --color-warning: 255, 153, 0;
     --color-error: 255, 71, 87;
@@ -34,23 +36,32 @@
 }
 
 @layer components {
+  .formLayout {
+    @apply flex min-w-[400px] flex-col items-start justify-center gap-2 rounded-lg border border-secondary-200 bg-secondary-50/20 px-4 py-6 shadow-sm;
+  }
+  .textField {
+    @apply flex w-full flex-col gap-y-2;
+  }
   .textField__input {
-    @apply w-full py-3 px-4 rounded-xl bg-gray-100 text-secondary-900 border border-gray-100 outline-none duration-200 transition-all ease-in-out hover:border-primary-300 focus:outline-none focus:border-primary-300 focus:shadow-input-focus focus:bg-white;
+    @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-4 py-3 text-secondary-900 outline-none transition-all duration-200 ease-in-out hover:border-primary-300 focus:border-primary-300 focus:bg-white focus:shadow-input-focus focus:outline-none;
+  }
+  .textField--invalid {
+    @apply border-error bg-red-50 hover:border-error focus:border-error;
   }
   .btn {
-    @apply px-2 py-1 font-bold rounded-2xl transition-all duration-300;
+    @apply rounded-xl px-2 py-1 font-bold transition-all duration-300;
   }
   .btn--primary {
-    @apply px-4 py-3 bg-primary-900 text-white hover:bg-primary-800 shadow-lg shadow-primary-300;
+    @apply bg-primary-900 px-4 py-3 text-white shadow-lg shadow-primary-300 hover:bg-primary-800;
   }
   .table__th {
-    @apply border-b-2 border-b-gray-500 font-medium p-3 pr-8 pb-3 text-right;
+    @apply border-b-2 border-b-gray-500 p-3 pb-3 pr-8 text-right font-medium;
   }
   .table__td {
-    @apply border-b  border-b-gray-300 p-3 pr-8 pb-3 text-right;
+    @apply border-b border-b-gray-300 p-3 pb-3 pr-8 text-right;
   }
   .badge {
-    @apply whitespace-nowrap px-3 py-1 rounded-xl;
+    @apply whitespace-nowrap rounded-xl px-3 py-1;
   }
   .badge--primary {
     @apply bg-primary-900 text-white;
