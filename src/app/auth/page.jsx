@@ -3,28 +3,61 @@
 import { useState } from "react";
 import SendOtpForm from "./_components/SendOtpForm";
 import CheckOtpForm from "./_components/CheckOtpForm";
+import useGetOtp from "./_hooks/useGetOtp";
+import toast from "react-hot-toast";
+import useCheckOtp from "./_hooks/useCheckOtp";
 
 function AuthPage() {
   const [step, setStep] = useState(1);
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const onSendOtp = ({ phoneNumber }) => {
-    console.log(phoneNumber);
-    setPhoneNumber(phoneNumber);
-    setStep(2);
+  const { isGetting, otpResponse, getOtp } = useGetOtp();
+  const { isChecking, checkOtp } = useCheckOtp();
+
+  const onSendOtp = async ({ phoneNumber }) => {
+    try {
+      const { message } = await getOtp({ phoneNumber });
+      toast.success(message);
+      setPhoneNumber(phoneNumber);
+      setStep(2);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
   };
 
-  const onCheckOtp = (otp) => {
-    console.log(otp);
+  const onCheckOtp = async (otp) => {
+    try {
+      const { message } = await checkOtp({ phoneNumber, otp });
+      toast.success(message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
+  const onResendOtp = async () => {
+    try {
+      const { message } = await getOtp({ phoneNumber });
+      toast.success(message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
   };
 
   const renderPage = () => {
     switch (step) {
       case 1:
-        return <SendOtpForm onSendOtp={onSendOtp} />;
+        return <SendOtpForm onSendOtp={onSendOtp} isSending={isGetting} />;
 
       case 2:
-        return <CheckOtpForm onCheckOtp={onCheckOtp} />;
+        return (
+          <CheckOtpForm
+            onCheckOtp={onCheckOtp}
+            onResendOtp={onResendOtp}
+            isChecking={isChecking}
+            otpResponse={otpResponse}
+            setStep={setStep}
+          />
+        );
 
       default:
         return null;

@@ -4,6 +4,7 @@ import RHFTextField from "@/ui/RHFTextField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 
 const schema = yup
   .object({
@@ -14,7 +15,7 @@ const schema = yup
   })
   .required();
 
-function SendOtpForm({ onSendOtp }) {
+function SendOtpForm({ onSendOtp, isSending }) {
   const {
     register,
     handleSubmit,
@@ -51,9 +52,15 @@ function SendOtpForm({ onSendOtp }) {
           className="mt-6"
         />
 
-        <button type="submit" className="btn btn--primary mt-6 w-full">
-          ارسال کد تایید
-        </button>
+        <div className="mt-6 flex w-full items-center justify-center">
+          {isSending ? (
+            <SvgLoaderComponent />
+          ) : (
+            <button type="submit" className="btn btn--primary w-full">
+              ارسال کد تایید
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );
