@@ -6,6 +6,7 @@ import CheckOtpForm from "./_components/CheckOtpForm";
 import useGetOtp from "./_hooks/useGetOtp";
 import toast from "react-hot-toast";
 import useCheckOtp from "./_hooks/useCheckOtp";
+import { useRouter } from "next/navigation";
 
 function AuthPage() {
   const [step, setStep] = useState(1);
@@ -13,6 +14,8 @@ function AuthPage() {
 
   const { isGetting, otpResponse, getOtp } = useGetOtp();
   const { isChecking, checkOtp } = useCheckOtp();
+
+  const router = useRouter();
 
   const onSendOtp = async ({ phoneNumber }) => {
     try {
@@ -27,8 +30,9 @@ function AuthPage() {
 
   const onCheckOtp = async (otp) => {
     try {
-      const { message } = await checkOtp({ phoneNumber, otp });
+      const { message, user } = await checkOtp({ phoneNumber, otp });
       toast.success(message);
+      if (!user.isActive) return router.replace("/complete-profile");
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
