@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SendOtpForm from "./_components/SendOtpForm";
 import CheckOtpForm from "./_components/CheckOtpForm";
 import useGetOtp from "./_hooks/useGetOtp";
 import toast from "react-hot-toast";
 import useCheckOtp from "./_hooks/useCheckOtp";
 import { useRouter } from "next/navigation";
+import useUser from "@/hooks/useUser";
 
 function AuthPage() {
   const [step, setStep] = useState(1);
@@ -16,6 +17,12 @@ function AuthPage() {
   const { isChecking, checkOtp } = useCheckOtp();
 
   const router = useRouter();
+
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user.isActive) return router.replace("/");
+  }, [user]);
 
   const onSendOtp = async ({ phoneNumber }) => {
     try {
