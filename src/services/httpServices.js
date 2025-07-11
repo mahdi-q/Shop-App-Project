@@ -1,6 +1,6 @@
 const { default: axios } = require("axios");
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const app = axios.create({
   baseURL: BASE_URL,
