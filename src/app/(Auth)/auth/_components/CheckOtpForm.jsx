@@ -1,6 +1,7 @@
 "use client";
 
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
+import { toPersianNumbers } from "@/utils/changeNumbers";
 import { useEffect, useState } from "react";
 import OTPInput from "react-otp-input";
 
@@ -9,9 +10,9 @@ const RESEND_TIME = 90;
 function CheckOtpForm({
   onCheckOtp,
   onResendOtp,
+  onBack,
   isChecking,
   otpResponse,
-  setStep,
 }) {
   const [otp, setOtp] = useState();
   const [time, setTime] = useState(RESEND_TIME);
@@ -55,7 +56,7 @@ function CheckOtpForm({
           <input
             {...props}
             style={{}}
-            className="bg-secondary-0 w-8 rounded border border-secondary-400 py-2 text-center text-secondary-900 transition hover:border-primary-700 focus:border-2 focus:border-primary-700 focus:outline-none"
+            className="bg-secondary-0 w-10 rounded-lg border border-secondary-400 py-2 text-center leading-none text-secondary-900 transition hover:border-primary-700 focus:border-2 focus:border-primary-700 focus:outline-none"
           />
         )}
         containerStyle={{
@@ -63,8 +64,8 @@ function CheckOtpForm({
           display: "flex",
           flexDirection: "row-reverse",
           justifyContent: "center",
-          gap: "8px",
-          paddingTop: "4px",
+          gap: "6px",
+          paddingTop: "6px",
         }}
       />
 
@@ -80,7 +81,8 @@ function CheckOtpForm({
         <div className="flex w-full items-center justify-between">
           {time > 0 ? (
             <p className="text-sm text-secondary-500">
-              {<strong>{time}</strong>} ثانیه تا ارسال مجدد کد تایید
+              {<strong>{toPersianNumbers(time)}</strong>} ثانیه تا ارسال مجدد کد
+              تایید
             </p>
           ) : (
             <button
@@ -91,10 +93,7 @@ function CheckOtpForm({
             </button>
           )}
 
-          <button
-            className="p-1 text-sm text-primary-800"
-            onClick={() => setStep((step) => step - 1)}
-          >
+          <button className="p-1 text-sm text-primary-800" onClick={onBack}>
             ویرایش شماره
           </button>
         </div>

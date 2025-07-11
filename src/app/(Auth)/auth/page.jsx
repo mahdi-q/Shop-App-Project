@@ -64,9 +64,9 @@ function AuthPage() {
           <CheckOtpForm
             onCheckOtp={onCheckOtp}
             onResendOtp={onResendOtp}
+            onBack={() => setStep((step) => step - 1)}
             isChecking={isChecking}
             otpResponse={otpResponse}
-            setStep={setStep}
           />
         );
 
