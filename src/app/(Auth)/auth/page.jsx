@@ -31,7 +31,7 @@ function AuthPage() {
       setPhoneNumber(phoneNumber);
       setStep(2);
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.data?.message || "خطا در ارسال کد تایید");
     }
   };
 
@@ -41,7 +41,7 @@ function AuthPage() {
       toast.success(message);
       if (!user.isActive) return router.replace("/complete-profile");
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.data?.message || "خطا در تایید کد تایید");
     }
   };
 
@@ -50,7 +50,7 @@ function AuthPage() {
       const { message } = await getOtp({ phoneNumber });
       toast.success(message);
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.data?.message || "خطا در ارسال کد تایید");
     }
   };
 
@@ -75,6 +75,10 @@ function AuthPage() {
     }
   };
 
-  return <>{renderPage()}</>;
+  return (
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      {renderPage()}
+    </div>
+  );
 }
 export default AuthPage;

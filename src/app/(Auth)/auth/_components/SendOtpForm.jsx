@@ -33,36 +33,34 @@ function SendOtpForm({ onSendOtp, isSending }) {
   };
 
   return (
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      <form onSubmit={handleSubmit(onSubmit)} className="formLayout">
-        <h1 className="text-lg font-bold text-black">ورود به حساب کاربری</h1>
+    <form onSubmit={handleSubmit(onSubmit)} className="formLayout">
+      <h1 className="text-lg font-bold text-black">ورود به حساب کاربری</h1>
 
-        <p className="text-sm text-secondary-600">
-          لطفا شماره موبایل خود را وارد کنید.
-        </p>
+      <p className="text-sm text-secondary-600">
+        لطفا شماره موبایل خود را وارد کنید.
+      </p>
 
-        <RHFTextField
-          label="شماره موبایل"
-          name="phoneNumber"
-          register={register}
-          errors={errors}
-          dir="ltr"
-          type="number"
-          isRequired
-          className="mt-6"
-        />
+      <RHFTextField
+        label="شماره موبایل"
+        name="phoneNumber"
+        register={register}
+        errors={errors}
+        dir="ltr"
+        type="number"
+        isRequired
+        className="mt-6"
+      />
 
-        <div className="mt-6 flex w-full items-center justify-center">
-          {isSending ? (
-            <SvgLoaderComponent />
-          ) : (
-            <button type="submit" className="btn btn--primary w-full">
-              ارسال کد تایید
-            </button>
-          )}
-        </div>
-      </form>
-    </div>
+      <div className="mt-6 flex w-full items-center justify-center">
+        {isSending ? (
+          <SvgLoaderComponent />
+        ) : (
+          <button type="submit" className="btn btn--primary w-full">
+            ارسال کد تایید
+          </button>
+        )}
+      </div>
+    </form>
   );
 }
 export default SendOtpForm;
