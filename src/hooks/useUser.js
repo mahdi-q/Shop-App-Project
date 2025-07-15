@@ -6,9 +6,10 @@ export default function useUser() {
     queryKey: ["user"],
     queryFn: getUserApi,
     retry: false,
+    refetchOnWindowFocus: true,
   });
 
-  const { user = {} } = data || {};
+  const { user = {}, cart, payments } = data || {};
 
-  return { isLoading, user };
+  return { isLoading, user, cart, payments };
 }
