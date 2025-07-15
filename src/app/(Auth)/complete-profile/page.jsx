@@ -8,8 +8,6 @@ import useCompleteProfile from "./_hooks/useCompleteProfile";
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import useUser from "@/hooks/useUser";
-import { useEffect } from "react";
 
 const schema = yup
   .object({
@@ -35,12 +33,6 @@ function CompleteProfilePage() {
   const { isCompleting, completeProfile } = useCompleteProfile();
 
   const router = useRouter();
-
-  const { user } = useUser();
-
-  useEffect(() => {
-    if (user.isActive) return router.replace("/");
-  }, [user]);
 
   const onSubmit = async (values) => {
     try {
