@@ -56,7 +56,7 @@ function CheckOtpForm({
           <input
             {...props}
             style={{}}
-            className="bg-secondary-0 w-10 rounded-lg border border-secondary-400 py-2 text-center leading-none text-secondary-900 transition hover:border-primary-700 focus:border-2 focus:border-primary-700 focus:outline-none"
+            className="bg-white w-10 rounded-lg border border-secondary-400 py-2 text-center leading-none text-secondary-900 transition hover:border-primary-700 focus:border-2 focus:border-primary-700 focus:outline-none"
           />
         )}
         containerStyle={{
