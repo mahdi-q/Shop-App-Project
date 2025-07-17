@@ -48,45 +48,43 @@ function CompleteProfilePage() {
   };
 
   return (
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      <form onSubmit={handleSubmit(onSubmit)} className="formLayout">
-        <h1 className="text-lg font-bold text-black">تکمیل اطلاعات</h1>
+    <form onSubmit={handleSubmit(onSubmit)} className="formLayout">
+      <h1 className="text-lg font-bold text-black">تکمیل اطلاعات</h1>
 
-        <p className="text-sm text-secondary-600">
-          لطفا اطلاعات خود را تکمیل کنید.
-        </p>
+      <p className="text-sm text-secondary-600">
+        لطفا اطلاعات خود را تکمیل کنید.
+      </p>
 
-        <RHFTextField
-          label="نام کاربری"
-          name="userName"
-          register={register}
-          errors={errors}
-          isRequired
-          className="mt-6"
-        />
+      <RHFTextField
+        label="نام کاربری"
+        name="userName"
+        register={register}
+        errors={errors}
+        isRequired
+        className="mt-6"
+      />
 
-        <RHFTextField
-          label="ایمیل"
-          name="email"
-          register={register}
-          errors={errors}
-          dir="ltr"
-          type="email"
-          isRequired
-          className="mt-6"
-        />
+      <RHFTextField
+        label="ایمیل"
+        name="email"
+        register={register}
+        errors={errors}
+        dir="ltr"
+        type="email"
+        isRequired
+        className="mt-6"
+      />
 
-        <div className="mt-6 flex w-full items-center justify-center">
-          {isCompleting ? (
-            <SvgLoaderComponent />
-          ) : (
-            <button type="submit" className="btn btn--primary w-full">
-              تایید
-            </button>
-          )}
-        </div>
-      </form>
-    </div>
+      <div className="mt-6 flex w-full items-center justify-center">
+        {isCompleting ? (
+          <SvgLoaderComponent />
+        ) : (
+          <button type="submit" className="btn btn--primary w-full">
+            تایید
+          </button>
+        )}
+      </div>
+    </form>
   );
 }
 export default CompleteProfilePage;

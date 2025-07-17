@@ -1,12 +1,14 @@
-import Header from "@/components/Header";
 import vazirFont from "@/constants/localFont";
 import AppProviders from "@/providers/AppProviders";
 import "@/styles/globals.css";
 import { Toaster } from "react-hot-toast";
 
 export const metadata = {
-  title: "Shop App Project",
-  description: "An app for shopping anything",
+  title: {
+    template: "%s | اپلیکیشن فروشگاهی",
+    default: "اپلیکیشن فروشگاهی",
+  },
+  description: "یک اپلیکیشن برای خرید هر چیزی",
 };
 
 export default function RootLayout({ children }) {
@@ -19,9 +21,7 @@ export default function RootLayout({ children }) {
         <AppProviders>
           <Toaster />
 
-          <Header />
-
-          <div className="container xl:max-w-screen-xl">{children}</div>
+          <div>{children}</div>
         </AppProviders>
       </body>
     </html>
