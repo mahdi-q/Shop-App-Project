@@ -8,7 +8,7 @@ const btnType = {
   outline:
     "border border-secondary-200 text-secondary-500 hover:bg-secondary-200",
 
-  danger: "bg-error-100 text-error-500 hover:bg-error-500 hover:text-error-100",
+  danger: "bg-transparent text-error hover:bg-error/20",
 
   text: "text-secondary-700 hover:text-secondary-900",
 };
