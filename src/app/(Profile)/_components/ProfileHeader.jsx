@@ -43,7 +43,7 @@ function ProfileHeader() {
       </div>
 
       <Drawer open={isOpenDrawer} onClose={() => setIsOpenDrawer(false)}>
-        <ProfileSidebar />
+        <ProfileSidebar onClose={() => setIsOpenDrawer(false)} />
       </Drawer>
     </div>
   );

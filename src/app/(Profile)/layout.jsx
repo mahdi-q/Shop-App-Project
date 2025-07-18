@@ -10,7 +10,7 @@ function ProfileLayout({ children }) {
   return (
     <div className="grid h-screen grid-cols-12 bg-white">
       {/* Sidebar */}
-      <aside className="col-span-12 hidden overflow-y-auto bg-warning p-4 lg:col-span-3 lg:block xl:col-span-2">
+      <aside className="col-span-12 hidden overflow-y-auto py-4 px-3 lg:col-span-3 lg:block xl:col-span-2">
         <ProfileSidebar />
       </aside>
 
