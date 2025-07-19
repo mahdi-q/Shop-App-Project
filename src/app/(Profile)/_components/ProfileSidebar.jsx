@@ -7,9 +7,13 @@ import { TbLogout2 } from "react-icons/tb";
 import SidebarNavs from "./SidebarNavs";
 import { useState } from "react";
 import Modal from "@/ui/Modal";
+import useLogout from "@/hooks/useLogout";
+import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 
 function ProfileSidebar({ onClose }) {
   const [open, setOpen] = useState(false);
+
+  const { isPending, logout } = useLogout();
 
   const buttonHandler = () => {
     if (onClose) {
@@ -18,8 +22,6 @@ function ProfileSidebar({ onClose }) {
 
     setOpen(true);
   };
-
-  const logoutHandler = () => {};
 
   return (
     <div className="flex flex-col">
@@ -67,12 +69,15 @@ function ProfileSidebar({ onClose }) {
             </p>
 
             <div className="flex w-full items-center justify-between gap-4">
-              <button
-                onClick={logoutHandler}
-                className="btn btn--danger w-full"
-              >
-                خروج
-              </button>
+              <div className="btn btn--danger flex w-full items-center justify-center">
+                {isPending ? (
+                  <SvgLoaderComponent />
+                ) : (
+                  <button onClick={logout} className="w-full">
+                    خروج
+                  </button>
+                )}
+              </div>
 
               <button
                 onClick={() => setOpen(false)}

@@ -32,7 +32,12 @@ function AuthPage() {
     try {
       const { message, user } = await checkOtp({ phoneNumber, otp });
       toast.success(message);
-      if (!user.isActive) return router.replace("/complete-profile");
+      
+      if (!user.isActive) {
+        return router.replace("/complete-profile");
+      } else {
+        return router.replace("/profile");
+      }
     } catch (error) {
       toast.error(error?.response?.data?.message || "خطا در تایید کد تایید");
     }

@@ -41,7 +41,7 @@ function CompleteProfilePage() {
         email: values.email,
       });
       toast.success(message);
-      router.replace("/");
+      router.replace("/profile");
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
