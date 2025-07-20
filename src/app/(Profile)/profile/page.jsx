@@ -45,7 +45,7 @@ function ProfilePage() {
               href="profile/payments"
             >
               <span className="hidden sm:inline-block">مشاهده </span>
-              <span> همه سفارشات</span>
+              <span> همه تراکنش ها</span>
             </Link>
           )}
         </div>

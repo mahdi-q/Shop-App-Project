@@ -22,7 +22,7 @@ const sidebarNavs = [
   },
   {
     id: 3,
-    title: "سفارشات",
+    title: "تراکنش ها",
     icon: <MdPayments />,
     href: "/profile/payments",
   },
