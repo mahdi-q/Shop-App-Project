@@ -4,6 +4,9 @@ import RHFTextField from "@/ui/RHFTextField";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import useUpdateProfile from "../_hooks/useUpdateProfile";
+import toast from "react-hot-toast";
+import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 
 const schema = yup
   .object({
@@ -12,7 +15,7 @@ const schema = yup
       .required("شماره موبایل الزامی است")
       .matches(/^09\d{9}$/, "شماره موبایل معتبر نیست"),
     email: yup.string().required("ایمیل الزامی است").email("ایمیل معتبر نیست"),
-    userName: yup
+    name: yup
       .string()
       .required("نام کاربری الزامی است")
       .min(5, "نام کاربری باید حداقل ۵ کاراکتر باشد"),
@@ -20,20 +23,48 @@ const schema = yup
   .required();
 
 function UserInfoForm({ user }) {
-  const { phoneNumber, email, name: userName, biography } = user;
+  const {
+    phoneNumber: userPhoneNumber,
+    email: userEmail,
+    name: userName,
+    biography: userBiography,
+  } = user;
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { phoneNumber, email, userName, biography },
+    defaultValues: {
+      phoneNumber: userPhoneNumber,
+      email: userEmail,
+      name: userName,
+      biography: userBiography,
+    },
     resolver: yupResolver(schema),
     mode: "onTouched",
   });
 
+  const { isUpdating, updateProfile } = useUpdateProfile();
+
   const onSubmit = (values) => {
-    console.log(values);
+    const { phoneNumber, email, name, biography } = values;
+
+    if (
+      phoneNumber !== userPhoneNumber ||
+      email !== userEmail ||
+      name !== userName ||
+      biography !== userBiography
+    ) {
+      updateProfile({
+        phoneNumber,
+        email,
+        name,
+        biography,
+      });
+    } else {
+      toast.error("ابتدا باید مقداری را تغییر دهید");
+    }
   };
 
   return (
@@ -65,7 +96,7 @@ function UserInfoForm({ user }) {
         label="نام کاربری"
         register={register}
         errors={errors}
-        name="userName"
+        name="name"
         isRequired
       />
 
@@ -78,9 +109,10 @@ function UserInfoForm({ user }) {
 
       <button
         type="submit"
-        className="btn btn--primary mt-2 self-center justify-self-start px-6 sm:px-8 lg:px-14"
+        disabled={isUpdating}
+        className={`btn ${isUpdating ? "btn--outline" : "btn--primary"} mt-2 self-center justify-self-start px-6 sm:px-8 lg:px-14`}
       >
-        تایید اطلاعات
+        {isUpdating ? <SvgLoaderComponent /> : "تایید اطلاعات"}
       </button>
     </form>
   );

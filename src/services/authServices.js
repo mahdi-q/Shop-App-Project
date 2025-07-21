@@ -21,3 +21,7 @@ export function getUserApi() {
 export function logoutApi() {
   return http.post("/user/logout").then(({ data }) => data.data);
 }
+
+export function updateProfileApi(data) {
+  return http.patch("/user/update", data).then(({ data }) => data.data);
+}

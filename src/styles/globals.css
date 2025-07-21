@@ -60,6 +60,9 @@
   .btn--danger {
     @apply bg-error/90 px-4 py-3 text-white shadow-md shadow-error/40 hover:bg-error;
   }
+  .btn--outline {
+    @apply border border-primary-900 bg-transparent px-4 py-3 text-white;
+  }
   .table__th {
     @apply border-b-2 border-b-gray-600 p-3 text-center font-medium;
   }
