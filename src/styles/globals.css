@@ -37,7 +37,7 @@
 
 @layer components {
   .formLayout {
-    @apply flex min-w-[400px] flex-col items-start justify-center gap-2 rounded-lg border border-secondary-200 bg-secondary-50/20 px-4 py-6 shadow-sm;
+    @apply flex min-w-[310px] flex-col items-start justify-center gap-2 rounded-lg border border-secondary-200 bg-secondary-50/20 px-4 py-6 shadow-sm sm:min-w-[400];
   }
   .textField {
     @apply flex w-full flex-col gap-y-2;
