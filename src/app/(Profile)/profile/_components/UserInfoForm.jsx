@@ -56,12 +56,7 @@ function UserInfoForm({ user }) {
       name !== userName ||
       biography !== userBiography
     ) {
-      updateProfile({
-        phoneNumber,
-        email,
-        name,
-        biography,
-      });
+      updateProfile(values);
     } else {
       toast.error("ابتدا باید مقداری را تغییر دهید");
     }
