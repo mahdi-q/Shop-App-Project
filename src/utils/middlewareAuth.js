@@ -1,14 +1,11 @@
-export default async function middlewareAuth(req) {
-  let strCookie = "";
-  req.cookies.getAll().forEach((cookie) => {
-    strCookie += `${cookie?.name}=${cookie?.value}; `;
-  });
+import toStringCookies from "./toStringCookies";
 
+export default async function middlewareAuth(req) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/profile`, {
     method: "GET",
     credentials: "include",
     headers: {
-      Cookie: strCookie,
+      Cookie: toStringCookies(req.cookies),
     },
   });
 
