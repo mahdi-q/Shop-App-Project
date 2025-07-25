@@ -12,7 +12,9 @@ export const metadata = {
   description: "صفحه محصولات اپلیکیشن فروشگاهی",
 };
 
-async function ProductsPage() {
+async function ProductsPage({ searchParams }) {
+  console.log(searchParams.toString());
+
   const cookieStore = cookies();
   const strCookies = toStringCookies(cookieStore);
 

@@ -3,7 +3,7 @@
 import { CustomRadio } from "@/ui/CustomRadio";
 import { Suspense, useState } from "react";
 import Loader from "@/ui/Loader";
-import { CustomCheckbox } from "@/ui/CustomCheckbox";
+import ProductsFilter from "./ProductsFilter";
 
 const filters = [
   {
@@ -31,22 +31,9 @@ function ProductsSidebar({ categories }) {
       <div className="mb-12">
         <h3 className="mb-4 text-lg font-bold text-black">دسته بندی ها</h3>
 
-        {categories && categories.length > 0 && (
-          <Suspense fallback={<Loader />}>
-            <div className="flex flex-col gap-3">
-              {categories.map((category) => (
-                <CustomCheckbox
-                  key={category._id}
-                  id={category.englishTitle}
-                  name={category.englishTitle}
-                  value={category.englishTitle}
-                  label={category.title}
-                  onChange={() => {}}
-                />
-              ))}
-            </div>
-          </Suspense>
-        )}
+        <Suspense fallback={<Loader />}>
+          <ProductsFilter categories={categories} />
+        </Suspense>
       </div>
 
       <div>
