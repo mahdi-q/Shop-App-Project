@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import Loader from "@/ui/Loader";
 import { cookies } from "next/headers";
 import toStringCookies from "@/utils/toStringCookies";
+import ProductsSidebar from "./_components/ProductsSidebar";
+import { getCategoriesApi } from "@/services/categoriesServices";
 
 export const metadata = {
   title: "محصولات",
@@ -13,7 +15,14 @@ export const metadata = {
 async function ProductsPage() {
   const cookieStore = cookies();
   const strCookies = toStringCookies(cookieStore);
-  const { products } = await getProductsApi("", strCookies);
+
+  const productsPromise = getProductsApi("", strCookies);
+  const categoriesPromise = getCategoriesApi();
+
+  const [{ products }, { categories }] = await Promise.all([
+    productsPromise,
+    categoriesPromise,
+  ]);
 
   return (
     <div className="px-4 lg:px-6">
@@ -22,7 +31,9 @@ async function ProductsPage() {
       </h2>
 
       <div className="grid h-screen grid-cols-12 gap-6">
-        <div className="col-span-12 bg-error lg:col-span-3"></div>
+        <div className="col-span-12 lg:col-span-3">
+          <ProductsSidebar categories={categories} />
+        </div>
 
         <div className="col-span-12 lg:col-span-9">
           <Suspense fallback={<Loader />}>

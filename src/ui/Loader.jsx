@@ -1,3 +1,5 @@
+import { PulseLoader } from "react-spinners";
+
 function Loader() {
   return (
     <div className="flex w-full items-center justify-center">
