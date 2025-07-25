@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import toStringCookies from "@/utils/toStringCookies";
 import ProductsSidebar from "./_components/ProductsSidebar";
 import { getCategoriesApi } from "@/services/categoriesServices";
+import queryString from "query-string";
 
 export const metadata = {
   title: "محصولات",
@@ -13,12 +14,13 @@ export const metadata = {
 };
 
 async function ProductsPage({ searchParams }) {
-  console.log(searchParams.toString());
-
   const cookieStore = cookies();
   const strCookies = toStringCookies(cookieStore);
 
-  const productsPromise = getProductsApi("", strCookies);
+  const productsPromise = getProductsApi(
+    queryString.stringify(searchParams),
+    strCookies,
+  );
   const categoriesPromise = getCategoriesApi();
 
   const [{ products }, { categories }] = await Promise.all([
