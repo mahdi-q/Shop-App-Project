@@ -9,12 +9,12 @@ const filters = [
   {
     id: 1,
     title: "جدید‌ترین",
-    value: "newest",
+    value: "latest",
   },
   {
     id: 2,
     title: "قدیمی‌ترین",
-    value: "oldest",
+    value: "earliest",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ function ProductsSort() {
   const createQueryString = useCreateQueryString();
 
   const [selected, setSelected] = useState(
-    searchParams.get("sort") || "newest",
+    searchParams.get("sort") || "latest",
   );
 
   const radioHandler = (e) => {
