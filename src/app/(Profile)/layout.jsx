@@ -22,7 +22,7 @@ function ProfileLayout({ children }) {
         </header>
 
         {/* Content */}
-        <main className="m-1.5 flex-1 rounded-md bg-secondary-50 p-4 md:p-6 lg:m-2 lg:rounded-xl lg:p-8">
+        <main className="m-1.5 flex-1 rounded-md bg-secondary-50/70 p-4 md:p-6 lg:m-2 lg:rounded-xl lg:p-8">
           <div className="xl:max-w-screen-xl">{children}</div>
         </main>
       </div>

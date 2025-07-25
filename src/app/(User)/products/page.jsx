@@ -34,8 +34,8 @@ async function ProductsPage({ searchParams }) {
         لیست تمام محصولات
       </h2>
 
-      <div className="grid h-screen grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-3">
+      <div className="mb-24 grid grid-cols-12 gap-6">
+        <div className="col-span-12 h-fit min-h-[400px] rounded-md bg-secondary-50/70 py-4 pr-6 lg:col-span-3 lg:ml-4">
           <ProductsSidebar categories={categories} />
         </div>
 
