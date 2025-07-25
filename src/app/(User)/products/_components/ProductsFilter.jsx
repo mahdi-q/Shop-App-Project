@@ -1,3 +1,5 @@
+"use client";
+
 import useCreateQueryString from "@/hooks/useCreateQueryString";
 import { CustomCheckbox } from "@/ui/CustomCheckbox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -10,10 +12,8 @@ function ProductsFilter({ categories }) {
   const createQueryString = useCreateQueryString();
 
   const [selectedCategories, setSelectedCategories] = useState(
-    searchParams.getAll("category").splice(",") || [],
+    searchParams.get("category")?.split(",") || [],
   );
-
-  console.log(selectedCategories);
 
   const checkboxHandler = (e) => {
     const categoryValue = e.target.value;
