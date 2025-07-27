@@ -5,12 +5,25 @@ import ButtonIcon from "@/ui/ButtonIcon";
 import { toPersianNumbers } from "@/utils/changeNumbers";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { useState } from "react";
+import useLikeProduct from "../_hooks/useLikeProduct";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 function ProductCard({ product }) {
+  const { isLiking, likeProduct } = useLikeProduct();
+  const router = useRouter();
+
   const [isLiked, setIsLiked] = useState(product.isLiked);
 
-  const handleLikeClick = () => {
-    setIsLiked(!isLiked);
+  const handleLikeClick = async () => {
+    try {
+      const { message } = await likeProduct(product._id);
+      toast.success(message);
+      setIsLiked(!isLiked);
+      router.refresh();
+    } catch (error) {
+      toast.error(error?.respone?.data?.message || "خطا در لایک کردن محصول");
+    }
   };
 
   const handleAddToCart = () => {};
@@ -35,7 +48,11 @@ function ProductCard({ product }) {
           </div>
 
           <div>
-            <ButtonIcon onClick={handleLikeClick} varient="primary">
+            <ButtonIcon
+              onClick={handleLikeClick}
+              varient="primary"
+              disabled={isLiking}
+            >
               {isLiked ? <AiFillLike /> : <AiOutlineLike />}
               <span>{toPersianNumbers(product.likesCount)}</span>
             </ButtonIcon>
