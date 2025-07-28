@@ -8,12 +8,19 @@ import { useState } from "react";
 import useLikeProduct from "../_hooks/useLikeProduct";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import useAddToCart from "../_hooks/useAddToCart";
+import useUser from "@/hooks/useUser";
 
 function ProductCard({ product }) {
   const { isLiking, likeProduct } = useLikeProduct();
+  const { isAdding, addToCart } = useAddToCart();
+  const { cart } = useUser();
   const router = useRouter();
 
+  const isInCartInit = cart?.productDetail.find((p) => p._id === product._id);
+
   const [isLiked, setIsLiked] = useState(product.isLiked);
+  const [isInCart, setIsInCart] = useState(isInCartInit);
 
   const handleLikeClick = async () => {
     try {
@@ -26,7 +33,16 @@ function ProductCard({ product }) {
     }
   };
 
-  const handleAddToCart = () => {};
+  const handleAddToCart = async () => {
+    try {
+      const { message } = await addToCart({ productId: product._id });
+      toast.success(message);
+      setIsInCart(true);
+      router.refresh();
+    } catch (error) {
+      toast.error(error?.respone?.data?.message || "خطا در افزودن به سبد خرید");
+    }
+  };
 
   return (
     <div className="min-h-32 rounded-lg border border-secondary-200 p-2 shadow-md">
@@ -70,12 +86,24 @@ function ProductCard({ product }) {
         </div>
       </div>
 
-      <button
-        onClick={handleAddToCart}
-        className="btn btn--primary w-full rounded-lg text-sm"
-      >
-        افزودن به سبد خرید
-      </button>
+      <div>
+        {isInCart ? (
+          <Link
+            href={"/cart"}
+            className="btn btn--primary block w-full rounded-lg text-center text-sm"
+          >
+            ادامه سفارش
+          </Link>
+        ) : (
+          <button
+            onClick={handleAddToCart}
+            disabled={isAdding}
+            className="btn btn--primary w-full rounded-lg text-sm"
+          >
+            افزودن به سبد خرید
+          </button>
+        )}
+      </div>
     </div>
   );
 }
