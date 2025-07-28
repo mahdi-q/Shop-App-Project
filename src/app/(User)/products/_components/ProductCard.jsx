@@ -14,19 +14,13 @@ import { useRouter } from "next/navigation";
 import useAddToCart from "../_hooks/useAddToCart";
 import useUser from "@/hooks/useUser";
 import TomanSvgIcon from "@/ui/TomanSvgIcon";
+import AddToCartButton from "./AddToCartButton";
 
 function ProductCard({ product }) {
-  console.log(product);
-
   const { isLiking, likeProduct } = useLikeProduct();
-  const { isAdding, addToCart } = useAddToCart();
-  const { cart } = useUser();
   const router = useRouter();
 
-  const isInCartInit = cart?.productDetail.find((p) => p._id === product._id);
-
   const [isLiked, setIsLiked] = useState(product.isLiked);
-  const [isInCart, setIsInCart] = useState(isInCartInit);
 
   const handleLikeClick = async () => {
     try {
@@ -39,20 +33,10 @@ function ProductCard({ product }) {
     }
   };
 
-  const handleAddToCart = async () => {
-    try {
-      const { message } = await addToCart({ productId: product._id });
-      toast.success(message);
-      setIsInCart(true);
-      router.refresh();
-    } catch (error) {
-      toast.error(error?.respone?.data?.message || "خطا در افزودن به سبد خرید");
-    }
-  };
-
   return (
     <div className="min-h-32 rounded-lg border border-secondary-200 p-2 shadow-md">
       <div className="mb-3 flex items-start justify-between gap-4">
+        {/* Product Info */}
         <div className="flex h-[-webkit-fill-available] flex-col justify-between gap-6">
           <div>
             <Link href={`/products/${product.slug}`}>
@@ -70,6 +54,7 @@ function ProductCard({ product }) {
           </div>
         </div>
 
+        {/* Product Image */}
         <div className="h-36 w-28 overflow-hidden rounded-lg object-cover">
           <Link href={`/products/${product.slug}`}>
             <img
@@ -82,6 +67,7 @@ function ProductCard({ product }) {
       </div>
 
       <div className="mb-3 flex items-center justify-between">
+        {/* Like Button */}
         <ButtonIcon
           onClick={handleLikeClick}
           varient="primary"
@@ -91,6 +77,7 @@ function ProductCard({ product }) {
           <span>{toPersianNumbers(product.likesCount)}</span>
         </ButtonIcon>
 
+        {/* Product Price */}
         <div className="flex items-end gap-2">
           {product.discount !== 0 && (
             <span className="badge badge--success text-xs">
@@ -108,24 +95,8 @@ function ProductCard({ product }) {
         </div>
       </div>
 
-      <div>
-        {isInCart ? (
-          <Link
-            href={"/cart"}
-            className="btn btn--primary block w-full rounded-lg text-center text-sm"
-          >
-            ادامه سفارش
-          </Link>
-        ) : (
-          <button
-            onClick={handleAddToCart}
-            disabled={isAdding}
-            className="btn btn--primary w-full rounded-lg text-sm"
-          >
-            افزودن به سبد خرید
-          </button>
-        )}
-      </div>
+      {/* Add To Cart Button */}
+      <AddToCartButton />
     </div>
   );
 }
