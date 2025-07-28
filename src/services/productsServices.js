@@ -13,3 +13,7 @@ export function getProductsApi(queries, cookies) {
 export function likeProductApi(id) {
   return http.post(`/product/like/${id}`).then(({ data }) => data.data);
 }
+
+export function getProductBySlugApi(slug) {
+  return http.get(`/product/slug/${slug}`).then(({ data }) => data.data);
+}
