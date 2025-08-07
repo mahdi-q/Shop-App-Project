@@ -2,7 +2,12 @@
 
 import useCreateQueryString from "@/hooks/useCreateQueryString";
 import { CustomCheckbox } from "@/ui/CustomCheckbox";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  notFound,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import { useState } from "react";
 
 function ProductsFilter({ categories }) {
@@ -29,7 +34,7 @@ function ProductsFilter({ categories }) {
     }
   };
 
-  if (!categories || categories.length <= 0) return null;
+  if (!categories || categories.length <= 0) return notFound();
 
   return (
     <div className="flex flex-col gap-3">

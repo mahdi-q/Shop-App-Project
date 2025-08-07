@@ -1,17 +1,16 @@
-import { Suspense } from "react";
-import Loader from "@/ui/Loader";
 import ProductsFilter from "./ProductsFilter";
 import ProductsSort from "./ProductsSort";
+import { getCategoriesApi } from "@/services/categoriesServices";
 
-function ProductsSidebar({ categories }) {
+async function ProductsSidebar() {
+  const {categories} = await getCategoriesApi();
+
   return (
     <div>
       <div className="mb-12">
         <h3 className="mb-4 text-lg font-bold text-black">دسته بندی ها</h3>
 
-        <Suspense fallback={<Loader />}>
-          <ProductsFilter categories={categories} />
-        </Suspense>
+        <ProductsFilter categories={categories} />
       </div>
 
       <div>

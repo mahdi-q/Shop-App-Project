@@ -1,38 +1,14 @@
-"use client";
-
 import Link from "next/link";
-import ButtonIcon from "@/ui/ButtonIcon";
 import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/changeNumbers";
-import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import { useState } from "react";
-import useLikeProduct from "../_hooks/useLikeProduct";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import useAddToCart from "../_hooks/useAddToCart";
-import useUser from "@/hooks/useUser";
 import TomanSvgIcon from "@/ui/TomanSvgIcon";
 import AddToCartButton from "./AddToCartButton";
+import Image from "next/image";
+import LikeProductButton from "./LikeProductButton";
 
 function ProductCard({ product }) {
-  const { isLiking, likeProduct } = useLikeProduct();
-  const router = useRouter();
-
-  const [isLiked, setIsLiked] = useState(product.isLiked);
-
-  const handleLikeClick = async () => {
-    try {
-      const { message } = await likeProduct(product._id);
-      toast.success(message);
-      setIsLiked(!isLiked);
-      router.refresh();
-    } catch (error) {
-      toast.error(error?.respone?.data?.message || "خطا در لایک کردن محصول");
-    }
-  };
-
   return (
     <div className="min-h-32 rounded-lg border border-secondary-200 p-2 shadow-md">
       <div className="mb-3 flex items-start justify-between gap-4">
@@ -55,12 +31,15 @@ function ProductCard({ product }) {
         </div>
 
         {/* Product Image */}
-        <div className="h-36 w-28 overflow-hidden rounded-lg object-cover">
-          <Link href={`/products/${product.slug}`}>
-            <img
-              className="h-full w-full"
+        <div className="h-36 w-32 flex-shrink-0 overflow-hidden rounded-lg object-cover">
+          <Link href={`/products/${product.slug}`} className="h-full w-full">
+            <Image
               src={product.imageLink}
               alt="product-image"
+              priority
+              height={144}
+              width={128}
+              style={{ objectFit: "cover" }}
             />
           </Link>
         </div>
@@ -68,14 +47,11 @@ function ProductCard({ product }) {
 
       <div className="mb-3 flex items-center justify-between">
         {/* Like Button */}
-        <ButtonIcon
-          onClick={handleLikeClick}
-          varient="primary"
-          disabled={isLiking}
-        >
-          {isLiked ? <AiFillLike /> : <AiOutlineLike />}
-          <span>{toPersianNumbers(product.likesCount)}</span>
-        </ButtonIcon>
+        <LikeProductButton
+          id={product._id}
+          isLiked={product.isLiked}
+          likesCount={product.likesCount}
+        />
 
         {/* Product Price */}
         <div className="flex items-end gap-2">

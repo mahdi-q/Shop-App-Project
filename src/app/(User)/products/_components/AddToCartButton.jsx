@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 function AddToCartButton() {
   const { isAdding, addToCart } = useAddToCart();
   const router = useRouter();
-  const { cart } = useUser();
+  const { user, cart } = useUser();
 
   const isInCartInit = cart?.productDetail.find((p) => p._id === product._id);
 
@@ -22,6 +22,7 @@ function AddToCartButton() {
       setIsInCart(true);
       router.refresh();
     } catch (error) {
+      if (!user.isActive) return toast.error("لطفا وارد حساب کاربری خود شوید.");
       toast.error(error?.respone?.data?.message || "خطا در افزودن به سبد خرید");
     }
   };
