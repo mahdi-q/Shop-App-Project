@@ -8,7 +8,7 @@ import Image from "next/image";
 
 function ProductDetails({ product }) {
   return (
-    <div className="relative mb-44 flex w-full flex-col items-start justify-between gap-8 px-4 md:flex-row-reverse md:px-8">
+    <div className="relative mb-44 flex w-full flex-col items-start justify-between gap-8 md:flex-row-reverse">
       <div className="flex w-full flex-col gap-6 md:w-2/5">
         {/* Product Image */}
         <div className="relative h-[450px] overflow-hidden rounded-lg">
