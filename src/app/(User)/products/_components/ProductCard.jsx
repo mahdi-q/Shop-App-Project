@@ -10,7 +10,7 @@ import LikeProductButton from "./LikeProductButton";
 
 function ProductCard({ product }) {
   return (
-    <div className="min-h-32 rounded-lg border border-secondary-200 p-2 shadow-md">
+    <div className="flex min-h-32 flex-col gap-1 rounded-lg border border-secondary-200 p-2 shadow-md">
       <div className="mb-3 flex items-start justify-between gap-4">
         {/* Product Info */}
         <div className="flex h-[-webkit-fill-available] flex-col justify-between gap-6">
