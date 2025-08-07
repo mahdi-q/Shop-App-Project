@@ -8,6 +8,8 @@ export const metadata = {
   description: "صفحه محصولات اپلیکیشن فروشگاهی",
 };
 
+export const revalidate = 600;
+
 export const experimental_ppr = true;
 
 function ProductsPage({ searchParams }) {

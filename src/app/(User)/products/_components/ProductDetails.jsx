@@ -4,21 +4,25 @@ import {
   toPersianNumbersWithComma,
 } from "@/utils/changeNumbers";
 import AddToCartButton from "./AddToCartButton";
+import Image from "next/image";
 
 function ProductDetails({ product }) {
   return (
-    <div>
+    <div className="relative mb-44 flex w-full flex-col items-start justify-between gap-8 px-4 md:flex-row-reverse md:px-8">
       <div className="flex w-full flex-col gap-6 md:w-2/5">
         {/* Product Image */}
-        <div className="h-[450px]">
-          <img
-            className="h-full w-full rounded-lg object-cover"
+        <div className="relative h-[450px] overflow-hidden rounded-lg">
+          <Image
             src={product.imageLink}
             alt="product-image"
+            fill
+            sizes="100%"
+            priority
+            style={{ objectFit: "cover" }}
           />
         </div>
 
-        <div className="absolute bottom-0 w-full rounded-t-lg bg-secondary-50/70 px-4 pt-6 md:relative md:bg-transparent md:px-0">
+        <div className="fixed bottom-0 left-0 w-full rounded-t-xl bg-secondary-50/70 px-4 py-6 md:relative md:bg-transparent md:px-0">
           {/* Product Price */}
           <div className="mb-6 flex items-center justify-between">
             <span className="text-xl font-bold">قیمت:</span>

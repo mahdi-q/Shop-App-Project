@@ -1,13 +1,19 @@
 import { getProductBySlugApi } from "@/services/productsServices";
 import ProductDetails from "../_components/ProductDetails";
+import { notFound } from "next/navigation";
+
+export const metadata = {
+  title: "جزئیات محصول",
+  description: "صفحه جزئیات محصول اپلیکیشن فروشگاهی",
+};
+
+export const revalidate = 3600;
 
 async function ProductItemPage({ params }) {
-  const { product } = await getProductBySlugApi(params.slug);
+  const { product } = await getProductBySlugApi((await params).slug);
 
-  return (
-    <div className="relative mb-20 flex w-full flex-col items-start justify-between gap-8 px-4 md:flex-row-reverse md:px-8">
-      <ProductDetails product={product} />
-    </div>
-  );
+  if (!product) return notFound();
+
+  return <ProductDetails product={product} />;
 }
 export default ProductItemPage;
