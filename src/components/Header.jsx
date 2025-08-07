@@ -11,7 +11,7 @@ function Header() {
       className={`sticky top-0 z-50 mb-10 bg-white shadow-md transition-all duration-200 ${isLoading ? "opacity-70 blur-sm" : "opacity-100 blur-0"}`}
     >
       <nav>
-        <ul className="container flex items-center justify-between py-2 font-medium text-secondary-800 xl:max-w-screen-xl">
+        <ul className="container flex items-center justify-between px-2 py-2 font-medium text-secondary-800 md:px-4 xl:max-w-screen-xl">
           <div className="flex items-center justify-center gap-x-2">
             <li>
               <Link className="block p-2 hover:text-primary-900" href="/">
