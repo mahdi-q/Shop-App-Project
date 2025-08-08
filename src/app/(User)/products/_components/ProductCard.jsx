@@ -72,7 +72,7 @@ function ProductCard({ product }) {
       </div>
 
       {/* Add To Cart Button */}
-      <AddToCartButton />
+      <AddToCartButton id={product._id} />
     </div>
   );
 }

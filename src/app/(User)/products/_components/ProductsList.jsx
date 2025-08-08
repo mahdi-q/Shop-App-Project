@@ -3,7 +3,6 @@ import ProductCard from "./ProductCard";
 import { getProductsApi } from "@/services/productsServices";
 import { cookies } from "next/headers";
 import toStringCookies from "@/utils/toStringCookies";
-import { use } from "react";
 import queryString from "query-string";
 
 async function ProductsList({ searchParams }) {
