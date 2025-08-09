@@ -1,5 +1,7 @@
 "use client";
 
+import useAddToCart from "@/hooks/useAddToCart";
+import useRemoveFromCart from "@/hooks/useRemoveFromCart";
 import useUser from "@/hooks/useUser";
 import Loader from "@/ui/Loader";
 import TomanSvgIcon from "@/ui/TomanSvgIcon";
@@ -9,15 +11,43 @@ import {
 } from "@/utils/changeNumbers";
 import Image from "next/image";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { IoTrashOutline } from "react-icons/io5";
+import useDeleteProductFromCart from "../_hooks/useDeleteProductFromCart";
 
 function CartItems() {
   const { cart } = useUser();
+  const { isAdding, addToCart } = useAddToCart();
+  const { isRemoving, removeFromCart } = useRemoveFromCart();
+  const { isDeleting, deleteProductFromCart } = useDeleteProductFromCart();
 
-  const handlePlus = () => {};
-  const handleMinus = () => {};
-  const handleDeleteProduct = () => {};
+  const handleAddToCart = async (id) => {
+    try {
+      const { message } = await addToCart({ productId: id });
+      toast.success(message);
+    } catch (error) {
+      toast.error(
+        error?.response?.data?.message || "خطا در افزودن به سبد خرید",
+      );
+    }
+  };
+  const handleRemoveFromCart = async (id) => {
+    try {
+      const { message } = await removeFromCart({ productId: id });
+      toast.success(message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "خطا در حذف از سبد خرید");
+    }
+  };
+  const handleDeleteProduct = async (id) => {
+    try {
+      const { message } = await deleteProductFromCart({ productId: id });
+      toast.success(message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "خطا در حذف از سبد خرید");
+    }
+  };
 
   if (!cart) return <Loader />;
 
@@ -49,7 +79,11 @@ function CartItems() {
               </Link>
 
               <div className="mb-2 flex items-stretch gap-2 rounded-lg border border-secondary-300 p-2">
-                <button onClick={handlePlus} className="hover:text-success">
+                <button
+                  onClick={() => handleAddToCart(product._id)}
+                  disabled={isAdding}
+                  className="hover:text-success"
+                >
                   <CiCirclePlus className="h-6 w-6" />
                 </button>
 
@@ -57,7 +91,11 @@ function CartItems() {
                   {toPersianNumbers(product.quantity)}
                 </span>
 
-                <button onClick={handleMinus} className="hover:text-error">
+                <button
+                  onClick={() => handleRemoveFromCart(product._id)}
+                  disabled={isRemoving}
+                  className="hover:text-error"
+                >
                   <CiCircleMinus className="h-6 w-6" />
                 </button>
               </div>
@@ -66,7 +104,8 @@ function CartItems() {
 
           <div className="flex flex-col items-end justify-between">
             <button
-              onClick={handleDeleteProduct}
+              onClick={() => handleDeleteProduct(product._id)}
+              disabled={isDeleting}
               className="rounded-md border border-error bg-error/10 p-1.5 text-error transition duration-200 hover:border-error hover:bg-error hover:text-white"
             >
               <IoTrashOutline className="h-6 w-6" />

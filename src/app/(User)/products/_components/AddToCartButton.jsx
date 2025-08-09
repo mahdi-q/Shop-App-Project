@@ -1,15 +1,13 @@
 "use client";
 
 import useUser from "@/hooks/useUser";
-import useAddToCart from "../_hooks/useAddToCart";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import useAddToCart from "@/hooks/useAddToCart";
 
 function AddToCartButton({ id }) {
   const { isAdding, addToCart } = useAddToCart();
-  const router = useRouter();
   const { user, cart } = useUser();
 
   const [isInCart, setIsInCart] = useState(false);
@@ -26,7 +24,6 @@ function AddToCartButton({ id }) {
       const { message } = await addToCart({ productId: id });
       toast.success(message);
       setIsInCart(true);
-      router.refresh();
     } catch (error) {
       if (!user?.isActive)
         return toast.error("لطفا وارد حساب کاربری خود شوید.");
