@@ -20,13 +20,13 @@ function AddToCartButton({ id }) {
   }, [cart, id]);
 
   const handleAddToCart = async () => {
+    if (!user?.isActive) return toast.error("لطفا وارد حساب کاربری خود شوید.");
+    
     try {
       const { message } = await addToCart({ productId: id });
       toast.success(message);
       setIsInCart(true);
     } catch (error) {
-      if (!user?.isActive)
-        return toast.error("لطفا وارد حساب کاربری خود شوید.");
       toast.error(
         error?.response?.data?.message || "خطا در افزودن به سبد خرید",
       );

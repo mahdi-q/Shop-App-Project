@@ -17,13 +17,14 @@ function LikeProductButton({ isLiked, id, likesCount }) {
   const [isLike, setIsLike] = useState(isLiked);
 
   const handleLikeClick = async () => {
+    if (!user.isActive) return toast.error("لطفا وارد حساب کاربری خود شوید.");
+
     try {
       const { message } = await likeProduct(id);
       toast.success(message);
       setIsLike(!isLike);
       router.refresh();
     } catch (error) {
-      if (!user.isActive) return toast.error("لطفا وارد حساب کاربری خود شوید.");
       toast.error(error?.respone?.data?.message || "خطا در لایک کردن محصول");
     }
   };
