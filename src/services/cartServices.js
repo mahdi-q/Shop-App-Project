@@ -15,3 +15,11 @@ export function deleteProductFromCartApi(id) {
     })
     .then(({ data }) => data.data);
 }
+
+export function addCouponToCartApi(code) {
+  return http.post("/cart/coupon", code).then(({ data }) => data.data);
+}
+
+export function removeCouponFromCartApi() {
+  return http.delete("/cart/coupon").then(({ data }) => data.data);
+}

@@ -1,3 +1,4 @@
+import CartInvoice from "./_components/CartInvoice";
 import CartItems from "./_components/CartItems";
 
 export const metadata = {
@@ -12,7 +13,9 @@ function CartPage() {
         <CartItems />
       </div>
 
-      <div className="col-span-12 bg-success lg:col-span-4">Cart Summery</div>
+      <div className="col-span-12 mt-8 lg:col-span-4 lg:mt-0">
+        <CartInvoice />
+      </div>
     </div>
   );
 }

@@ -17,7 +17,7 @@ import { IoTrashOutline } from "react-icons/io5";
 import useDeleteProductFromCart from "../_hooks/useDeleteProductFromCart";
 
 function CartItems() {
-  const { cart } = useUser();
+  const { isLoading, user, cart } = useUser();
   const { isAdding, addToCart } = useAddToCart();
   const { isRemoving, removeFromCart } = useRemoveFromCart();
   const { isDeleting, deleteProductFromCart } = useDeleteProductFromCart();
@@ -49,7 +49,30 @@ function CartItems() {
     }
   };
 
-  if (!cart) return <Loader />;
+  if (isLoading) return <Loader />;
+
+  if (!user.isActive)
+    return (
+      <div className="mt-8 text-lg font-medium text-secondary-900">
+        برای مشاهده سبد خرید لطفا وارد{" "}
+        <Link href="/auth" className="font-bold !text-primary-900">
+          حساب کاربری
+        </Link>{" "}
+        خود شوید.
+      </div>
+    );
+
+  if (!cart.productDetail || cart.productDetail.length <= 0)
+    return (
+      <div>
+        <div className="mb-1 text-lg font-medium text-secondary-900">
+          سبد خرید شما خالی است.
+        </div>
+        <Link href="/products" className="font-bold text-primary-900">
+          مشاهده صفحه محصولات
+        </Link>
+      </div>
+    );
 
   return (
     <ul className="space-y-4">
