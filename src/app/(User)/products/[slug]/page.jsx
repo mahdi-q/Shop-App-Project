@@ -1,4 +1,7 @@
-import { getProductBySlugApi } from "@/services/productsServices";
+import {
+  getProductBySlugApi,
+  getProductsApi,
+} from "@/services/productsServices";
 import ProductDetails from "../_components/ProductDetails";
 import { notFound } from "next/navigation";
 import { FaChevronRight } from "react-icons/fa6";
@@ -9,10 +12,17 @@ export const metadata = {
   description: "صفحه جزئیات محصول اپلیکیشن فروشگاهی",
 };
 
-export const revalidate = 3600;
+export async function generateStaticParams() {
+  const { products } = await getProductsApi();
+
+  return products.map((product) => ({
+    slug: product.slug,
+  }));
+}
 
 async function ProductItemPage({ params }) {
-  const { product } = await getProductBySlugApi((await params).slug);
+  const { slug } = await params;
+  const { product } = await getProductBySlugApi(slug);
 
   if (!product) return notFound();
 
