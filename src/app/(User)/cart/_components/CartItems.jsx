@@ -1,7 +1,5 @@
 "use client";
 
-import useAddToCart from "@/hooks/useAddToCart";
-import useRemoveFromCart from "@/hooks/useRemoveFromCart";
 import useUser from "@/hooks/useUser";
 import Loader from "@/ui/Loader";
 import TomanSvgIcon from "@/ui/TomanSvgIcon";
@@ -12,34 +10,14 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { IoTrashOutline } from "react-icons/io5";
 import useDeleteProductFromCart from "../_hooks/useDeleteProductFromCart";
+import CartActions from "./CartActions";
 
 function CartItems() {
   const { isLoading, user, cart } = useUser();
-  const { isAdding, addToCart } = useAddToCart();
-  const { isRemoving, removeFromCart } = useRemoveFromCart();
   const { isDeleting, deleteProductFromCart } = useDeleteProductFromCart();
 
-  const handleAddToCart = async (id) => {
-    try {
-      const { message } = await addToCart({ productId: id });
-      toast.success(message);
-    } catch (error) {
-      toast.error(
-        error?.response?.data?.message || "خطا در افزودن به سبد خرید",
-      );
-    }
-  };
-  const handleRemoveFromCart = async (id) => {
-    try {
-      const { message } = await removeFromCart({ productId: id });
-      toast.success(message);
-    } catch (error) {
-      toast.error(error?.response?.data?.message || "خطا در حذف از سبد خرید");
-    }
-  };
   const handleDeleteProduct = async (id) => {
     try {
       const { message } = await deleteProductFromCart({ productId: id });
@@ -101,26 +79,8 @@ function CartItems() {
                 </h4>
               </Link>
 
-              <div className="mb-2 flex items-stretch gap-2 rounded-lg border border-secondary-300 p-2">
-                <button
-                  onClick={() => handleAddToCart(product._id)}
-                  disabled={isAdding}
-                  className="hover:text-success"
-                >
-                  <CiCirclePlus className="h-6 w-6" />
-                </button>
-
-                <span className="border-b border-b-secondary-900 px-2 font-bold">
-                  {toPersianNumbers(product.quantity)}
-                </span>
-
-                <button
-                  onClick={() => handleRemoveFromCart(product._id)}
-                  disabled={isRemoving}
-                  className="hover:text-error"
-                >
-                  <CiCircleMinus className="h-6 w-6" />
-                </button>
+              <div className="mb-2">
+                <CartActions id={product._id} quantity={product.quantity} />
               </div>
             </div>
           </div>

@@ -5,23 +5,33 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import useAddToCart from "@/hooks/useAddToCart";
+import CartActions from "app/(User)/cart/_components/CartActions";
+import { usePathname } from "next/navigation";
 
 function AddToCartButton({ id }) {
+  const pathname = usePathname();
   const { isAdding, addToCart } = useAddToCart();
   const { user, cart } = useUser();
 
+  const [quantity, setQuantity] = useState(0);
   const [isInCart, setIsInCart] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const found = cart?.productDetail.find((p) => p._id === id);
-    if (found) setIsInCart(true);
+
+    if (found) {
+      setIsInCart(true);
+      setQuantity(found.quantity);
+    } else {
+      setIsInCart(false);
+    }
   }, [cart, id]);
 
   const handleAddToCart = async () => {
     if (!user?.isActive) return toast.error("لطفا وارد حساب کاربری خود شوید.");
-    
+
     try {
       const { message } = await addToCart({ productId: id });
       toast.success(message);
@@ -43,12 +53,18 @@ function AddToCartButton({ id }) {
   return (
     <div>
       {isInCart ? (
-        <Link
-          href="/cart"
-          className="btn btn--primary block w-full rounded-lg text-center"
-        >
-          ادامه سفارش
-        </Link>
+        <div className="flex items-stretch justify-between gap-4">
+          <Link
+            href="/cart"
+            className="btn btn--primary block w-full rounded-lg text-center"
+          >
+            ادامه سفارش
+          </Link>
+
+          {pathname !== "/products" && (
+            <CartActions id={id} quantity={quantity} />
+          )}
+        </div>
       ) : (
         <button
           onClick={handleAddToCart}
