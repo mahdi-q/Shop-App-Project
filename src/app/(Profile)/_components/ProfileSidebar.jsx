@@ -3,12 +3,36 @@
 import ButtonIcon from "@/ui/ButtonIcon";
 import Link from "next/link";
 import { HiOutlineXMark } from "react-icons/hi2";
+import { TbLayoutDashboardFilled } from "react-icons/tb";
+import { FaUserGear } from "react-icons/fa6";
+import { MdPayments } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
-import SidebarNavs from "./SidebarNavs";
 import { useState } from "react";
 import Modal from "@/ui/Modal";
 import useLogout from "@/hooks/useLogout";
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
+import SidebarNavs from "@/components/SidebarNavs";
+
+const sidebarNavs = [
+  {
+    id: 1,
+    title: "داشبورد",
+    icon: <TbLayoutDashboardFilled />,
+    href: "/profile",
+  },
+  {
+    id: 2,
+    title: "اطلاعات کاربری",
+    icon: <FaUserGear />,
+    href: "/profile/me",
+  },
+  {
+    id: 3,
+    title: "تراکنش ها",
+    icon: <MdPayments />,
+    href: "/profile/payments",
+  },
+];
 
 function ProfileSidebar({ onClose }) {
   const [open, setOpen] = useState(false);
@@ -46,7 +70,7 @@ function ProfileSidebar({ onClose }) {
       {/* Sidebar Content */}
       <div className="flex-auto">
         {/* Links */}
-        <SidebarNavs onClose={onClose} />
+        <SidebarNavs onClose={onClose} sidebarNavs={sidebarNavs} />
 
         {/* Logout Button */}
         <div

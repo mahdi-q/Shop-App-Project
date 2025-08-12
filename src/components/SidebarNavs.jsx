@@ -1,34 +1,10 @@
 "use client";
 
-import { TbLayoutDashboardFilled } from "react-icons/tb";
-import { FaUserGear } from "react-icons/fa6";
-import { MdPayments } from "react-icons/md";
 import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const sidebarNavs = [
-  {
-    id: 1,
-    title: "داشبورد",
-    icon: <TbLayoutDashboardFilled />,
-    href: "/profile",
-  },
-  {
-    id: 2,
-    title: "اطلاعات کاربری",
-    icon: <FaUserGear />,
-    href: "/profile/me",
-  },
-  {
-    id: 3,
-    title: "تراکنش ها",
-    icon: <MdPayments />,
-    href: "/profile/payments",
-  },
-];
-
-function SidebarNavs({ onClose }) {
+function SidebarNavs({ onClose, sidebarNavs }) {
   const pathname = usePathname();
 
   return (
