@@ -7,8 +7,6 @@ import UsersTable from "./_components/UsersTable";
 function UsersPage() {
   const { isLoading, users } = useGetUsers();
 
-  console.log(users);
-
   return (
     <div>
       <h2 className="mb-6 font-bold text-black sm:text-lg lg:text-xl">

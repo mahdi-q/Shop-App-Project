@@ -63,6 +63,9 @@
   .btn--outline {
     @apply border border-primary-900 bg-transparent px-4 py-3 text-white;
   }
+  .table__layout {
+    @apply overflow-auto rounded-md border border-secondary-200 p-3 shadow-sm [&>table]:w-full [&>table]:min-w-[800px] [&>table]:table-auto [&>table]:border-collapse [&>table]:text-sm;
+  }
   .table__th {
     @apply border-b-2 border-b-gray-600 p-3 text-center font-medium;
   }
