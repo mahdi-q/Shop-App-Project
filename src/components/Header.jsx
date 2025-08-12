@@ -50,6 +50,12 @@ function Header() {
                 سبد خرید ({cart ? cart.payDetail.productIds.length : 0})
               </Link>
             </li>
+
+            <li>
+              <Link className="block p-2 hover:text-primary-900" href="/admin">
+                پنل ادمین
+              </Link>
+            </li>
           </div>
         </ul>
       </nav>
