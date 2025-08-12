@@ -1,0 +1,30 @@
+"use client";
+
+import Loader from "@/ui/Loader";
+import useGetUsers from "./_hooks/useGetUsers";
+import UsersTable from "./_components/UsersTable";
+
+function UsersPage() {
+  const { isLoading, users } = useGetUsers();
+
+  console.log(users);
+
+  return (
+    <div>
+      <h2 className="mb-6 font-bold text-black sm:text-lg lg:text-xl">
+        لیست کاربران
+      </h2>
+
+      {isLoading && <Loader />}
+
+      {!isLoading && (!users || users.length <= 0) && (
+        <div className="mt-4 flex items-center justify-center">
+          کاربری یافت نشد.
+        </div>
+      )}
+
+      {!isLoading && users && users.length > 0 && <UsersTable users={users} />}
+    </div>
+  );
+}
+export default UsersPage;
