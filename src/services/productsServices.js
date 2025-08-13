@@ -10,6 +10,10 @@ export function getProductsApi(queries, cookies) {
     .then(({ data }) => data.data);
 }
 
+export function getProductByIdApi(id) {
+  return http.get(`/product/${id}`).then(({ data }) => data.data);
+}
+
 export function likeProductApi(id) {
   return http.post(`/product/like/${id}`).then(({ data }) => data.data);
 }
