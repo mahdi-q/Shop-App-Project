@@ -59,3 +59,41 @@ export const usersTHeads = [
     label: "عملیات",
   },
 ];
+
+export const productsTHeads = [
+  {
+    id: 1,
+    label: "#",
+  },
+  {
+    id: 2,
+    label: "عنوان",
+  },
+  {
+    id: 3,
+    label: "دسته‌بندی",
+  },
+  {
+    id: 4,
+    label: "قیمت",
+    unit: "تومان",
+  },
+  {
+    id: 5,
+    label: "تخفیف",
+  },
+  {
+    id: 6,
+    label: "قیمت با تخفیف",
+    unit: "تومان",
+  },
+  {
+    id: 7,
+    label: "موجودی",
+    unit: "عدد",
+  },
+  {
+    id: 8,
+    label: "عملیات",
+  },
+];
