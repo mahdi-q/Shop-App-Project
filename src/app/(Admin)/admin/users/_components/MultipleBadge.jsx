@@ -8,7 +8,7 @@ const MultipleBadge = ({ productId }) => {
 
   return (
     product && (
-      <Link href={`/products/${product.slug}`}>
+      <Link href={`/admin/products/${product._id}`}>
         <span className="badge badge--primary text-base">
           {product?.title ?? "نامشخص"}
         </span>

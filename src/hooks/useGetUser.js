@@ -1,13 +1,11 @@
 import { getUserApi } from "@/services/usersServices";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
 
-export default function useGetUser() {
-  const { userId } = useParams();
-
+export default function useGetUser(id) {
   const { isLoading, data } = useQuery({
-    queryKey: ["users"],
-    queryFn: () => getUserApi(userId),
+    queryKey: ["single-user", id],
+    queryFn: () => getUserApi(id),
+    enabled: !!id,
   });
 
   const { user } = data || {};
