@@ -10,12 +10,14 @@ function ProductsPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between font-bold sm:text-lg lg:text-xl">
-        <h2 className="text-black">لیست محصولات</h2>
+      <div className="mb-6 flex items-center justify-between">
+        <h2 className="font-bold text-black sm:text-lg lg:text-xl">
+          لیست محصولات
+        </h2>
 
         <Link
-          href="/products/create"
-          className="btn btn--outline text-primary-900"
+          href="/admin/products/create"
+          className="btn btn--outline text-primary-900 md:text-lg"
         >
           ایجاد محصول جدید
         </Link>

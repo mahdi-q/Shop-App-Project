@@ -35,7 +35,7 @@ function SingleUserPage() {
       )}
 
       {!isLoading && user && (
-        <div className="flex w-full flex-col-reverse items-center justify-between gap-6 rounded-md border border-secondary-300 p-4 lg:p-6 xl:flex-row xl:items-start xl:gap-2">
+        <div className="flex w-full flex-col-reverse justify-between gap-6 rounded-md border border-secondary-300 p-4 lg:p-6 xl:flex-row xl:gap-2">
           <div className="mt-2 flex flex-col gap-4 px-2 lg:gap-6">
             <div className="flex items-center gap-3 text-base lg:text-lg">
               <span className="font-medium text-secondary-900">نام کاربر:</span>
@@ -132,7 +132,7 @@ function SingleUserPage() {
             </div>
           </div>
 
-          <div className="flex flex-shrink-0">
+          <div className="flex flex-shrink-0 self-center xl:self-start">
             <Avatar src={user.avatarUrl} size={350} />
           </div>
         </div>

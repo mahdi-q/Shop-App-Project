@@ -37,7 +37,7 @@ function SingleProductPage() {
       )}
 
       {!isLoading && product && (
-        <div className="flex w-full flex-col-reverse items-center justify-between gap-6 rounded-md border border-secondary-300 p-4 lg:p-6 xl:flex-row xl:items-start xl:gap-2">
+        <div className="flex w-full flex-col-reverse justify-between gap-6 rounded-md border border-secondary-300 p-4 lg:p-6 xl:flex-row xl:gap-2">
           <div className="mt-2 flex flex-col gap-4 px-2 lg:gap-6">
             <div className="flex items-center gap-3 text-base lg:text-lg">
               <span className="font-medium text-secondary-900">
@@ -145,7 +145,7 @@ function SingleProductPage() {
             </div>
           </div>
 
-          <div className="flex h-[500px] w-[450px] flex-shrink-0 overflow-hidden rounded-lg">
+          <div className="flex h-[500px] flex-shrink-0 self-center overflow-hidden rounded-lg lg:w-[450px] xl:self-start">
             <Image
               src={product.imageLink}
               alt="product-image"
