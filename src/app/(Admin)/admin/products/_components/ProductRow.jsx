@@ -42,9 +42,9 @@ function ProductRow({ product, index }) {
             <MdRemoveRedEye className="h-5 w-5 text-primary-900" />
           </Link>
 
-          <button>
+          <Link href={`/admin/products/edit/${product._id}`}>
             <CiEdit className="h-5 w-5 text-success" />
-          </button>
+          </Link>
 
           <button>
             <IoTrashOutline className="h-5 w-5 text-error" />
