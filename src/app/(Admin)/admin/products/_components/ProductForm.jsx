@@ -9,6 +9,8 @@ import RHFSelect from "@/ui/RHFSelect";
 import RHFTagInput from "@/ui/RHFTagInput";
 import RHFTextarea from "@/ui/RHFTextarea";
 import useGetCategories from "@/hooks/useGetCategories";
+import useAddProduct from "../_hooks/useAddProduct";
+import { useRouter } from "next/navigation";
 
 const schema = yup
   .object({
@@ -45,7 +47,7 @@ const schema = yup
       .matches(/^\d+$/, "موجودی باید عدد باشد.")
       .test("not-zero", "موجودی نمی‌تواند ۰ باشد.", (value) => value !== "0"),
 
-    imageUrl: yup.string().required("ادرس‌ عکس الزامی است.").trim(),
+    imageLink: yup.string().required("ادرس‌ عکس الزامی است.").trim(),
 
     tags: yup
       .array()
@@ -62,13 +64,16 @@ const schema = yup
   })
   .required();
 
-function ProductForm({ initialData }) {
+function ProductForm({ initialData, isUpdating = false }) {
+  const router = useRouter();
+  const { isAdding, addProduct } = useAddProduct();
   const { isLoading, categories } = useGetCategories();
 
   const {
     register,
-    control,
     handleSubmit,
+    reset,
+    control,
     formState: { errors },
   } = useForm({
     defaultValues: initialData,
@@ -76,10 +81,17 @@ function ProductForm({ initialData }) {
     mode: "onTouched",
   });
 
-  const isUpdating = false;
-
   const onSubmit = (values) => {
-    console.log(values);
+    if (isUpdating) {
+      // Handle update logic here
+    } else {
+      addProduct(values, {
+        onSuccess: () => {
+          reset();
+          router.push("/admin/products");
+        },
+      });
+    }
   };
 
   return (
@@ -111,7 +123,7 @@ function ProductForm({ initialData }) {
           errors={errors}
           name="category"
           options={categories.map((category) => {
-            return { value: category.englishTitle, label: category.title };
+            return { value: category._id, label: category.title };
           })}
           isRequired
         />
@@ -166,7 +178,7 @@ function ProductForm({ initialData }) {
         label="لینک عکس"
         register={register}
         errors={errors}
-        name="imageUrl"
+        name="imageLink"
         dir="ltr"
         isRequired
       />
@@ -191,10 +203,10 @@ function ProductForm({ initialData }) {
 
       <button
         type="submit"
-        disabled={isUpdating}
-        className={`btn ${isUpdating ? "btn--outline" : "btn--primary"} mt-2 self-center justify-self-start px-6 sm:col-span-2 sm:px-8 lg:px-14 xl:col-span-3`}
+        disabled={isAdding}
+        className={`btn ${isAdding ? "btn--outline" : "btn--primary"} mt-2 self-center justify-self-start px-6 sm:col-span-2 sm:px-8 lg:px-14 xl:col-span-3`}
       >
-        {isUpdating ? <SvgLoaderComponent /> : "ثبت محصول"}
+        {isAdding ? <SvgLoaderComponent /> : "ثبت محصول"}
       </button>
     </form>
   );

@@ -14,10 +14,14 @@ export function getProductByIdApi(id) {
   return http.get(`/product/${id}`).then(({ data }) => data.data);
 }
 
+export function getProductBySlugApi(slug) {
+  return http.get(`/product/slug/${slug}`).then(({ data }) => data.data);
+}
+
 export function likeProductApi(id) {
   return http.post(`/product/like/${id}`).then(({ data }) => data.data);
 }
 
-export function getProductBySlugApi(slug) {
-  return http.get(`/product/slug/${slug}`).then(({ data }) => data.data);
+export function addProductApi(product) {
+  return http.post("/admin/product/add", product).then(({ data }) => data.data);
 }
