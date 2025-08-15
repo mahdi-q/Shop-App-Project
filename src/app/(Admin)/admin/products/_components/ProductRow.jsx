@@ -6,6 +6,7 @@ import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
 import { IoTrashOutline } from "react-icons/io5";
 import { MdRemoveRedEye } from "react-icons/md";
+import DeleteProductModal from "./DeleteProductModal";
 
 function ProductRow({ product, index }) {
   return (
@@ -46,9 +47,7 @@ function ProductRow({ product, index }) {
             <CiEdit className="h-5 w-5 text-success" />
           </Link>
 
-          <button>
-            <IoTrashOutline className="h-5 w-5 text-error" />
-          </button>
+          <DeleteProductModal id={product._id} title={product.title} />
         </div>
       </td>
     </tr>
