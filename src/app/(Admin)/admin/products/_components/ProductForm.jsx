@@ -11,6 +11,8 @@ import RHFTextarea from "@/ui/RHFTextarea";
 import useGetCategories from "@/hooks/useGetCategories";
 import useAddProduct from "../_hooks/useAddProduct";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import useEditProduct from "../_hooks/useEditProduct";
 
 const schema = yup
   .object({
@@ -67,6 +69,7 @@ const schema = yup
 function ProductForm({ initialData, isUpdating = false }) {
   const router = useRouter();
   const { isAdding, addProduct } = useAddProduct();
+  const { isEditing, editProduct } = useEditProduct(initialData._id);
   const { isLoading, categories } = useGetCategories();
 
   const {
@@ -74,7 +77,7 @@ function ProductForm({ initialData, isUpdating = false }) {
     handleSubmit,
     reset,
     control,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm({
     defaultValues: initialData,
     resolver: yupResolver(schema),
@@ -83,7 +86,19 @@ function ProductForm({ initialData, isUpdating = false }) {
 
   const onSubmit = (values) => {
     if (isUpdating) {
-      // Handle update logic here
+      if (!isDirty) return toast.error("لطفا حداقل یک فیلد را تغییر دهید.");
+
+      editProduct(
+        { product: values, id: initialData._id },
+        {
+          onSuccess: () => {
+            reset();
+            router.push("/admin/products");
+          },
+        },
+      );
+
+      console.log(values);
     } else {
       addProduct(values, {
         onSuccess: () => {
@@ -203,10 +218,10 @@ function ProductForm({ initialData, isUpdating = false }) {
 
       <button
         type="submit"
-        disabled={isAdding}
-        className={`btn ${isAdding ? "btn--outline" : "btn--primary"} mt-2 self-center justify-self-start px-6 sm:col-span-2 sm:px-8 lg:px-14 xl:col-span-3`}
+        disabled={isAdding || isEditing}
+        className={`btn ${isAdding || isEditing ? "btn--outline" : "btn--primary"} mt-2 self-center justify-self-start px-6 sm:col-span-2 sm:px-8 lg:px-14 xl:col-span-3`}
       >
-        {isAdding ? <SvgLoaderComponent /> : "ثبت محصول"}
+        {isAdding || isEditing ? <SvgLoaderComponent /> : "ثبت محصول"}
       </button>
     </form>
   );

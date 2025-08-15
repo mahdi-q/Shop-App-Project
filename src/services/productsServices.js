@@ -25,3 +25,9 @@ export function likeProductApi(id) {
 export function addProductApi(product) {
   return http.post("/admin/product/add", product).then(({ data }) => data.data);
 }
+
+export function editProductApi({ product, id }) {
+  return http
+    .patch(`/admin/product/update/${id}`, product)
+    .then(({ data }) => data.data);
+}

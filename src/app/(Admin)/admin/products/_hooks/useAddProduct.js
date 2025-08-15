@@ -15,7 +15,7 @@ export default function useAddProduct() {
 
     onError: (error) => {
       toast.error(
-        error?.response?.data?.message || "خطا در تغییر اطلاعات کاربری",
+        error?.response?.data?.message || "خطا در ثبت محصول جدید",
       );
     },
   });
