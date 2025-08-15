@@ -12,6 +12,8 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { FaChevronRight } from "react-icons/fa6";
 import MultipleBadge from "../_components/MultipleBadge";
+import { useEffect, useState } from "react";
+import ImageCover from "@/components/ImageCover";
 
 function SingleProductPage() {
   const params = useParams();
@@ -145,14 +147,8 @@ function SingleProductPage() {
             </div>
           </div>
 
-          <div className="flex h-[500px] flex-shrink-0 self-center overflow-hidden rounded-lg lg:w-[450px] xl:self-start">
-            <Image
-              src={product.imageLink}
-              alt="product-image"
-              width={450}
-              height={500}
-              style={{ objectFit: "cover" }}
-            />
+          <div className="flex h-[500px] flex-shrink-0 self-center overflow-hidden rounded-lg border border-secondary-200 lg:w-[450px] xl:self-start">
+            <ImageCover src={product?.imageLink} width={450} height={500} />
           </div>
         </div>
       )}

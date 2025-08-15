@@ -5,8 +5,8 @@ import {
 } from "@/utils/changeNumbers";
 import TomanSvgIcon from "@/ui/TomanSvgIcon";
 import AddToCartButton from "./AddToCartButton";
-import Image from "next/image";
 import LikeProductButton from "./LikeProductButton";
+import ImageCover from "@/components/ImageCover";
 
 function ProductCard({ product }) {
   return (
@@ -31,16 +31,9 @@ function ProductCard({ product }) {
         </div>
 
         {/* Product Image */}
-        <div className="h-36 w-32 flex-shrink-0 overflow-hidden rounded-lg object-cover">
+        <div className="h-36 w-32 flex-shrink-0 overflow-hidden rounded-lg border border-secondary-200 object-cover">
           <Link href={`/products/${product.slug}`} className="h-full w-full">
-            <Image
-              src={product.imageLink}
-              alt="product-image"
-              priority
-              height={144}
-              width={128}
-              style={{ objectFit: "cover" }}
-            />
+            <ImageCover src={product.imageLink} width={128} height={144} />
           </Link>
         </div>
       </div>
