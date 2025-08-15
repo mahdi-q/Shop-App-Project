@@ -108,7 +108,7 @@ function AdminPanelSidebar({ onClose }) {
           title="خروج از حساب کاربری"
         >
           <div>
-            <p className="mb-4 text-secondary-900">
+            <p className="mb-6 mt-4 text-center text-lg font-medium text-secondary-900">
               آیا از خارج شدن از حساب کاربری خود اطمینان دارید؟
             </p>
 
