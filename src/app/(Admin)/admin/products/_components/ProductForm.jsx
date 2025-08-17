@@ -34,7 +34,10 @@ const schema = yup
     discount: yup
       .string()
       .required("تخفیف الزامی است.")
-      .matches(/^\d+$/, "تخفیف باید عدد باشد."),
+      .matches(/^\d+$/, "تخفیف باید عدد باشد.")
+      .test("max-100", "تخفیف نمی‌تواند بیشتر از ۱۰۰ باشد.", (value) => {
+        return value ? Number(value) <= 100 : false;
+      }),
 
     offPrice: yup
       .string()
@@ -66,7 +69,7 @@ const schema = yup
   })
   .required();
 
-function ProductForm({ initialData, isUpdating = false }) {
+function ProductForm({ initialData = {}, isUpdating = false }) {
   const router = useRouter();
   const { isAdding, addProduct } = useAddProduct();
   const { isEditing, editProduct } = useEditProduct(initialData._id);
@@ -97,8 +100,6 @@ function ProductForm({ initialData, isUpdating = false }) {
           },
         },
       );
-
-      console.log(values);
     } else {
       addProduct(values, {
         onSuccess: () => {
@@ -127,22 +128,23 @@ function ProductForm({ initialData, isUpdating = false }) {
         register={register}
         errors={errors}
         name="brand"
-        dir="ltr"
         isRequired
       />
 
-      {!isLoading && (
-        <RHFSelect
-          label="دسته‌بندی"
-          register={register}
-          errors={errors}
-          name="category"
-          options={categories.map((category) => {
-            return { value: category._id, label: category.title };
-          })}
-          isRequired
-        />
-      )}
+      <RHFSelect
+        label="دسته‌بندی"
+        register={register}
+        errors={errors}
+        name="category"
+        options={
+          !isLoading
+            ? categories.map((category) => {
+                return { value: category._id, label: category.title };
+              })
+            : []
+        }
+        isRequired
+      />
 
       <RHFTextField
         label="قیمت"
