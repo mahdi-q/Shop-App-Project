@@ -8,6 +8,8 @@ import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 import RHFSelect from "@/ui/RHFSelect";
 import RHFTextarea from "@/ui/RHFTextarea";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import useAddCategory from "../_hooks/useAddCategory";
 
 const schema = yup
   .object({
@@ -38,7 +40,9 @@ const schema = yup
   .required();
 
 function CategoryForm({ initialData = {}, isUpdating = false }) {
-  const isAdding = false;
+  const router = useRouter();
+  const { isAdding, addCategory } = useAddCategory();
+
   const isEditing = false;
 
   const {
@@ -59,6 +63,12 @@ function CategoryForm({ initialData = {}, isUpdating = false }) {
       //  Handle edit category
     } else {
       //  Handle add category
+      addCategory(values, {
+        onSuccess: () => {
+          reset();
+          router.push("/admin/categories");
+        },
+      });
     }
   };
 

@@ -7,3 +7,7 @@ export function getCategoriesApi() {
 export function getCategoryApi(id) {
   return http.get(`/category/${id}`).then(({ data }) => data.data);
 }
+
+export function addCategoryApi(data) {
+  return http.post("/admin/category/add", data).then(({ data }) => data.data);
+}
