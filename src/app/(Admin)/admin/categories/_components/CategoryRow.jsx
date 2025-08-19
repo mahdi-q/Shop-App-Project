@@ -3,6 +3,7 @@ import toLocalDate from "@/utils/toLocalDate";
 import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
 import { MdRemoveRedEye } from "react-icons/md";
+import DeleteCategoryModal from "./DeleteCategoryModal";
 
 function CategoryRow({ category, index }) {
   return (
@@ -37,7 +38,7 @@ function CategoryRow({ category, index }) {
             <CiEdit className="h-5 w-5 text-success" />
           </Link>
 
-          {/* <DeleteCategoryModal id={category._id} title={category.title} /> */}
+          <DeleteCategoryModal id={category._id} title={category.title} />
         </div>
       </td>
     </tr>
