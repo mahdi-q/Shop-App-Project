@@ -10,6 +10,7 @@ import RHFTextarea from "@/ui/RHFTextarea";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import useAddCategory from "../_hooks/useAddCategory";
+import useEditCategory from "../_hooks/useEditCategory";
 
 const schema = yup
   .object({
@@ -42,8 +43,14 @@ const schema = yup
 function CategoryForm({ initialData = {}, isUpdating = false }) {
   const router = useRouter();
   const { isAdding, addCategory } = useAddCategory();
+  const { isEditing, editCategory } = useEditCategory(initialData?._id);
 
-  const isEditing = false;
+  const initialValues = {
+    title: initialData?.title || "",
+    englishTitle: initialData?.englishTitle || "",
+    type: initialData?.type || "",
+    description: initialData?.description || "",
+  };
 
   const {
     register,
@@ -51,7 +58,7 @@ function CategoryForm({ initialData = {}, isUpdating = false }) {
     reset,
     formState: { errors, isDirty },
   } = useForm({
-    defaultValues: initialData,
+    defaultValues: initialValues,
     resolver: yupResolver(schema),
     mode: "onTouched",
   });
@@ -61,6 +68,15 @@ function CategoryForm({ initialData = {}, isUpdating = false }) {
       if (!isDirty) return toast.error("لطفا حداقل یک فیلد را تغییر دهید.");
 
       //  Handle edit category
+      editCategory(
+        { id: initialData._id, data: values },
+        {
+          onSuccess: () => {
+            reset();
+            router.push("/admin/categories");
+          },
+        },
+      );
     } else {
       //  Handle add category
       addCategory(values, {
