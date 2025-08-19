@@ -128,3 +128,39 @@ export const categoriesTHeads = [
     label: "عملیات",
   },
 ];
+
+export const paymentsTHeads = [
+  {
+    id: 1,
+    label: "#",
+  },
+  {
+    id: 2,
+    label: "شماره فاکتور",
+  },
+  {
+    id: 3,
+    label: "توضیحات",
+  },
+  {
+    id: 4,
+    label: "کاربر",
+  },
+  {
+    id: 5,
+    label: "محصولات",
+  },
+  {
+    id: 6,
+    label: "مبلغ",
+    unit: "تومان",
+  },
+  {
+    id: 7,
+    label: "تاریخ",
+  },
+  {
+    id: 8,
+    label: "عملیات",
+  },
+];
