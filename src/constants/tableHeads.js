@@ -164,3 +164,45 @@ export const paymentsTHeads = [
     label: "عملیات",
   },
 ];
+
+export const couponsTHeads = [
+  {
+    id: 1,
+    label: "#",
+  },
+  {
+    id: 2,
+    label: "کد",
+  },
+  {
+    id: 3,
+    label: "نوع",
+  },
+  {
+    id: 4,
+    label: "مقدار",
+    unit: "درصد/تومان",
+  },
+  {
+    id: 5,
+    label: "شامل محصولات",
+  },
+  {
+    id: 6,
+    label: "مقدار مصرفی",
+    unit: "عدد",
+  },
+  {
+    id: 7,
+    label: "ظرفیت",
+    unit: "عدد",
+  },
+  {
+    id: 8,
+    label: "تاریخ انقضا",
+  },
+  {
+    id: 9,
+    label: "عملیات",
+  },
+];
