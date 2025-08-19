@@ -50,7 +50,7 @@ function PaymentRow({ payment, index }) {
 
       <td className="table__td">
         <div className="flex items-center justify-center">
-          <Link href={`/admin/peyments/${payment._id}`}>
+          <Link href={`/admin/payments/${payment._id}`}>
             <MdRemoveRedEye className="h-5 w-5 text-primary-900" />
           </Link>
         </div>
