@@ -15,7 +15,7 @@ function UserRow({ user, index }) {
 
       <td className="table__td">
         <div className="flex items-center justify-center gap-2">
-          <span className="leading-5">{user.phoneNumber}</span>
+          <span className="leading-5 font-bold">{user.phoneNumber}</span>
           {user.isVerifiedPhoneNumber ? (
             <BsShieldFillCheck className="h-5 w-5 text-success" />
           ) : (
@@ -26,9 +26,12 @@ function UserRow({ user, index }) {
 
       <td className="table__td max-w-[200px]">
         <div className="flex w-full flex-wrap items-center justify-center gap-2">
-          {user.Products.slice(0, 4).map((product) => {
+          {user.Products.slice(0, 4).map((product, secIndex) => {
             return (
-              <span key={product._id} className="badge badge--secondary">
+              <span
+                key={secIndex}
+                className="badge badge--secondary rounded-lg"
+              >
                 {product.title}
               </span>
             );
