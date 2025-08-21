@@ -1,18 +1,20 @@
-function RHFSelect({
+"use client";
+
+import Select from "react-select";
+import { Controller } from "react-hook-form";
+
+import "@/styles/select-input-override.css";
+
+const RHFSelect = ({
   label,
   name,
-  dir = "rtl",
-  register,
-  errors,
+  control,
+  placeholder,
   isRequired,
-  validationSchema = {},
+  options,
   className = "",
-  options = [],
-  ...rest
-}) {
-  const inputError = errors?.[name];
-  const hasError = !!(errors && inputError);
-
+  isMulti = false,
+}) => {
   return (
     <div className={`textField relative ${className}`}>
       <label htmlFor={name} className="block text-secondary-700">
@@ -20,27 +22,38 @@ function RHFSelect({
         {isRequired && <span className="text-error">*</span>}
       </label>
 
-      <select
-        id={name}
-        dir={dir}
-        className={`textField__input ${dir === "ltr" ? "text-left" : "text-right"} ${hasError ? "textField--invalid" : ""}`}
-        {...register(name, validationSchema)}
-        {...rest}
-      >
-        <option value="">یک گزینه انتخاب کنید</option>
-        {options.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
+      <Controller
+        name={name}
+        control={control}
+        render={({ field, fieldState }) => (
+          <>
+            <div
+              className={
+                fieldState.error ? "textField--invalid rounded-xl" : ""
+              }
+            >
+              <Select
+                {...field}
+                options={options}
+                placeholder={placeholder}
+                isMulti={isMulti}
+                classNamePrefix="custom-select"
+                onChange={(val) => field.onChange(val)}
+                value={field.value}
+                unstyled
+              />
+            </div>
 
-      {hasError && (
-        <span className="block text-xs text-red-600">
-          {inputError?.message}
-        </span>
-      )}
+            {fieldState.error && (
+              <span className="text-xs text-red-500">
+                {fieldState.error.message}
+              </span>
+            )}
+          </>
+        )}
+      />
     </div>
   );
-}
+};
+
 export default RHFSelect;

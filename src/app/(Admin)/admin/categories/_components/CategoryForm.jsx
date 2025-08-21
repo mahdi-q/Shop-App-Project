@@ -30,7 +30,10 @@ const schema = yup
         "کاراکتر فارسی یا عدد فارسی مجاز نیست.",
       ),
 
-    type: yup.string().required("نوع دسته‌بندی الزامی است."),
+    type: yup
+      .object()
+      .typeError("نوع دسته‌بندی الزامی است.")
+      .required("نوع دسته‌بندی الزامی است."),
 
     description: yup
       .string()
@@ -56,6 +59,7 @@ function CategoryForm({ initialData = {}, isUpdating = false }) {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors, isDirty },
   } = useForm({
     defaultValues: initialValues,
@@ -112,8 +116,8 @@ function CategoryForm({ initialData = {}, isUpdating = false }) {
 
       <RHFSelect
         label="نوع"
-        register={register}
-        errors={errors}
+        control={control}
+        placeholder="یکی از گزینه ها را انتخاب کنید."
         name="type"
         options={[{ value: "product", label: "محصول" }]}
         isRequired

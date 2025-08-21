@@ -24,7 +24,10 @@ const schema = yup
 
     brand: yup.string().required("برند الزامی است.").trim(),
 
-    category: yup.string().required("دسته‌بندی الزامی است."),
+    category: yup
+      .object()
+      .typeError("دسته‌بندی الزامی است.")
+      .required("دسته‌بندی الزامی است."),
 
     price: yup
       .string()
@@ -133,9 +136,9 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
 
       <RHFSelect
         label="دسته‌بندی"
-        register={register}
-        errors={errors}
+        control={control}
         name="category"
+        placeholder="یکی از گزینه ها را انتخاب کنید."
         options={
           !isLoading
             ? categories.map((category) => {

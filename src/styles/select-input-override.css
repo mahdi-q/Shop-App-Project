@@ -1,0 +1,31 @@
+.custom-select__control {
+  @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-4 py-3 text-secondary-900 outline-none transition-all duration-200 ease-in-out focus-within:border-primary-300 focus-within:bg-white focus-within:shadow-input-focus hover:border-primary-300;
+}
+
+.textField--invalid .custom-select__control {
+  @apply border-error bg-red-50 focus-within:border-error hover:border-error;
+}
+
+.custom-select__placeholder {
+  @apply text-secondary-600;
+}
+
+.custom-select__menu {
+  @apply mt-1 rounded-md bg-white p-1 shadow-md;
+}
+
+.custom-select__option {
+  @apply mb-1 cursor-pointer rounded-md px-3 py-2 text-secondary-800 transition-colors duration-150 last:mb-0;
+}
+
+.custom-select__option--is-focused {
+  @apply bg-secondary-50;
+}
+
+.custom-select__option--is-selected {
+  @apply bg-primary-100;
+}
+
+.custom-select__multi-value {
+  @apply m-0.5 flex items-center gap-1 rounded-lg bg-primary-200 px-2 py-1 text-sm text-primary-900;
+}
