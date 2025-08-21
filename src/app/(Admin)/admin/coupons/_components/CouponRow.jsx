@@ -5,6 +5,7 @@ import {
 import toLocalDate from "@/utils/toLocalDate";
 import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
+import { FaCircleCheck, FaCircleXmark } from "react-icons/fa6";
 import { MdRemoveRedEye } from "react-icons/md";
 
 function CouponRow({ coupon, index }) {
@@ -12,7 +13,17 @@ function CouponRow({ coupon, index }) {
     <tr>
       <td className="table__td">{toPersianNumbers(index + 1)}</td>
 
-      <td className="table__td whitespace-nowrap font-bold">{coupon.code}</td>
+      <td className="table__td whitespace-nowrap font-bold">
+        <div className="flex items-center justify-center gap-1">
+          <span className="font-bold leading-5">{coupon.code}</span>
+
+          {coupon.isActive ? (
+            <FaCircleCheck className="h-5 w-5 text-success" />
+          ) : (
+            <FaCircleXmark className="h-5 w-5 text-error" />
+          )}
+        </div>
+      </td>
 
       <td className="table__td">
         <div className="flex items-center justify-center">
