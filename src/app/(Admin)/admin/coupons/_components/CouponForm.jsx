@@ -11,6 +11,7 @@ import RHFDatePicker from "@/ui/RHFDatePicker";
 import useAddCoupon from "../_hooks/useAddCoupon";
 import { useRouter } from "next/navigation";
 import useGetProducts from "@/hooks/useGetProducts";
+import useEditCoupon from "../_hooks/useEditCoupon";
 
 const schema = yup
   .object({
@@ -64,13 +65,13 @@ function CouponForm({ initialData = {}, isUpdating = false }) {
   const router = useRouter();
   const { isLoading, products } = useGetProducts();
   const { isAdding, addCoupon } = useAddCoupon();
-
-  const isEditing = false;
+  const { isEditing, editCoupon } = useEditCoupon();
 
   const initialValues = isUpdating
     ? {
         code: initialData.code,
         amount: initialData.amount,
+        usageLimit: initialData.usageLimit,
         type: {
           value: initialData.type,
           label: initialData.type === "percent" ? "درصدی" : "قیمت‌ ثابت",
@@ -98,10 +99,25 @@ function CouponForm({ initialData = {}, isUpdating = false }) {
     if (isUpdating) {
       if (!isDirty) return toast.error("لطفا حداقل یک فیلد را تغییر دهید.");
 
-      //  Handle edit category
-      console.log(values);
+      //  Handle edit coupon
+      editCoupon(
+        {
+          id: initialData._id,
+          data: {
+            ...values,
+            type: values.type.value,
+            productIds: values.productIds.map((item) => item.value),
+          },
+        },
+        {
+          onSuccess: () => {
+            reset();
+            router.push("/admin/coupons");
+          },
+        },
+      );
     } else {
-      //  Handle add category
+      //  Handle add coupon
       addCoupon(
         {
           ...values,
@@ -191,7 +207,7 @@ function CouponForm({ initialData = {}, isUpdating = false }) {
         disabled={isAdding || isEditing}
         className={`btn ${isAdding || isEditing ? "btn--outline" : "btn--primary"} mt-2 self-center justify-self-start px-6 sm:col-span-2 sm:px-8 lg:px-14 xl:col-span-3`}
       >
-        {isAdding || isEditing ? <SvgLoaderComponent /> : "ثبت دسته‌بندی‌"}
+        {isAdding || isEditing ? <SvgLoaderComponent /> : "ثبت کد تخفیف"}
       </button>
     </form>
   );
