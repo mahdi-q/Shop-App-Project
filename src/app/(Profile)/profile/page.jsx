@@ -2,9 +2,9 @@
 
 import useUser from "@/hooks/useUser";
 import PaymentsTable from "./_components/PaymentsTable";
-import { PulseLoader } from "react-spinners";
 import toLocalDate from "@/utils/toLocalDate";
 import Link from "next/link";
+import Loader from "@/ui/Loader";
 
 function ProfilePage() {
   const { isLoading, user, payments } = useUser();
@@ -50,16 +50,7 @@ function ProfilePage() {
           )}
         </div>
 
-        {isLoading && (
-          <div className="flex items-center justify-center">
-            <span className="ml-2 text-primary-900">در حال بارگذاری</span>
-            <PulseLoader
-              color="rgb(var(--color-primary-900))"
-              size={12}
-              margin={3}
-            />
-          </div>
-        )}
+        {isLoading && <Loader />}
 
         {!isLoading && (!payments || payments.length <= 0) && (
           <div className="mt-4 flex items-center justify-center">
