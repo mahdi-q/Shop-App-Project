@@ -48,12 +48,17 @@ function CategoryForm({ initialData = {}, isUpdating = false }) {
   const { isAdding, addCategory } = useAddCategory();
   const { isEditing, editCategory } = useEditCategory(initialData?._id);
 
-  const initialValues = {
-    title: initialData?.title || "",
-    englishTitle: initialData?.englishTitle || "",
-    type: initialData?.type || "",
-    description: initialData?.description || "",
-  };
+  const initialValues = isUpdating
+    ? {
+        title: initialData?.title,
+        englishTitle: initialData?.englishTitle,
+        type: {
+          value: initialData.type,
+          label: initialData.type === "product" && "محصول",
+        },
+        description: initialData?.description,
+      }
+    : {};
 
   const {
     register,
@@ -73,7 +78,7 @@ function CategoryForm({ initialData = {}, isUpdating = false }) {
 
       //  Handle edit category
       editCategory(
-        { id: initialData._id, data: values },
+        { id: initialData._id, data: { ...values, type: values.type.value } },
         {
           onSuccess: () => {
             reset();
@@ -83,12 +88,15 @@ function CategoryForm({ initialData = {}, isUpdating = false }) {
       );
     } else {
       //  Handle add category
-      addCategory(values, {
-        onSuccess: () => {
-          reset();
-          router.push("/admin/categories");
+      addCategory(
+        { ...values, type: values.type.value },
+        {
+          onSuccess: () => {
+            reset();
+            router.push("/admin/categories");
+          },
         },
-      });
+      );
     }
   };
 

@@ -78,6 +78,25 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
   const { isEditing, editProduct } = useEditProduct(initialData._id);
   const { isLoading, categories } = useGetCategories();
 
+  const initialValues = isUpdating
+    ? {
+        title: initialData.title,
+        brand: initialData.brand,
+        category: {
+          value: initialData.category._id,
+          label: initialData.category.title,
+        },
+        price: initialData.price,
+        discount: initialData.discount,
+        offPrice: initialData.offPrice,
+        slug: initialData.slug,
+        countInStock: initialData.countInStock,
+        imageLink: initialData.imageLink,
+        tags: initialData.tags,
+        description: initialData.description,
+      }
+    : {};
+
   const {
     register,
     handleSubmit,
@@ -85,7 +104,7 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
     control,
     formState: { errors, isDirty },
   } = useForm({
-    defaultValues: initialData,
+    defaultValues: initialValues,
     resolver: yupResolver(schema),
     mode: "onTouched",
   });
@@ -95,7 +114,10 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
       if (!isDirty) return toast.error("لطفا حداقل یک فیلد را تغییر دهید.");
 
       editProduct(
-        { product: values, id: initialData._id },
+        {
+          product: { ...values, category: values.category.value },
+          id: initialData._id,
+        },
         {
           onSuccess: () => {
             reset();
@@ -104,12 +126,15 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
         },
       );
     } else {
-      addProduct(values, {
-        onSuccess: () => {
-          reset();
-          router.push("/admin/products");
+      addProduct(
+        { ...values, category: values.category.value },
+        {
+          onSuccess: () => {
+            reset();
+            router.push("/admin/products");
+          },
         },
-      });
+      );
     }
   };
 
@@ -138,7 +163,7 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
         label="دسته‌بندی"
         control={control}
         name="category"
-        placeholder="یکی از گزینه ها را انتخاب کنید."
+        placeholder="یکی از دسته‌بندی ها را انتخاب کنید."
         options={
           !isLoading
             ? categories.map((category) => {

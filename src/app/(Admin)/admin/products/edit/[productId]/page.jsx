@@ -34,10 +34,7 @@ function EditProductPage() {
 
       {!isLoading && product && (
         <div>
-          <ProductForm
-            initialData={{ ...product, category: product.category._id }}
-            isUpdating
-          />
+          <ProductForm initialData={product} isUpdating />
         </div>
       )}
     </div>
