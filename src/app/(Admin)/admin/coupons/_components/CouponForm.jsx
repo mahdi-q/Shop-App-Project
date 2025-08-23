@@ -7,8 +7,10 @@ import * as yup from "yup";
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 import toast from "react-hot-toast";
 import RHFSelect from "@/ui/RHFSelect";
-import useGetCategories from "@/hooks/useGetCategories";
 import RHFDatePicker from "@/ui/RHFDatePicker";
+import useAddCoupon from "../_hooks/useAddCoupon";
+import { useRouter } from "next/navigation";
+import useGetProducts from "@/hooks/useGetProducts";
 
 const schema = yup
   .object({
@@ -59,9 +61,10 @@ const schema = yup
   .required();
 
 function CouponForm({ initialData = {}, isUpdating = false }) {
-  const { isLoading, categories } = useGetCategories();
+  const router = useRouter();
+  const { isLoading, products } = useGetProducts();
+  const { isAdding, addCoupon } = useAddCoupon();
 
-  const isAdding = false;
   const isEditing = false;
 
   const initialValues = isUpdating
@@ -94,12 +97,24 @@ function CouponForm({ initialData = {}, isUpdating = false }) {
   const onSubmit = (values) => {
     if (isUpdating) {
       if (!isDirty) return toast.error("لطفا حداقل یک فیلد را تغییر دهید.");
-      console.log(values);
 
       //  Handle edit category
+      console.log(values);
     } else {
       //  Handle add category
-      console.log(values);
+      addCoupon(
+        {
+          ...values,
+          type: values.type.value,
+          productIds: values.productIds.map((item) => item.value),
+        },
+        {
+          onSuccess: () => {
+            reset();
+            router.push("/admin/coupons");
+          },
+        },
+      );
     }
   };
 
@@ -154,8 +169,8 @@ function CouponForm({ initialData = {}, isUpdating = false }) {
         placeholder="محصولات را انتخاب کنید."
         options={
           !isLoading
-            ? categories.map((category) => {
-                return { value: category._id, label: category.title };
+            ? products.map((product) => {
+                return { value: product._id, label: product.title };
               })
             : []
         }
