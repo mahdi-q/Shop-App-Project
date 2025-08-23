@@ -1,7 +1,9 @@
 "use client";
 
-import Select from "react-select";
+import dynamic from "next/dynamic";
 import { Controller } from "react-hook-form";
+
+const Select = dynamic(() => import("react-select"), { ssr: false });
 
 import "@/styles/select-input-override.css";
 
