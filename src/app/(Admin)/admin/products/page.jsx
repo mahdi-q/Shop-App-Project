@@ -1,9 +1,9 @@
 "use client";
 
 import Loader from "@/ui/Loader";
-import useGetProducts from "./_hooks/useGetProducts";
 import ProductsTable from "./_components/ProductsTable";
 import Link from "next/link";
+import useGetProducts from "@/hooks/useGetProducts";
 
 function ProductsPage() {
   const { isLoading, products } = useGetProducts();
