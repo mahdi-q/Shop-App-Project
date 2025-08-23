@@ -32,7 +32,11 @@ function CouponsPage() {
       )}
 
       {!isLoading && coupons && coupons.length > 0 && (
-        <CouponsTable coupons={coupons} />
+        <CouponsTable
+          coupons={coupons.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+          )}
+        />
       )}
     </div>
   );

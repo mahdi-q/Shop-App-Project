@@ -22,7 +22,11 @@ function PaymentsPage() {
       )}
 
       {!isLoading && payments && payments.length > 0 && (
-        <PaymentsTable payments={payments} />
+        <PaymentsTable
+          payments={payments.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+          )}
+        />
       )}
     </div>
   );

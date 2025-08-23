@@ -32,7 +32,11 @@ function ProductsPage() {
       )}
 
       {!isLoading && products && products.length > 0 && (
-        <ProductsTable products={products} />
+        <ProductsTable
+          products={products.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+          )}
+        />
       )}
     </div>
   );

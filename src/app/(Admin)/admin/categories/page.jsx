@@ -32,7 +32,11 @@ function CategoriesPage() {
       )}
 
       {!isLoading && categories && categories.length > 0 && (
-        <CategoriesTable categories={categories} />
+        <CategoriesTable
+          categories={categories.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+          )}
+        />
       )}
     </div>
   );

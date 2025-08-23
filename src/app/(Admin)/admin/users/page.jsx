@@ -21,7 +21,13 @@ function UsersPage() {
         </div>
       )}
 
-      {!isLoading && users && users.length > 0 && <UsersTable users={users} />}
+      {!isLoading && users && users.length > 0 && (
+        <UsersTable
+          users={users.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+          )}
+        />
+      )}
     </div>
   );
 }
