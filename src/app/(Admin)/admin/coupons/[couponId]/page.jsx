@@ -65,7 +65,7 @@ function SingleCouponPage() {
             </span>
 
             <span className="badge badge--primary text-base">
-              {coupon.type}
+              {coupon.type === "percent" ? "درصدی" : "مقدار ثابت"}
             </span>
           </div>
 

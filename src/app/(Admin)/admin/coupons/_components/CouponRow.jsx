@@ -27,7 +27,9 @@ function CouponRow({ coupon, index }) {
 
       <td className="table__td">
         <div className="flex items-center justify-center">
-          <span className="badge badge--primary rounded-lg">{coupon.type}</span>
+          <span className="badge badge--primary rounded-lg">
+            {coupon.type === "percent" ? "درصدی" : "مقدار ثابت"}
+          </span>
         </div>
       </td>
 
