@@ -15,7 +15,10 @@ function UserRow({ user, index }) {
 
       <td className="table__td">
         <div className="flex items-center justify-center gap-2">
-          <span className="leading-5 font-bold">{user.phoneNumber}</span>
+          <span className="font-bold leading-5" dir="ltr">
+            {user.phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, "$1****$3")}
+          </span>
+
           {user.isVerifiedPhoneNumber ? (
             <BsShieldFillCheck className="h-5 w-5 text-success" />
           ) : (
