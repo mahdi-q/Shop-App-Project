@@ -7,6 +7,7 @@ import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
 import { FaCircleCheck, FaCircleXmark } from "react-icons/fa6";
 import { MdRemoveRedEye } from "react-icons/md";
+import DeleteCouponModal from "./DeleteCouponModal";
 
 function CouponRow({ coupon, index }) {
   return (
@@ -70,7 +71,7 @@ function CouponRow({ coupon, index }) {
             <CiEdit className="h-5 w-5 text-success" />
           </Link>
 
-          {/* <DeleteCouponModal id={coupon._id} title={coupon.title} /> */}
+          <DeleteCouponModal id={coupon._id} title={coupon.code} />
         </div>
       </td>
     </tr>

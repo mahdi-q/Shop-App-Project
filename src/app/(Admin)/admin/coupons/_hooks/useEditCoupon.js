@@ -14,7 +14,7 @@ export default function useEditCoupon(id) {
     },
 
     onError: (error) => {
-      toast.error(error?.response?.data?.message || "خطا در آپدیت کردن محصول");
+      toast.error(error?.response?.data?.message || "خطا در آپدیت کردن کد تخفیف");
     },
   });
 
