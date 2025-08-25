@@ -18,6 +18,7 @@ export const userPaymentsTHeads = [
   {
     id: 5,
     label: "مبلغ",
+    unit: "تومان",
   },
   {
     id: 6,

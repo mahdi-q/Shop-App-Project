@@ -9,7 +9,10 @@ function PaymentsTable({ payments }) {
           <tr>
             {userPaymentsTHeads.map((item) => (
               <th key={item.id} className="table__th whitespace-nowrap">
-                {item.label}
+                <span>{item.label}</span>
+                {item.unit && (
+                  <span className="mr-1 text-xs font-bold">({item.unit})</span>
+                )}
               </th>
             ))}
           </tr>
