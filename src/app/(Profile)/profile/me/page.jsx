@@ -3,6 +3,7 @@
 import useUser from "@/hooks/useUser";
 import { PulseLoader } from "react-spinners";
 import UserInfoForm from "../_components/UserInfoForm";
+import Loader from "@/ui/Loader";
 
 function UserInfoPage() {
   const { isLoading, user } = useUser();
@@ -19,16 +20,7 @@ function UserInfoPage() {
         </p>
       </div>
 
-      {isLoading && (
-        <div className="flex w-full items-center justify-center">
-          <span className="ml-2 text-primary-900">در حال بارگذاری</span>
-          <PulseLoader
-            color="rgb(var(--color-primary-900))"
-            size={12}
-            margin={3}
-          />
-        </div>
-      )}
+      {isLoading && <Loader />}
 
       {!isLoading && user && <UserInfoForm user={user} />}
     </div>

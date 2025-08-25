@@ -12,34 +12,31 @@ const schema = yup
   .object({
     phoneNumber: yup
       .string()
-      .required("شماره موبایل الزامی است")
-      .matches(/^09\d{9}$/, "شماره موبایل معتبر نیست"),
-    email: yup.string().required("ایمیل الزامی است").email("ایمیل معتبر نیست"),
+      .required("شماره موبایل الزامی است.")
+      .matches(/^\d+$/, "شماره موبایل باید عدد باشد.")
+      .matches(/^09\d{9}$/, "شماره موبایل معتبر نیست."),
+    email: yup
+      .string()
+      .required("ایمیل الزامی است.")
+      .email("ایمیل معتبر نیست."),
     name: yup
       .string()
-      .required("نام کاربری الزامی است")
-      .min(5, "نام کاربری باید حداقل ۵ کاراکتر باشد"),
+      .required("نام کاربری الزامی است.")
+      .min(5, "نام کاربری باید حداقل ۵ کاراکتر باشد."),
   })
   .required();
 
 function UserInfoForm({ user }) {
   const {
-    phoneNumber: userPhoneNumber,
-    email: userEmail,
-    name: userName,
-    biography: userBiography,
-  } = user;
-
-  const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm({
     defaultValues: {
-      phoneNumber: userPhoneNumber,
-      email: userEmail,
-      name: userName,
-      biography: userBiography,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+      name: user.name,
+      biography: user.biography,
     },
     resolver: yupResolver(schema),
     mode: "onTouched",
@@ -48,18 +45,9 @@ function UserInfoForm({ user }) {
   const { isUpdating, updateProfile } = useUpdateProfile();
 
   const onSubmit = (values) => {
-    const { phoneNumber, email, name, biography } = values;
+    if (!isDirty) return toast.error("لطفا حداقل یک فیلد را تغییر دهید.");
 
-    if (
-      phoneNumber !== userPhoneNumber ||
-      email !== userEmail ||
-      name !== userName ||
-      biography !== userBiography
-    ) {
-      updateProfile(values);
-    } else {
-      toast.error("ابتدا باید مقداری را تغییر دهید");
-    }
+    updateProfile(values);
   };
 
   return (
@@ -73,7 +61,6 @@ function UserInfoForm({ user }) {
         errors={errors}
         name="phoneNumber"
         dir="ltr"
-        type="number"
         isRequired
       />
 
