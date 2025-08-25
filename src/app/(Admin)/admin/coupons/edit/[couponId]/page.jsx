@@ -19,7 +19,7 @@ function EditCouponPage() {
           <FaChevronRight />
         </BackButton>
 
-        <h2 className="text-lg font-bold">ادیت کد تخفیف</h2>
+        <h2 className="text-lg font-bold">ویرایش کد تخفیف</h2>
       </div>
 
       {isLoading && <Loader />}

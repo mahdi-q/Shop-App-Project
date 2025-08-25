@@ -20,7 +20,7 @@ function EditProductPage() {
         </BackButton>
 
         <h2 className="text-lg font-bold">
-          ادیت دسته‌بندی "{category?.title ?? ""}"
+          ویرایش دسته‌بندی {!isLoading && `"${category?.title}"`}
         </h2>
       </div>
 
