@@ -8,11 +8,12 @@ import { useState } from "react";
 import Avatar from "@/ui/Avatar";
 import { HiMiniBars3, HiOutlineShoppingCart } from "react-icons/hi2";
 import { useGetUserInfo } from "@/hooks/useGetUsers";
+import { toPersianNumbers } from "@/utils/changeNumbers";
 
 function ProfileHeader() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
-  const { isLoading, user } = useGetUserInfo();
+  const { isLoading, user, cart } = useGetUserInfo();
 
   return (
     <div
@@ -32,13 +33,16 @@ function ProfileHeader() {
         </span>
       </div>
 
-      <div className="flex flex-row-reverse items-center gap-4">
+      <div className="flex flex-row-reverse items-center gap-2">
         <Link href="/profile">
           <Avatar src={user?.avatarUrl} size={28} />
         </Link>
 
-        <Link href="/cart">
+        <Link href="/cart" className="relative p-2">
           <HiOutlineShoppingCart className="h-5 w-5" />
+          <span className="absolute right-0 top-0 flex min-h-4 min-w-4 items-center justify-center rounded-full bg-secondary-700/90 px-1 text-sm text-white">
+            {toPersianNumbers(cart ? cart.payDetail.productIds.length : 0)}
+          </span>
         </Link>
       </div>
 
