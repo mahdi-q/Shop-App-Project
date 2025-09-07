@@ -9,9 +9,9 @@ import RHFSelect from "@/ui/RHFSelect";
 import RHFDatePicker from "@/ui/RHFDatePicker";
 import useAddCoupon from "../_hooks/useAddCoupon";
 import { useRouter } from "next/navigation";
-import useGetProducts from "@/hooks/useGetProducts";
 import useEditCoupon from "../_hooks/useEditCoupon";
 import { CouponSchema } from "@/constants/validationSchemas";
+import { useGetProducts } from "@/hooks/useGetProducts";
 
 function CouponForm({ initialData = {}, isUpdating = false }) {
   const router = useRouter();

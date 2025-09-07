@@ -1,4 +1,4 @@
-import useGetProduct from "@/hooks/useGetProduct";
+import { useGetProduct } from "@/hooks/useGetProducts";
 import Link from "next/link";
 
 const MultipleBadge = ({ productId }) => {

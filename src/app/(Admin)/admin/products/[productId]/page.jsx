@@ -1,6 +1,5 @@
 "use client";
 
-import useGetProduct from "@/hooks/useGetProduct";
 import BackButton from "@/ui/BackButton";
 import Loader from "@/ui/Loader";
 import {
@@ -8,12 +7,11 @@ import {
   toPersianNumbersWithComma,
 } from "@/utils/changeNumbers";
 import toLocalDate from "@/utils/toLocalDate";
-import Image from "next/image";
 import { useParams } from "next/navigation";
 import { FaChevronRight } from "react-icons/fa6";
 import MultipleBadge from "../_components/MultipleBadge";
-import { useEffect, useState } from "react";
 import ImageCover from "@/components/ImageCover";
+import { useGetProduct } from "@/hooks/useGetProducts";
 
 function SingleProductPage() {
   const params = useParams();

@@ -4,8 +4,8 @@ import BackButton from "@/ui/BackButton";
 import { FaChevronRight } from "react-icons/fa6";
 import ProductForm from "../../_components/ProductForm";
 import { useParams } from "next/navigation";
-import useGetProduct from "@/hooks/useGetProduct";
 import Loader from "@/ui/Loader";
+import { useGetProduct } from "@/hooks/useGetProducts";
 
 function EditProductPage() {
   const params = useParams();
