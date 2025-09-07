@@ -1,6 +1,5 @@
 "use client";
 
-import useUser from "@/hooks/useUser";
 import Loader from "@/ui/Loader";
 import TomanSvgIcon from "@/ui/TomanSvgIcon";
 import {
@@ -13,9 +12,10 @@ import toast from "react-hot-toast";
 import { IoTrashOutline } from "react-icons/io5";
 import useDeleteProductFromCart from "../_hooks/useDeleteProductFromCart";
 import CartActions from "./CartActions";
+import { useGetUserInfo } from "@/hooks/useGetUsers";
 
 function CartItems() {
-  const { isLoading, user, cart } = useUser();
+  const { isLoading, user, cart } = useGetUserInfo();
   const { isDeleting, deleteProductFromCart } = useDeleteProductFromCart();
 
   const handleDeleteProduct = async (id) => {

@@ -1,14 +1,14 @@
 "use client";
 
-import useUser from "@/hooks/useUser";
 import Loader from "@/ui/Loader";
 import { toPersianNumbersWithComma } from "@/utils/changeNumbers";
 import toast from "react-hot-toast";
 import useCreatePayment from "../_hooks/useCreatePayment";
 import CartCoupon from "./CartCoupon";
+import { useGetUserInfo } from "@/hooks/useGetUsers";
 
 function CartInvoice() {
-  const { isLoading, user, cart } = useUser();
+  const { isLoading, user, cart } = useGetUserInfo();
   const { isCreating, createPayment } = useCreatePayment();
 
   const handleCompleteOrder = async () => {

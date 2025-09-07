@@ -1,6 +1,5 @@
 "use client";
 
-import useUser from "@/hooks/useUser";
 import useLikeProduct from "../_hooks/useLikeProduct";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,10 +7,11 @@ import toast from "react-hot-toast";
 import ButtonIcon from "@/ui/ButtonIcon";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { toPersianNumbers } from "@/utils/changeNumbers";
+import { useGetUserInfo } from "@/hooks/useGetUsers";
 
 function LikeProductButton({ isLiked, id, likesCount }) {
   const { isLiking, likeProduct } = useLikeProduct();
-  const { user } = useUser();
+  const { user } = useGetUserInfo();
   const router = useRouter();
 
   const [isLike, setIsLike] = useState(isLiked);

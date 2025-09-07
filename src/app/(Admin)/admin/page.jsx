@@ -3,16 +3,16 @@
 import useGetCategories from "@/hooks/useGetCategories";
 import useGetCoupons from "@/hooks/useGetCoupons";
 import useGetProducts from "@/hooks/useGetProducts";
-import useUser from "@/hooks/useUser";
 import Loader from "@/ui/Loader";
 import toLocalDate from "@/utils/toLocalDate";
 import ProductsTable from "./products/_components/ProductsTable";
 import Link from "next/link";
 import CategoriesTable from "./categories/_components/CategoriesTable";
 import CouponsTable from "./coupons/_components/CouponsTable";
+import { useGetUserInfo } from "@/hooks/useGetUsers";
 
 function AdminPage() {
-  const { isLoading, user } = useUser();
+  const { isLoading, user } = useGetUserInfo();
   const { isLoading: gettingProducts, products } = useGetProducts();
   const { isLoading: gettingCategories, categories } = useGetCategories();
   const { isLoading: gettingCoupons, coupons } = useGetCoupons();

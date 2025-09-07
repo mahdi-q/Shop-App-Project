@@ -1,6 +1,5 @@
 "use client";
 
-import useUser from "@/hooks/useUser";
 import ButtonIcon from "@/ui/ButtonIcon";
 import Drawer from "@/ui/Drawer";
 import Link from "next/link";
@@ -8,11 +7,12 @@ import { useState } from "react";
 import Avatar from "@/ui/Avatar";
 import { HiMiniBars3 } from "react-icons/hi2";
 import AdminPanelSidebar from "./AdminPanelSidebar";
+import { useGetUserInfo } from "@/hooks/useGetUsers";
 
 function AdminPanelHeader() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
-  const { isLoading, user } = useUser();
+  const { isLoading, user } = useGetUserInfo();
 
   return (
     <div

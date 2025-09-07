@@ -1,13 +1,13 @@
 "use client";
 
-import useUser from "@/hooks/useUser";
 import PaymentsTable from "./_components/PaymentsTable";
 import toLocalDate from "@/utils/toLocalDate";
 import Link from "next/link";
 import Loader from "@/ui/Loader";
+import { useGetUserInfo } from "@/hooks/useGetUsers";
 
 function ProfilePage() {
-  const { isLoading, user, payments } = useUser();
+  const { isLoading, user, payments } = useGetUserInfo();
 
   return (
     <div>

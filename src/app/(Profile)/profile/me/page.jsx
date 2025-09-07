@@ -1,12 +1,11 @@
 "use client";
 
-import useUser from "@/hooks/useUser";
-import { PulseLoader } from "react-spinners";
 import UserInfoForm from "../_components/UserInfoForm";
 import Loader from "@/ui/Loader";
+import { useGetUserInfo } from "@/hooks/useGetUsers";
 
 function UserInfoPage() {
-  const { isLoading, user } = useUser();
+  const { isLoading, user } = useGetUserInfo();
 
   return (
     <div className="flex flex-col items-start gap-6">

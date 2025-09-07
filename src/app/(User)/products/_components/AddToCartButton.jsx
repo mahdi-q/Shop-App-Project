@@ -1,17 +1,17 @@
 "use client";
 
-import useUser from "@/hooks/useUser";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import useAddToCart from "@/hooks/useAddToCart";
 import CartActions from "app/(User)/cart/_components/CartActions";
 import { usePathname } from "next/navigation";
+import { useGetUserInfo } from "@/hooks/useGetUsers";
 
 function AddToCartButton({ id }) {
   const pathname = usePathname();
   const { isAdding, addToCart } = useAddToCart();
-  const { user, cart } = useUser();
+  const { user, cart } = useGetUserInfo();
 
   const [quantity, setQuantity] = useState(0);
   const [isInCart, setIsInCart] = useState(false);

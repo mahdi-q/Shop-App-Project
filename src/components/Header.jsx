@@ -1,10 +1,10 @@
 "use client";
 
-import useUser from "@/hooks/useUser";
+import { useGetUserInfo } from "@/hooks/useGetUsers";
 import Link from "next/link";
 
 function Header() {
-  const { isLoading, user, cart } = useUser();
+  const { isLoading, user, cart } = useGetUserInfo();
 
   return (
     <header
