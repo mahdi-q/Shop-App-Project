@@ -17,8 +17,8 @@ function NotFound() {
             صفحه ای که دنبالش بودید، پیدا نشد.
           </h1>
 
-          <BackButton className="btn--outline flex items-center gap-x-2 px-6 py-2 text-secondary-800">
-            <FaArrowRight className="h-5 w-5 text-primary-900" />
+          <BackButton className="btn--outline group flex items-center gap-x-2 px-6 py-2 text-secondary-800">
+            <FaArrowRight className="h-5 w-5 text-primary-900 group-hover:text-secondary-50" />
 
             <span>برگشت</span>
           </BackButton>

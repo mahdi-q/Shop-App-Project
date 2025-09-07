@@ -18,9 +18,9 @@ function Error({ error, reset }) {
 
           <button
             onClick={reset}
-            className="btn btn--outline flex items-center gap-x-2 px-6 py-2 text-secondary-800"
+            className="btn btn--outline group flex items-center gap-x-2 px-6 py-2 text-secondary-800"
           >
-            <HiArrowPath className="h-5 w-5 text-primary-900" />
+            <HiArrowPath className="h-5 w-5 text-primary-900 group-hover:text-secondary-50" />
 
             <span>تلاش دوباره</span>
           </button>

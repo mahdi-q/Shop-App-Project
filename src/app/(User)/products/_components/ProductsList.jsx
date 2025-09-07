@@ -14,7 +14,10 @@ async function ProductsList({ searchParams }) {
     strCookies,
   );
 
-  if (!products || products.length <= 0) return <span>محصولی یافت نشد.</span>;
+  if (!products || products.length <= 0)
+    return (
+      <span className="text-center text-lg text-black">محصولی یافت نشد.</span>
+    );
 
   return (
     <div className="grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 lg:grid-cols-3">

@@ -31,9 +31,9 @@ function ProductCard({ product }) {
         </div>
 
         {/* Product Image */}
-        <div className="h-36 w-32 flex-shrink-0 overflow-hidden rounded-lg border border-secondary-200 object-cover">
+        <div className="relative h-36 w-32 flex-shrink-0 overflow-hidden rounded-lg border border-secondary-200 object-cover">
           <Link href={`/products/${product.slug}`} className="h-full w-full">
-            <ImageCover src={product.imageLink} width={128} height={144} />
+            <ImageCover src={product.imageLink} fill />
           </Link>
         </div>
       </div>
@@ -54,7 +54,7 @@ function ProductCard({ product }) {
             </span>
           )}
 
-          <span className="flex flex-row-reverse gap-1 text-lg font-bold">
+          <span className="flex flex-row-reverse gap-1 text-lg font-bold text-black">
             <TomanSvgIcon />
 
             {toPersianNumbersWithComma(

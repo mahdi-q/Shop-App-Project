@@ -44,7 +44,7 @@ function CartCoupon({ cart }) {
       {hasCoupon ? (
         <div className="flex w-full items-center justify-between gap-2 rounded-lg border border-secondary-100 p-2 pr-3">
           <input
-            className="flex-1 border-none py-1 outline-none disabled:font-medium disabled:text-secondary-800"
+            className="flex-1 border-none bg-transparent py-1 text-black outline-none disabled:font-medium disabled:text-secondary-800"
             type="text"
             value={coupon}
             disabled={isValide}
@@ -64,7 +64,7 @@ function CartCoupon({ cart }) {
             <button
               onClick={handleSubmitCoupon}
               disabled={isAdding}
-              className="btn btn--primary rounded-md px-3 py-2 text-sm"
+              className="btn btn--primary rounded-md px-3 py-2 text-sm shadow-none"
             >
               اعمال کد
             </button>

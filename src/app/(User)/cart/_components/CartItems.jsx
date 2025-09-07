@@ -54,14 +54,14 @@ function CartItems() {
     );
 
   return (
-    <ul className="space-y-4">
+    <ul className="space-y-4 text-black">
       {cart.productDetail.map((product) => (
         <li
           key={product._id}
           className="flex justify-between rounded-lg border border-secondary-300 p-2.5"
         >
           <div className="flex h-full gap-4">
-            <div className="h-[98px] w-[78px] rounded overflow-hidden relative">
+            <div className="relative h-[98px] w-[78px] overflow-hidden rounded">
               <ImageCover src={product.imageLink} fill priority />
             </div>
 
@@ -101,7 +101,7 @@ function CartItems() {
 
               <div className="flex items-center gap-1 fill-primary-900 text-left text-lg font-black text-primary-900">
                 <span>{toPersianNumbersWithComma(product.offPrice)}</span>
-                <TomanSvgIcon color="rgb(--text-primary-900)" />
+                <TomanSvgIcon className="!fill-primary-900" />
               </div>
             </div>
           </div>

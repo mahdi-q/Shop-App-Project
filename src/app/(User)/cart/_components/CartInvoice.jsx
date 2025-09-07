@@ -25,7 +25,9 @@ function CartInvoice() {
 
   return (
     <div className="space-y-6 rounded-lg border border-secondary-300 p-4">
-      <h3 className="text-lg font-bold lg:text-xl">فاکتور خرید شما</h3>
+      <h3 className="text-lg font-bold text-black lg:text-xl">
+        فاکتور خرید شما
+      </h3>
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
