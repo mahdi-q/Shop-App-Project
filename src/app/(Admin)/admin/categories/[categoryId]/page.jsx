@@ -1,11 +1,11 @@
 "use client";
 
+import { useGetCategory } from "@/hooks/useGetCategories";
 import BackButton from "@/ui/BackButton";
 import Loader from "@/ui/Loader";
 import toLocalDate from "@/utils/toLocalDate";
 import { useParams } from "next/navigation";
 import { FaChevronRight } from "react-icons/fa6";
-import useGetCategory from "../_hooks/useGetCategory";
 
 function SingleCategoryPage() {
   const params = useParams();

@@ -1,9 +1,9 @@
 "use client";
 
-import useGetCategories from "@/hooks/useGetCategories";
 import Loader from "@/ui/Loader";
 import Link from "next/link";
 import CategoriesTable from "./_components/CategoriesTable";
+import { useGetCategories } from "@/hooks/useGetCategories";
 
 function CategoriesPage() {
   const { isLoading, categories } = useGetCategories();

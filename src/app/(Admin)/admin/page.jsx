@@ -1,6 +1,5 @@
 "use client";
 
-import useGetCategories from "@/hooks/useGetCategories";
 import Loader from "@/ui/Loader";
 import toLocalDate from "@/utils/toLocalDate";
 import ProductsTable from "./products/_components/ProductsTable";
@@ -10,6 +9,7 @@ import CouponsTable from "./coupons/_components/CouponsTable";
 import { useGetUserInfo } from "@/hooks/useGetUsers";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import { useGetCoupons } from "@/hooks/useGetCoupons";
+import { useGetCategories } from "@/hooks/useGetCategories";
 
 function AdminPage() {
   const { isLoading, user } = useGetUserInfo();

@@ -7,12 +7,12 @@ import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 import RHFSelect from "@/ui/RHFSelect";
 import RHFTagInput from "@/ui/RHFTagInput";
 import RHFTextarea from "@/ui/RHFTextarea";
-import useGetCategories from "@/hooks/useGetCategories";
 import useAddProduct from "../_hooks/useAddProduct";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import useEditProduct from "../_hooks/useEditProduct";
 import { ProductSchema } from "@/constants/validationSchemas";
+import { useGetCategories } from "@/hooks/useGetCategories";
 
 function ProductForm({ initialData = {}, isUpdating = false }) {
   const router = useRouter();
