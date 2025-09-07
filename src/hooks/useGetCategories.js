@@ -1,7 +1,10 @@
-import { getCategoriesApi } from "@/services/categoriesServices";
+import {
+  getCategoriesApi,
+  getCategoryApi,
+} from "@/services/categoriesServices";
 import { useQuery } from "@tanstack/react-query";
 
-export default function useGetCategories() {
+export function useGetCategories() {
   const { isLoading, data } = useQuery({
     queryKey: ["categories"],
     queryFn: getCategoriesApi,
@@ -10,4 +13,16 @@ export default function useGetCategories() {
   const { categories } = data || {};
 
   return { isLoading, categories };
+}
+
+export function useGetCategory(id) {
+  const { isLoading, data } = useQuery({
+    queryKey: ["single-category", id],
+    queryFn: () => getCategoryApi(id),
+    enabled: !!id,
+  });
+
+  const { category } = data || {};
+
+  return { isLoading, category };
 }

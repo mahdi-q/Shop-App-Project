@@ -14,7 +14,7 @@ export function completeProfileApi(data) {
     .then(({ data }) => data.data);
 }
 
-export function getUserApi() {
+export function getUserInfoApi() {
   return http.get("/user/profile").then(({ data }) => data.data);
 }
 
