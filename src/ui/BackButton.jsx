@@ -2,11 +2,11 @@
 
 import { useRouter } from "next/navigation";
 
-function BackButton({ children }) {
+function BackButton({ children, className = "" }) {
   const { back } = useRouter();
 
   return (
-    <button onClick={back} className="btn">
+    <button onClick={back} className={`btn ${className}`}>
       {children}
     </button>
   );
