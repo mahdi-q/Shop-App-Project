@@ -3,17 +3,8 @@
 import RHFTextField from "@/ui/RHFTextField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
-
-const schema = yup
-  .object({
-    phoneNumber: yup
-      .string()
-      .required("شماره موبایل الزامی است")
-      .matches(/^09\d{9}$/, "شماره موبایل معتبر نیست"),
-  })
-  .required();
+import { SendOtpSchema } from "@/constants/validationSchemas";
 
 function SendOtpForm({ onSendOtp, isSending }) {
   const {
@@ -22,7 +13,7 @@ function SendOtpForm({ onSendOtp, isSending }) {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(SendOtpSchema),
     mode: "onTouched",
   });
 

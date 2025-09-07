@@ -3,7 +3,6 @@
 import RHFTextField from "@/ui/RHFTextField";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 import RHFSelect from "@/ui/RHFSelect";
 import RHFTextarea from "@/ui/RHFTextarea";
@@ -11,37 +10,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import useAddCategory from "../_hooks/useAddCategory";
 import useEditCategory from "../_hooks/useEditCategory";
-
-const schema = yup
-  .object({
-    title: yup
-      .string()
-      .required("عنوان الزامی است.")
-      .min(3, "عنوان باید حداقل 3 کاراکتر باشد.")
-      .max(30, "عنوان نباید بیشتر از 30 کاراکتر باشد."),
-
-    englishTitle: yup
-      .string()
-      .required("عنوان انگلیسی الزامی است.")
-      .min(3, "عنوان انگلیسی باید حداقل 3 کاراکتر باشد.")
-      .max(30, "عنوان انگلیسی نباید بیشتر از 30 کاراکتر باشد.")
-      .matches(
-        /^[^\u0600-\u06FF\u06F0-\u06F9]+$/,
-        "کاراکتر فارسی یا عدد فارسی مجاز نیست.",
-      ),
-
-    type: yup
-      .object()
-      .typeError("نوع دسته‌بندی الزامی است.")
-      .required("نوع دسته‌بندی الزامی است."),
-
-    description: yup
-      .string()
-      .required("توضیحات الزامی است.")
-      .trim()
-      .min(10, "توضیحات باید حداقل 10 کاراکتر باشد."),
-  })
-  .required();
+import { CategorySchema } from "@/constants/validationSchemas";
 
 function CategoryForm({ initialData = {}, isUpdating = false }) {
   const router = useRouter();
@@ -68,7 +37,7 @@ function CategoryForm({ initialData = {}, isUpdating = false }) {
     formState: { errors, isDirty },
   } = useForm({
     defaultValues: initialValues,
-    resolver: yupResolver(schema),
+    resolver: yupResolver(CategorySchema),
     mode: "onTouched",
   });
 

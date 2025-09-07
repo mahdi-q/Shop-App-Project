@@ -3,28 +3,10 @@
 import RHFTextField from "@/ui/RHFTextField";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import useUpdateProfile from "../_hooks/useUpdateProfile";
 import toast from "react-hot-toast";
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
-
-const schema = yup
-  .object({
-    phoneNumber: yup
-      .string()
-      .required("شماره موبایل الزامی است.")
-      .matches(/^\d+$/, "شماره موبایل باید عدد باشد.")
-      .matches(/^09\d{9}$/, "شماره موبایل معتبر نیست."),
-    email: yup
-      .string()
-      .required("ایمیل الزامی است.")
-      .email("ایمیل معتبر نیست."),
-    name: yup
-      .string()
-      .required("نام کاربری الزامی است.")
-      .min(5, "نام کاربری باید حداقل ۵ کاراکتر باشد."),
-  })
-  .required();
+import { UserInfoSchema } from "@/constants/validationSchemas";
 
 function UserInfoForm({ user }) {
   const {
@@ -38,7 +20,7 @@ function UserInfoForm({ user }) {
       name: user.name,
       biography: user.biography,
     },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(UserInfoSchema),
     mode: "onTouched",
   });
 

@@ -3,21 +3,11 @@
 import RHFTextField from "@/ui/RHFTextField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import useCompleteProfile from "./_hooks/useCompleteProfile";
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-
-const schema = yup
-  .object({
-    userName: yup
-      .string()
-      .required("نام کاربری الزامی است")
-      .min(5, "نام کاربری باید حداقل ۵ کاراکتر باشد"),
-    email: yup.string().required("ایمیل الزامی است").email("ایمیل معتبر نیست"),
-  })
-  .required();
+import { CompleteProfileSchema } from "@/constants/validationSchemas";
 
 function CompleteProfilePage() {
   const {
@@ -26,7 +16,7 @@ function CompleteProfilePage() {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(CompleteProfileSchema),
     mode: "onTouched",
   });
 
@@ -42,6 +32,7 @@ function CompleteProfilePage() {
       });
       toast.success(message);
       router.replace("/profile");
+      reset();
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }

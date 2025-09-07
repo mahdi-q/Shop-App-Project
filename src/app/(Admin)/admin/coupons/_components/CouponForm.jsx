@@ -3,7 +3,6 @@
 import RHFTextField from "@/ui/RHFTextField";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 import toast from "react-hot-toast";
 import RHFSelect from "@/ui/RHFSelect";
@@ -12,54 +11,7 @@ import useAddCoupon from "../_hooks/useAddCoupon";
 import { useRouter } from "next/navigation";
 import useGetProducts from "@/hooks/useGetProducts";
 import useEditCoupon from "../_hooks/useEditCoupon";
-
-const schema = yup
-  .object({
-    code: yup
-      .string()
-      .required("کد تخفیف الزامی است.")
-      .min(5, "کد تخفیف باید حداقل ۵ کاراکتر باشد.")
-      .max(30, "کد تخفیف نباید بیشتر از ۳۰ کاراکتر باشد."),
-
-    amount: yup
-      .string()
-      .required("مقدار الزامی است.")
-      .matches(/^\d+$/, "مقدار باید عدد باشد.")
-      .test("not-zero", "مقدار نمی‌تواند ۰ باشد.", (value) => value !== "0")
-      .when("type", (type, schema) => {
-        if (type[0]?.value === "percent") {
-          return schema.test(
-            "max-100",
-            "برای تخفیف درصدی مقدار نمی‌تواند بیشتر از ۱۰۰ باشد.",
-            (value) => {
-              if (!value) return false;
-              return Number(value) <= 100;
-            },
-          );
-        }
-        return schema;
-      }),
-
-    usageLimit: yup
-      .string()
-      .required("ظرفیت الزامی است.")
-      .matches(/^\d+$/, "ظرفیت باید عدد باشد.")
-      .test("not-zero", "ظرفیت نمی‌تواند ۰ باشد.", (value) => value !== "0"),
-
-    type: yup
-      .object()
-      .typeError("نوع تخفیف الزامی است.")
-      .required("نوع تخفیف الزامی است."),
-
-    productIds: yup
-      .array()
-      .of(yup.object().typeError("محصولات الزامی است."))
-      .required("محصولات الزامی است.")
-      .min(1, "حداقل یک محصول باید انتخاب شود."),
-
-    expireDate: yup.date().required("تاریخ انقضا الزامی است."),
-  })
-  .required();
+import { CouponSchema } from "@/constants/validationSchemas";
 
 function CouponForm({ initialData = {}, isUpdating = false }) {
   const router = useRouter();
@@ -91,7 +43,7 @@ function CouponForm({ initialData = {}, isUpdating = false }) {
     formState: { errors, isDirty },
   } = useForm({
     defaultValues: initialValues,
-    resolver: yupResolver(schema),
+    resolver: yupResolver(CouponSchema),
     mode: "onTouched",
   });
 

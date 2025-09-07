@@ -3,7 +3,6 @@
 import RHFTextField from "@/ui/RHFTextField";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 import RHFSelect from "@/ui/RHFSelect";
 import RHFTagInput from "@/ui/RHFTagInput";
@@ -13,64 +12,7 @@ import useAddProduct from "../_hooks/useAddProduct";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import useEditProduct from "../_hooks/useEditProduct";
-
-const schema = yup
-  .object({
-    title: yup
-      .string()
-      .required("عنوان الزامی است.")
-      .min(3, "عنوان باید حداقل 3 کاراکتر باشد.")
-      .max(30, "عنوان نباید بیشتر از 30 کاراکتر باشد."),
-
-    brand: yup.string().required("برند الزامی است.").trim(),
-
-    category: yup
-      .object()
-      .typeError("دسته‌بندی الزامی است.")
-      .required("دسته‌بندی الزامی است."),
-
-    price: yup
-      .string()
-      .required("قیمت الزامی است.")
-      .matches(/^\d+$/, "قیمت باید عدد باشد."),
-
-    discount: yup
-      .string()
-      .required("تخفیف الزامی است.")
-      .matches(/^\d+$/, "تخفیف باید عدد باشد.")
-      .test("max-100", "تخفیف نمی‌تواند بیشتر از ۱۰۰ باشد.", (value) => {
-        return value ? Number(value) <= 100 : false;
-      }),
-
-    offPrice: yup
-      .string()
-      .required("قیمت نهایی الزامی است.")
-      .matches(/^\d+$/, "قیمت نهایی باید عدد باشد."),
-
-    slug: yup.string().required("اسلاگ الزامی است.").trim(),
-
-    countInStock: yup
-      .string()
-      .required("موجودی الزامی است.")
-      .matches(/^\d+$/, "موجودی باید عدد باشد.")
-      .test("not-zero", "موجودی نمی‌تواند ۰ باشد.", (value) => value !== "0"),
-
-    imageLink: yup.string().required("ادرس‌ عکس الزامی است.").trim(),
-
-    tags: yup
-      .array()
-      .of(yup.string().trim())
-      .required("تگ‌ها الزامی است.")
-      .min(1, "حداقل یک تگ باید وارد شود.")
-      .max(20, "تگ‌ها نمی‌توانند بیشتر از 20 ایتم باشند."),
-
-    description: yup
-      .string()
-      .required("توضیحات الزامی است.")
-      .trim()
-      .min(10, "توضیحات باید حداقل 10 کاراکتر باشد."),
-  })
-  .required();
+import { ProductSchema } from "@/constants/validationSchemas";
 
 function ProductForm({ initialData = {}, isUpdating = false }) {
   const router = useRouter();
@@ -105,7 +47,7 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
     formState: { errors, isDirty },
   } = useForm({
     defaultValues: initialValues,
-    resolver: yupResolver(schema),
+    resolver: yupResolver(ProductSchema),
     mode: "onTouched",
   });
 
