@@ -2,7 +2,7 @@
 
 import Loader from "@/ui/Loader";
 import PaymentsTable from "./_components/PaymentsTable";
-import useGetPayments from "./_hooks/useGetPayments";
+import { useGetPayments } from "@/hooks/useGetPayments";
 
 function PaymentsPage() {
   const { isLoading, payments } = useGetPayments();
