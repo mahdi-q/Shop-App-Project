@@ -59,7 +59,7 @@
     @apply flex w-full flex-col gap-y-2;
   }
   .textField__input {
-    @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-4 py-3 text-secondary-900 outline-none transition-all duration-200 ease-in-out hover:border-primary-300 focus:border-primary-300 focus:bg-white focus:shadow-input-focus focus:outline-none;
+    @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-4 py-3 text-secondary-900 outline-none transition-all duration-200 ease-in-out hover:border-primary-300 focus:border-primary-300 focus:bg-secondary-50 focus:shadow-input-focus focus:outline-none;
   }
   .textField--invalid {
     @apply border-error bg-red-50 hover:border-error focus:border-error;
@@ -68,16 +68,16 @@
     @apply rounded-xl px-2 py-1 font-bold transition-all duration-300;
   }
   .btn--primary {
-    @apply bg-primary-900 px-4 py-3 text-white shadow-md shadow-primary-300 hover:bg-primary-800;
+    @apply bg-primary-900 px-4 py-3 text-secondary-50 shadow-md shadow-primary-500 hover:bg-primary-800;
   }
   .btn--secondary {
-    @apply bg-secondary-700 px-4 py-3 text-white shadow-md shadow-secondary-300 hover:bg-secondary-800;
+    @apply bg-secondary-700 px-4 py-3 text-secondary-50 shadow-md shadow-secondary-300 hover:bg-secondary-800;
   }
   .btn--danger {
-    @apply bg-error/90 px-4 py-3 text-white shadow-md shadow-error/40 hover:bg-error;
+    @apply bg-error/90 px-4 py-3 text-secondary-50 shadow-md shadow-error/40 hover:bg-error;
   }
   .btn--outline {
-    @apply border border-primary-900 bg-transparent px-4 py-3 text-primary-900 hover:bg-primary-900 hover:text-white;
+    @apply border border-primary-900 bg-transparent px-4 py-3 text-primary-900 hover:bg-primary-900 hover:text-secondary-50;
   }
   .table__layout {
     @apply overflow-auto rounded-md border border-secondary-200 p-3 shadow-sm [&>table]:w-full [&>table]:min-w-[800px] [&>table]:table-auto [&>table]:border-collapse [&>table]:text-sm;

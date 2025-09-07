@@ -75,7 +75,7 @@ function ProfileSidebar({ onClose }) {
         {/* Logout Button */}
         <div
           onClick={buttonHandler}
-          className="mt-2 flex w-full cursor-pointer items-center gap-x-4 rounded-lg bg-primary-100/70 py-3 pr-3 text-error transition-all duration-300 ease-in-out hover:bg-primary-100 hover:text-error lg:text-secondary-700"
+          className="mt-2 flex w-full cursor-pointer items-center gap-x-4 rounded-lg bg-primary-100/50 py-3 pr-3 text-error transition-all duration-300 ease-in-out hover:bg-primary-100 hover:text-error lg:text-secondary-800"
         >
           <TbLogout2 className="h-5 w-5" />
           <span>خروج</span>

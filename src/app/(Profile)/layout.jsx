@@ -8,7 +8,7 @@ export const metadata = {
 
 function ProfileLayout({ children }) {
   return (
-    <div className="grid h-screen grid-cols-12 bg-white">
+    <div className="bg-background grid h-screen grid-cols-12">
       {/* Sidebar */}
       <aside className="col-span-12 hidden overflow-y-auto px-3 py-4 lg:col-span-3 lg:block xl:col-span-2">
         <ProfileSidebar />
@@ -22,7 +22,7 @@ function ProfileLayout({ children }) {
         </header>
 
         {/* Content */}
-        <main className="m-1.5 flex-1 rounded-md bg-secondary-50/70 p-4 md:p-6 lg:m-2 lg:rounded-xl lg:p-8">
+        <main className="m-1.5 flex-1 rounded-md bg-secondary-100/70 p-4 md:p-6 lg:m-2 lg:rounded-xl lg:p-8">
           <div className="xl:max-w-screen-xl">{children}</div>
         </main>
       </div>

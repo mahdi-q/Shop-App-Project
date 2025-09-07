@@ -16,8 +16,8 @@ function UserPaymentsPage() {
       {isLoading && <Loader />}
 
       {!isLoading && (!payments || payments.length <= 0) && (
-        <div className="mt-4 flex items-center justify-center">
-          تراکنشی یافت نشد
+        <div className="mt-4 flex items-center justify-center text-black">
+          تراکنشی یافت نشد.
         </div>
       )}
 

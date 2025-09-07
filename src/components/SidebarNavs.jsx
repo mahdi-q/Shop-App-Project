@@ -15,9 +15,10 @@ function SidebarNavs({ onClose, sidebarNavs }) {
             href={nav.href}
             onClick={onClose}
             className={classNames(
-              "flex w-full items-center gap-x-4 rounded-lg bg-primary-100/70 py-3 pr-3 text-secondary-700 transition-all duration-300 ease-in-out hover:bg-primary-100 hover:text-secondary-800 [&>svg]:h-5 [&>svg]:w-5",
+              "flex w-full items-center gap-x-4 rounded-lg bg-primary-100/50 py-3 pr-3 text-secondary-800 transition-all duration-300 ease-in-out hover:bg-primary-100 hover:text-primary-700 [&>svg]:h-5 [&>svg]:w-5",
               {
-                "!font-bold !text-primary-900": pathname === nav.href,
+                "!bg-primary-100 !font-bold !text-primary-900":
+                  pathname === nav.href,
               },
             )}
           >

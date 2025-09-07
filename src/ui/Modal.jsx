@@ -25,7 +25,7 @@ function Modal({ title, description = "", open, onClose, children }) {
 
         {/* Modal Content */}
         <div
-          className="fixed left-1/2 top-1/2 z-50 max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-md bg-white p-4 shadow-lg transition-all duration-500 ease-out md:max-w-lg"
+          className="fixed left-1/2 top-1/2 z-50 max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-md bg-background p-4 shadow-lg transition-all duration-500 ease-out md:max-w-lg"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
