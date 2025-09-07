@@ -4,8 +4,8 @@ import BackButton from "@/ui/BackButton";
 import { FaChevronRight } from "react-icons/fa6";
 import { useParams } from "next/navigation";
 import Loader from "@/ui/Loader";
-import useGetCoupon from "../../_hooks/useGetCoupon";
 import CouponForm from "../../_components/CouponForm";
+import { useGetCoupon } from "@/hooks/useGetCoupons";
 
 function EditCouponPage() {
   const params = useParams();

@@ -5,12 +5,12 @@ import Loader from "@/ui/Loader";
 import toLocalDate from "@/utils/toLocalDate";
 import { useParams } from "next/navigation";
 import { FaChevronRight, FaCircleCheck, FaCircleXmark } from "react-icons/fa6";
-import useGetCoupon from "../_hooks/useGetCoupon";
 import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/changeNumbers";
 import Link from "next/link";
+import { useGetCoupon } from "@/hooks/useGetCoupons";
 
 function SingleCouponPage() {
   const params = useParams();

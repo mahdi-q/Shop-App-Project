@@ -3,7 +3,7 @@
 import Loader from "@/ui/Loader";
 import Link from "next/link";
 import CouponsTable from "./_components/CouponsTable";
-import useGetCoupons from "@/hooks/useGetCoupons";
+import { useGetCoupons } from "@/hooks/useGetCoupons";
 
 function CouponsPage() {
   const { isLoading, coupons } = useGetCoupons();
