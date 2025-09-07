@@ -9,6 +9,7 @@ import Avatar from "@/ui/Avatar";
 import { HiMiniBars3, HiOutlineShoppingCart } from "react-icons/hi2";
 import { useGetUserInfo } from "@/hooks/useGetUsers";
 import { toPersianNumbers } from "@/utils/changeNumbers";
+import ToggleThemeButton from "@/components/ToggleThemeButton";
 
 function ProfileHeader() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
@@ -39,11 +40,13 @@ function ProfileHeader() {
         </Link>
 
         <Link href="/cart" className="relative p-2">
-          <HiOutlineShoppingCart className="h-5 w-5" />
-          <span className="absolute right-0 top-0 flex min-h-4 min-w-4 items-center justify-center rounded-full bg-secondary-700/90 px-1 text-sm text-white">
+          <HiOutlineShoppingCart className="h-5 w-5 text-secondary-900" />
+          <span className="absolute right-0 top-0 flex min-h-4 min-w-4 items-center justify-center rounded-full bg-error/90 px-1 text-sm text-white">
             {toPersianNumbers(cart ? cart.payDetail.productIds.length : 0)}
           </span>
         </Link>
+
+        <ToggleThemeButton className="p-2 text-secondary-900" />
       </div>
 
       <Drawer open={isOpenDrawer} onClose={() => setIsOpenDrawer(false)}>

@@ -8,6 +8,7 @@ import Avatar from "@/ui/Avatar";
 import { HiMiniBars3 } from "react-icons/hi2";
 import AdminPanelSidebar from "./AdminPanelSidebar";
 import { useGetUserInfo } from "@/hooks/useGetUsers";
+import ToggleThemeButton from "@/components/ToggleThemeButton";
 
 function AdminPanelHeader() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
@@ -32,9 +33,13 @@ function AdminPanelHeader() {
         </span>
       </div>
 
-      <Link href="/admin">
-        <Avatar src={user?.avatarUrl} size={28} />
-      </Link>
+      <div className="flex flex-row-reverse items-center gap-3">
+        <Link href="/admin">
+          <Avatar src={user?.avatarUrl} size={28} />
+        </Link>
+
+        <ToggleThemeButton className="p-1.5 text-secondary-900" />
+      </div>
 
       <Drawer open={isOpenDrawer} onClose={() => setIsOpenDrawer(false)}>
         <AdminPanelSidebar onClose={() => setIsOpenDrawer(false)} />

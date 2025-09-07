@@ -4,34 +4,50 @@
 
 @layer base {
   :root {
-    --background-app-rgb: 244, 245, 247;
-    --color-primary-900: 74, 109, 255;
-    --color-primary-800: 92, 124, 255;
-    --color-primary-700: 110, 138, 255;
-    --color-primary-600: 128, 153, 255;
-    --color-primary-500: 146, 167, 255;
-    --color-primary-400: 164, 182, 255;
-    --color-primary-300: 183, 197, 255;
-    --color-primary-200: 201, 211, 255;
-    --color-primary-100: 219, 226, 255;
-    --color-primary-50: 228, 233, 255;
-    --color-secondary-900: 42, 45, 83;
-    --color-secondary-800: 63, 66, 100;
-    --color-secondary-700: 85, 87, 117;
-    --color-secondary-600: 106, 108, 135;
-    --color-secondary-500: 127, 129, 152;
-    --color-secondary-400: 148, 150, 169;
-    --color-secondary-300: 170, 171, 186;
-    --color-secondary-200: 191, 192, 203;
-    --color-secondary-100: 212, 213, 221;
-    --color-secondary-50: 223, 223, 229;
-    --color-white: 255, 255, 255;
-    --color-black: 0, 0, 0;
-    --color-success: 0, 192, 115;
-    --color-warning: 255, 153, 0;
-    --color-error: 255, 71, 87;
-    --color-red-500: 239, 68, 68;
-    --color-red-300: 252, 165, 165;
+    &,
+    &.light-mode {
+      --background-app-rgb: 244, 245, 247;
+      --color-primary-900: 74, 109, 255;
+      --color-primary-800: 92, 124, 255;
+      --color-primary-700: 110, 138, 255;
+      --color-primary-600: 128, 153, 255;
+      --color-primary-500: 146, 167, 255;
+      --color-primary-400: 164, 182, 255;
+      --color-primary-300: 183, 197, 255;
+      --color-primary-200: 201, 211, 255;
+      --color-primary-100: 219, 226, 255;
+      --color-primary-50: 228, 233, 255;
+      --color-secondary-900: 42, 45, 83;
+      --color-secondary-800: 63, 66, 100;
+      --color-secondary-700: 85, 87, 117;
+      --color-secondary-600: 106, 108, 135;
+      --color-secondary-500: 127, 129, 152;
+      --color-secondary-400: 148, 150, 169;
+      --color-secondary-300: 170, 171, 186;
+      --color-secondary-200: 191, 192, 203;
+      --color-secondary-100: 212, 213, 221;
+      --color-secondary-50: 223, 223, 229;
+      --color-white: 255, 255, 255;
+      --color-black: 0, 0, 0;
+      --color-success: 0, 192, 115;
+      --color-warning: 255, 153, 0;
+      --color-error: 255, 71, 87;
+    }
+    &.dark-mode {
+      --background-app-rgb: 24, 33, 47;
+      --color-secondary-900: 223, 223, 2291;
+      --color-secondary-800: 212, 213, 221;
+      --color-secondary-700: 191, 192, 203;
+      --color-secondary-600: 170, 171, 186;
+      --color-secondary-500: 148, 150, 169;
+      --color-secondary-400: 127, 129, 152;
+      --color-secondary-300: 106, 108, 135;
+      --color-secondary-200: 85, 87, 117;
+      --color-secondary-100: 63, 66, 100;
+      --color-secondary-50: 42, 45, 83;
+      --color-white: 0, 0, 0;
+      --color-black: 255, 255, 255;
+    }
   }
 }
 
@@ -61,7 +77,7 @@
     @apply bg-error/90 px-4 py-3 text-white shadow-md shadow-error/40 hover:bg-error;
   }
   .btn--outline {
-    @apply border border-primary-900 bg-transparent px-4 py-3 text-white;
+    @apply border border-primary-900 bg-transparent px-4 py-3 text-primary-900 hover:bg-primary-900 hover:text-white;
   }
   .table__layout {
     @apply overflow-auto rounded-md border border-secondary-200 p-3 shadow-sm [&>table]:w-full [&>table]:min-w-[800px] [&>table]:table-auto [&>table]:border-collapse [&>table]:text-sm;

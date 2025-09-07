@@ -13,6 +13,8 @@ function withOpacity(variableName) {
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 
+  darkMode: ["selector", '[class="dark-mode"]'],
+
   theme: {
     extend: {
       colors: {
@@ -41,6 +43,7 @@ module.exports = {
           50: withOpacity("--color-secondary-50"),
         },
 
+        background: withOpacity("--background-app-rgb"),
         white: withOpacity("--color-white"),
         black: withOpacity("--color-black"),
         success: withOpacity("--color-success"),
