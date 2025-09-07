@@ -17,7 +17,7 @@ function ProfileLayout({ children }) {
       {/* Body */}
       <div className="col-span-12 flex flex-col overflow-y-auto lg:col-span-9 xl:col-span-10">
         {/* Header */}
-        <header className="sticky top-0 z-20 mx-1.5 rounded-b-md bg-primary-800/50 px-4 py-3 lg:mx-2 lg:rounded-b-xl">
+        <header className="sticky top-0 z-20 mx-1.5 rounded-b-md bg-primary-800/50 px-4 py-3 backdrop-blur-md lg:mx-2 lg:rounded-b-xl">
           <ProfileHeader />
         </header>
 

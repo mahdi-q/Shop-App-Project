@@ -27,7 +27,7 @@ function Drawer({ open, onClose, children }) {
           e.stopPropagation();
         }}
       >
-        <div className="min-h-full overflow-y-auto bg-white px-4">
+        <div className="min-h-full overflow-y-auto bg-background px-4">
           {children}
         </div>
       </div>

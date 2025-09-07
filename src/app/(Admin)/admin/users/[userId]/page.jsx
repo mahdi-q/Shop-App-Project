@@ -18,18 +18,18 @@ function SingleUserPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center gap-1 md:gap-2">
+      <div className="mb-6 flex items-center gap-1 text-black md:gap-2">
         <BackButton>
           <FaChevronRight />
         </BackButton>
 
-        <h2 className="text-lg font-bold">اطلاعات کاربر</h2>
+        <h2 className="text-lg font-bold text-black">اطلاعات کاربر</h2>
       </div>
 
       {isLoading && <Loader />}
 
       {!isLoading && !user && (
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center text-black">
           کاربری یافت نشد.
         </div>
       )}
@@ -39,14 +39,14 @@ function SingleUserPage() {
           <div className="mt-2 flex flex-col gap-4 px-2 lg:gap-6">
             <div className="flex items-center gap-3 text-base lg:text-lg">
               <span className="font-medium text-secondary-900">نام کاربر:</span>
-              <span className="font-bold"> {user.name}</span>
+              <span className="font-bold text-black"> {user.name}</span>
             </div>
 
             <div className="flex items-center gap-3 text-base lg:text-lg">
               <span className="font-medium text-secondary-900">
                 ایمیل کاربر:
               </span>
-              <span className="font-bold"> {user.email}</span>
+              <span className="font-bold text-black"> {user.email}</span>
             </div>
 
             <div className="flex items-center gap-3 text-base lg:text-lg">
@@ -54,7 +54,7 @@ function SingleUserPage() {
                 شماره موبایل کاربر:
               </span>
               <div className="flex items-center justify-center gap-2">
-                <span className="font-bold leading-5" dir="ltr">
+                <span className="font-bold leading-5 text-black" dir="ltr">
                   {toPersianNumbers(
                     user.phoneNumber.replace(
                       /(\d{3})(\d{4})(\d{4})/,
@@ -74,7 +74,7 @@ function SingleUserPage() {
               <span className="font-medium text-secondary-900">
                 بیوگرافی کاربر:
               </span>
-              <span className="font-bold"> {user.biography}</span>
+              <span className="font-bold text-black"> {user.biography}</span>
             </div>
 
             <div className="flex items-center gap-3 text-base lg:text-lg">
@@ -82,7 +82,7 @@ function SingleUserPage() {
                 وضعیت کاربر:
               </span>
               <div className="flex items-center justify-center gap-2">
-                <span className="font-bold leading-5">
+                <span className="font-bold leading-5 text-black">
                   {user.isActive ? "فعال" : "غیر‌فعال"}
                 </span>
                 {user.isActive ? (
@@ -97,7 +97,10 @@ function SingleUserPage() {
               <span className="font-medium text-secondary-900">
                 تاریخ پیوستن کاربر:
               </span>
-              <span className="font-bold"> {toLocalDate(user.createdAt)}</span>
+              <span className="font-bold text-black">
+                {" "}
+                {toLocalDate(user.createdAt)}
+              </span>
             </div>
 
             <div className="flex flex-col gap-3 text-base lg:text-lg">
@@ -111,7 +114,7 @@ function SingleUserPage() {
                     <MultipleBadge key={item} productId={item} />
                   ))
                 ) : (
-                  <span className="whitespace-nowrap text-base font-bold">
+                  <span className="whitespace-nowrap text-base font-bold text-black">
                     کاربر محصولی را لایک نکرده است.
                   </span>
                 )}
@@ -129,7 +132,7 @@ function SingleUserPage() {
                     <MultipleBadge key={index} productId={item} />
                   ))
                 ) : (
-                  <span className="whitespace-nowrap text-base font-bold">
+                  <span className="whitespace-nowrap text-base font-bold text-black">
                     کاربر محصولی را خریداری نکرده است.
                   </span>
                 )}

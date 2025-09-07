@@ -14,7 +14,7 @@ function EditProductPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center gap-1 md:gap-2">
+      <div className="mb-6 flex items-center gap-1 text-black md:gap-2">
         <BackButton>
           <FaChevronRight />
         </BackButton>
@@ -27,7 +27,7 @@ function EditProductPage() {
       {isLoading && <Loader />}
 
       {!isLoading && !product && (
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center text-black">
           محصولی یافت نشد.
         </div>
       )}

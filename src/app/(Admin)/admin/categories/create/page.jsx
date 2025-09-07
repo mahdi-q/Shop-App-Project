@@ -5,7 +5,7 @@ import CategoryForm from "../_components/CategoryForm";
 function CreateCategoryPage() {
   return (
     <div>
-      <div className="mb-6 flex items-center gap-1 md:gap-2">
+      <div className="mb-6 flex items-center gap-1 text-black md:gap-2">
         <BackButton>
           <FaChevronRight />
         </BackButton>

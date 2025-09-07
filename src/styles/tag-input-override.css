@@ -1,11 +1,11 @@
 /* کانتینر اصلی تگ‌ها */
 .react-tag-input {
-  @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-2 py-2 text-secondary-900 outline-none transition-all duration-200 ease-in-out focus-within:border-primary-300 focus-within:bg-white focus-within:shadow-input-focus hover:border-primary-300;
+  @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-2 py-2 text-secondary-900 outline-none transition-all duration-200 ease-in-out focus-within:border-primary-300 focus-within:bg-secondary-50 focus-within:shadow-input-focus hover:border-primary-300;
 }
 
 /* وقتی خطا وجود داره */
 .textField--invalid .react-tag-input {
-  @apply border-error bg-red-50 focus-within:border-error hover:border-error;
+  @apply border-error bg-red-50 text-secondary-500 focus-within:border-error hover:border-error dark:bg-red-200;
 }
 
 /* خود تگ‌ها */
@@ -15,10 +15,10 @@
 
 /* دکمه حذف تگ */
 .react-tag-input__tag__remove {
-  @apply cursor-pointer text-primary-700 hover:text-error bg-transparent;
+  @apply cursor-pointer bg-transparent text-primary-700 hover:text-error;
 }
 
 /* فیلد ورودی */
 .react-tag-input__input {
-  @apply w-auto bg-secondary-200/40  rounded-lg px-3 my-1 py-5 text-secondary-900 outline-none;
+  @apply my-1 w-auto rounded-lg bg-secondary-200/40 px-3 py-5 text-secondary-900 outline-none placeholder:text-secondary-900;
 }

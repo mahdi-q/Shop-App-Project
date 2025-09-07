@@ -19,18 +19,18 @@ function SinglePaymentPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center gap-1 md:gap-2">
+      <div className="mb-6 flex items-center gap-1 text-black md:gap-2">
         <BackButton>
           <FaChevronRight />
         </BackButton>
 
-        <h2 className="text-lg font-bold">اطلاعات سفارش</h2>
+        <h2 className="text-lg font-bold text-black">اطلاعات سفارش</h2>
       </div>
 
       {isLoading && <Loader />}
 
       {!isLoading && !payment && (
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center text-black">
           سفارشی ای یافت نشد.
         </div>
       )}
@@ -42,7 +42,9 @@ function SinglePaymentPage() {
               شماره فاکتور سفارش:
             </span>
 
-            <span className="font-bold">{payment.invoiceNumber}</span>
+            <span className="font-bold text-black">
+              {payment.invoiceNumber}
+            </span>
           </div>
 
           <div className="flex flex-col gap-x-3 gap-y-2 text-base md:flex-row md:items-center lg:text-lg">
@@ -50,7 +52,7 @@ function SinglePaymentPage() {
               توضیحات سفارش:
             </span>
 
-            <span className="font-bold">{payment.description}</span>
+            <span className="font-bold text-black">{payment.description}</span>
           </div>
 
           <div className="flex flex-col gap-x-3 gap-y-2 text-base md:flex-row md:items-center lg:text-lg">
@@ -58,7 +60,7 @@ function SinglePaymentPage() {
               اطلاعات کاربر:
             </span>
 
-            <span className="font-bold">
+            <span className="font-bold text-black">
               {payment.user.name} - {payment.user.email} -{" "}
               {toPersianNumbers(payment.user.phoneNumber)}
             </span>
@@ -71,12 +73,12 @@ function SinglePaymentPage() {
 
             {payment?.cart?.coupon ? (
               <Link href={`/admin/coupons/${payment.cart.coupon._id}`}>
-                <span className="badge badge--success text-base font-bold">
+                <span className="badge badge--success text-base font-bold text-black">
                   {payment.cart.coupon.code}
                 </span>
               </Link>
             ) : (
-              <span className="font-bold">کد تخفیف نداشته است.</span>
+              <span className="font-bold text-black">کد تخفیف نداشته است.</span>
             )}
           </div>
 
@@ -85,7 +87,7 @@ function SinglePaymentPage() {
               قیمت سفارش:
             </span>
 
-            <span className="font-bold">
+            <span className="font-bold text-black">
               {toPersianNumbersWithComma(payment.amount)} تومان
             </span>
           </div>
@@ -96,7 +98,7 @@ function SinglePaymentPage() {
             </span>
 
             <div className="flex gap-2 md:items-center md:justify-center">
-              <span className="font-bold leading-5">
+              <span className="font-bold leading-5 text-black">
                 {payment.isPaid ? "پرداخت شده" : "پرداخت نشده"}
               </span>
               {payment.isPaid ? (
@@ -113,7 +115,7 @@ function SinglePaymentPage() {
             </span>
 
             <div className="flex gap-2 md:items-center md:justify-center">
-              <span className="font-bold leading-5">
+              <span className="font-bold leading-5 text-black">
                 {payment.status === "COMPLETED" ? "تکمیل شده" : "تکمیل نشده"}
               </span>
               {payment.status === "COMPLETED" ? (
@@ -128,7 +130,9 @@ function SinglePaymentPage() {
             <span className="whitespace-nowrap font-medium text-secondary-900">
               تاریخ ایجاد سفارش:
             </span>
-            <span className="font-bold">{toLocalDate(payment.createdAt)}</span>
+            <span className="font-bold text-black">
+              {toLocalDate(payment.createdAt)}
+            </span>
           </div>
 
           <div className="flex flex-col gap-3 text-base lg:text-lg">

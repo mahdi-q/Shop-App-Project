@@ -13,6 +13,7 @@ import { IoTrashOutline } from "react-icons/io5";
 import useDeleteProductFromCart from "../_hooks/useDeleteProductFromCart";
 import CartActions from "./CartActions";
 import { useGetUserInfo } from "@/hooks/useGetUsers";
+import ImageCover from "@/components/ImageCover";
 
 function CartItems() {
   const { isLoading, user, cart } = useGetUserInfo();
@@ -60,17 +61,9 @@ function CartItems() {
           className="flex justify-between rounded-lg border border-secondary-300 p-2.5"
         >
           <div className="flex h-full gap-4">
-            <Image
-              src={product.imageLink}
-              alt="product-image"
-              width={78}
-              height={48}
-              priority
-              style={{
-                objectFit: "cover",
-                borderRadius: 4,
-              }}
-            />
+            <div className="h-[98px] w-[78px] rounded overflow-hidden relative">
+              <ImageCover src={product.imageLink} fill priority />
+            </div>
 
             <div className="flex flex-col justify-between">
               <Link href={`/products/${product.slug}`}>

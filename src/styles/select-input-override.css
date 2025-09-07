@@ -1,17 +1,17 @@
 .custom-select__control {
-  @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-4 py-3 text-secondary-900 outline-none transition-all duration-200 ease-in-out focus-within:border-primary-300 focus-within:bg-white focus-within:shadow-input-focus hover:border-primary-300;
+  @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-4 py-3 text-secondary-900 outline-none transition-all duration-200 ease-in-out focus-within:border-primary-300 focus-within:bg-secondary-50 focus-within:shadow-input-focus hover:border-primary-300;
 }
 
 .textField--invalid .custom-select__control {
-  @apply border-error bg-red-50 focus-within:border-error hover:border-error;
+  @apply border-error bg-red-50 focus-within:border-error hover:border-error dark:bg-red-200;
 }
 
 .custom-select__placeholder {
-  @apply text-secondary-600;
+  @apply text-secondary-500;
 }
 
 .custom-select__menu {
-  @apply my-1 max-h-[250px] overflow-y-auto rounded-md bg-white p-1 shadow-md;
+  @apply bg-background my-1 max-h-[250px] overflow-y-auto rounded-md p-1 shadow-md;
 }
 
 .custom-select__option {
@@ -23,7 +23,7 @@
 }
 
 .custom-select__option--is-selected {
-  @apply bg-primary-100;
+  @apply bg-primary-100 dark:bg-primary-700;
 }
 
 .custom-select__multi-value {

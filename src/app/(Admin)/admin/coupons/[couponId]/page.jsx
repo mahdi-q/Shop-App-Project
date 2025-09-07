@@ -19,7 +19,7 @@ function SingleCouponPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center gap-1 md:gap-2">
+      <div className="mb-6 flex items-center gap-1 text-black md:gap-2">
         <BackButton>
           <FaChevronRight />
         </BackButton>
@@ -30,7 +30,7 @@ function SingleCouponPage() {
       {isLoading && <Loader />}
 
       {!isLoading && !coupon && (
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center text-black">
           کد تخفیف ای یافت نشد.
         </div>
       )}
@@ -40,14 +40,14 @@ function SingleCouponPage() {
           <div className="flex items-center gap-3 text-base lg:text-lg">
             <span className="font-medium text-secondary-900">کد تخفیف:</span>
 
-            <span className="font-bold">{coupon.code}</span>
+            <span className="font-bold text-black">{coupon.code}</span>
           </div>
 
           <div className="flex items-center gap-3 text-base lg:text-lg">
             <span className="font-medium text-secondary-900">وضعیت تخفیف:</span>
 
             <div className="flex items-center justify-center gap-2">
-              <span className="font-bold leading-5">
+              <span className="font-bold leading-5 text-black">
                 {coupon.isActive ? "فعال" : "غیر‌فعال"}
               </span>
 
@@ -74,7 +74,7 @@ function SingleCouponPage() {
               مقدار کد تخفیف:
             </span>
 
-            <span className="font-bold">
+            <span className="font-bold text-black">
               {toPersianNumbersWithComma(coupon.amount)}{" "}
               {coupon.type === "percent" ? "درصد" : "تومان"}
             </span>
@@ -85,7 +85,7 @@ function SingleCouponPage() {
               مقدار مصرفی کد تخفیف:
             </span>
 
-            <span className="font-bold">
+            <span className="font-bold text-black">
               {toPersianNumbers(coupon.usageCount)} عدد
             </span>
           </div>
@@ -95,7 +95,7 @@ function SingleCouponPage() {
               ظرفیت کد تخفیف:
             </span>
 
-            <span className="font-bold">
+            <span className="font-bold text-black">
               {toPersianNumbers(coupon.usageLimit)} عدد
             </span>
           </div>
@@ -105,7 +105,9 @@ function SingleCouponPage() {
               تاریخ ایجاد کد تخفیف:
             </span>
 
-            <span className="font-bold">{toLocalDate(coupon.createdAt)}</span>
+            <span className="font-bold text-black">
+              {toLocalDate(coupon.createdAt)}
+            </span>
           </div>
 
           <div className="flex items-center gap-3 text-base lg:text-lg">
@@ -113,7 +115,9 @@ function SingleCouponPage() {
               تاریخ انقضا کد تخفیف:
             </span>
 
-            <span className="font-bold">{toLocalDate(coupon.expireDate)}</span>
+            <span className="font-bold text-black">
+              {toLocalDate(coupon.expireDate)}
+            </span>
           </div>
 
           <div className="flex items-center gap-3 text-base lg:text-lg">
@@ -131,7 +135,7 @@ function SingleCouponPage() {
                   </Link>
                 ))
               ) : (
-                <span className="whitespace-nowrap text-base font-bold">
+                <span className="whitespace-nowrap text-base font-bold text-black">
                   شامل محصولی نمی‌باشد.
                 </span>
               )}

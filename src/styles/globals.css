@@ -62,7 +62,7 @@
     @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-4 py-3 text-secondary-900 outline-none transition-all duration-200 ease-in-out hover:border-primary-300 focus:border-primary-300 focus:bg-secondary-50 focus:shadow-input-focus focus:outline-none;
   }
   .textField--invalid {
-    @apply border-error bg-red-50 hover:border-error focus:border-error;
+    @apply border-error bg-red-50 text-secondary-500 hover:border-error focus:border-error dark:bg-red-200;
   }
   .btn {
     @apply rounded-xl px-2 py-1 font-bold transition-all duration-300;
@@ -83,25 +83,25 @@
     @apply overflow-auto rounded-md border border-secondary-200 p-3 shadow-sm [&>table]:w-full [&>table]:min-w-[800px] [&>table]:table-auto [&>table]:border-collapse [&>table]:text-sm;
   }
   .table__th {
-    @apply border-b-2 border-b-gray-600 p-3 text-center font-medium;
+    @apply border-b-2 border-b-gray-600 p-3 text-center font-medium text-black;
   }
   .table__td {
-    @apply border-b border-b-gray-400 px-3 py-4 text-center;
+    @apply border-b border-b-gray-400 px-3 py-4 text-center text-black;
   }
   .badge {
     @apply whitespace-nowrap rounded-xl px-3 py-1;
   }
   .badge--primary {
-    @apply bg-primary-900 text-white;
+    @apply bg-primary-900 text-secondary-50;
   }
   .badge--secondary {
-    @apply bg-secondary-600 text-white;
+    @apply bg-secondary-600 text-secondary-50;
   }
   .badge--success {
-    @apply bg-success text-white;
+    @apply bg-success text-secondary-50;
   }
   .badge--error {
-    @apply bg-error text-white;
+    @apply bg-error text-secondary-50;
   }
 }
 

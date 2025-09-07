@@ -20,18 +20,18 @@ function SingleProductPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center gap-1 md:gap-2">
+      <div className="mb-6 flex items-center gap-1 text-black md:gap-2">
         <BackButton>
           <FaChevronRight />
         </BackButton>
 
-        <h2 className="text-lg font-bold">اطلاعات محصول</h2>
+        <h2 className="text-lg font-bold text-black">اطلاعات محصول</h2>
       </div>
 
       {isLoading && <Loader />}
 
       {!isLoading && !product && (
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center text-black">
           محصولی یافت نشد.
         </div>
       )}
@@ -43,35 +43,41 @@ function SingleProductPage() {
               <span className="font-medium text-secondary-900">
                 عنوان محصول:
               </span>
-              <span className="font-bold"> {product.title}</span>
+              <span className="font-bold text-black"> {product.title}</span>
             </div>
 
             <div className="flex items-center gap-3 text-base lg:text-lg">
               <span className="font-medium text-secondary-900">
                 برند محصول:
               </span>
-              <span className="font-bold"> {product.brand}</span>
+              <span className="font-bold text-black"> {product.brand}</span>
             </div>
 
             <div className="flex items-center gap-3 text-base lg:text-lg">
               <span className="font-medium text-secondary-900">
                 دسته‌بندی محصول:
               </span>
-              <span className="font-bold"> {product.category.title}</span>
+              <span className="font-bold text-black">
+                {" "}
+                {product.category.title}
+              </span>
             </div>
 
             <div className="flex items-center gap-3 text-base lg:text-lg">
               <span className="font-medium text-secondary-900">
                 توضیحات محصول:
               </span>
-              <span className="font-bold"> {product.description}</span>
+              <span className="font-bold text-black">
+                {" "}
+                {product.description}
+              </span>
             </div>
 
             <div className="flex items-center gap-3 text-base lg:text-lg">
               <span className="font-medium text-secondary-900">
                 تخفیف محصول:
               </span>
-              <span className="font-bold">
+              <span className="font-bold text-black">
                 {toPersianNumbers(product.discount)} درصد
               </span>
             </div>
@@ -80,7 +86,7 @@ function SingleProductPage() {
               <span className="font-medium text-secondary-900">
                 قیمت نهایی محصول:
               </span>
-              <span className="font-bold">
+              <span className="font-bold text-black">
                 {toPersianNumbersWithComma(product.offPrice)} تومان
               </span>
             </div>
@@ -89,7 +95,7 @@ function SingleProductPage() {
               <span className="font-medium text-secondary-900">
                 موجودی محصول:
               </span>
-              <span className="font-bold">
+              <span className="font-bold text-black">
                 {toPersianNumbers(product.countInStock)} عدد
               </span>
             </div>
@@ -98,7 +104,7 @@ function SingleProductPage() {
               <span className="font-medium text-secondary-900">
                 تاریخ ایجاد محصول:
               </span>
-              <span className="font-bold">
+              <span className="font-bold text-black">
                 {toLocalDate(product.createdAt)}
               </span>
             </div>
@@ -114,7 +120,7 @@ function SingleProductPage() {
                     <MultipleBadge key={item} userId={item} />
                   ))
                 ) : (
-                  <span className="whitespace-nowrap text-base font-bold">
+                  <span className="whitespace-nowrap text-base font-bold text-black">
                     کاربری این محصول را لایک نکرده است.
                   </span>
                 )}
@@ -137,7 +143,7 @@ function SingleProductPage() {
                     </span>
                   ))
                 ) : (
-                  <span className="whitespace-nowrap text-base font-bold">
+                  <span className="whitespace-nowrap text-base font-bold text-black">
                     محصول تگی ندارد.
                   </span>
                 )}

@@ -8,7 +8,7 @@ export const metadata = {
 
 function AdminPanelLayout({ children }) {
   return (
-    <div className="grid h-screen grid-cols-12 bg-white">
+    <div className="bg-background grid h-screen grid-cols-12">
       {/* Sidebar */}
       <aside className="col-span-12 hidden overflow-y-auto px-3 py-4 lg:col-span-3 lg:block xl:col-span-2">
         <AdminPanelSidebar />
@@ -17,12 +17,12 @@ function AdminPanelLayout({ children }) {
       {/* Body */}
       <div className="col-span-12 flex flex-col overflow-y-auto lg:col-span-9 xl:col-span-10">
         {/* Header */}
-        <header className="sticky top-0 z-20 mx-1.5 rounded-b-md bg-primary-800/50 p-4 lg:mx-2 lg:rounded-b-xl">
+        <header className="sticky top-0 z-20 mx-1.5 rounded-b-md bg-primary-800/50 p-4 backdrop-blur-md lg:mx-2 lg:rounded-b-xl">
           <AdminPanelHeader />
         </header>
 
         {/* Content */}
-        <main className="m-1.5 flex-1 rounded-md bg-secondary-50/70 p-4 md:p-6 lg:m-2 lg:rounded-xl lg:p-8">
+        <main className="m-1.5 flex-1 rounded-md bg-secondary-100/70 p-4 md:p-6 lg:m-2 lg:rounded-xl lg:p-8">
           <div className="xl:max-w-screen-xl">{children}</div>
         </main>
       </div>
