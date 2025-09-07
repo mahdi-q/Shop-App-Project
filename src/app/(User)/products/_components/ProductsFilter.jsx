@@ -34,7 +34,8 @@ function ProductsFilter({ categories }) {
     }
   };
 
-  if (!categories || categories.length <= 0) return notFound();
+  if (!categories || categories.length <= 0)
+    return <span>دسته بندی ای یافت نشد.</span>;
 
   return (
     <div className="flex flex-col gap-3">
