@@ -1,8 +1,8 @@
 "use client";
 
 import Loader from "@/ui/Loader";
-import useGetUsers from "./_hooks/useGetUsers";
 import UsersTable from "./_components/UsersTable";
+import { useGetUsers } from "@/hooks/useGetUsers";
 
 function UsersPage() {
   const { isLoading, users } = useGetUsers();

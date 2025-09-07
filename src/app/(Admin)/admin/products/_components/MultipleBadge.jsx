@@ -1,4 +1,4 @@
-import useGetUser from "@/hooks/useGetUser";
+import { useGetUser } from "@/hooks/useGetUsers";
 import Link from "next/link";
 
 const MultipleBadge = ({ userId }) => {

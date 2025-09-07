@@ -8,8 +8,8 @@ import toLocalDate from "@/utils/toLocalDate";
 import { toPersianNumbers } from "@/utils/changeNumbers";
 import { BsShieldFillCheck, BsShieldFillX } from "react-icons/bs";
 import MultipleBadge from "../_components/MultipleBadge";
-import useGetUser from "@/hooks/useGetUser";
 import { useParams } from "next/navigation";
+import { useGetUser } from "@/hooks/useGetUsers";
 
 function SingleUserPage() {
   const params = useParams();
