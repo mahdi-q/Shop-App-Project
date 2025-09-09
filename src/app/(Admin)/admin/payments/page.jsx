@@ -4,11 +4,12 @@ import Loader from "@/ui/Loader";
 import PaymentsTable from "./_components/PaymentsTable";
 import { useGetPayments } from "@/hooks/useGetPayments";
 import { useSearchParams } from "next/navigation";
+import Pagination from "@/ui/Pagination";
 
 function PaymentsPage() {
   const searchParams = useSearchParams();
   const queries = searchParams.toString();
-  const { isLoading, payments } = useGetPayments(queries);
+  const { isLoading, payments, pagination } = useGetPayments(queries);
 
   return (
     <div>
@@ -26,6 +27,12 @@ function PaymentsPage() {
 
       {!isLoading && payments && payments.length > 0 && (
         <PaymentsTable payments={payments} />
+      )}
+
+      {!isLoading && payments && payments.length > 0 && (
+        <div className="mt-6 flex items-center justify-center">
+          <Pagination pagination={pagination} />
+        </div>
       )}
     </div>
   );

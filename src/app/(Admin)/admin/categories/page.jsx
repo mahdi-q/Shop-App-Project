@@ -5,11 +5,12 @@ import Link from "next/link";
 import CategoriesTable from "./_components/CategoriesTable";
 import { useGetCategories } from "@/hooks/useGetCategories";
 import { useSearchParams } from "next/navigation";
+import Pagination from "@/ui/Pagination";
 
 function CategoriesPage() {
   const searchParams = useSearchParams();
   const queries = searchParams.toString();
-  const { isLoading, categories } = useGetCategories(queries);
+  const { isLoading, categories, pagination } = useGetCategories(queries);
 
   return (
     <div>
@@ -36,6 +37,12 @@ function CategoriesPage() {
 
       {!isLoading && categories && categories.length > 0 && (
         <CategoriesTable categories={categories} />
+      )}
+
+      {!isLoading && categories && categories.length > 0 && (
+        <div className="mt-6 flex items-center justify-center">
+          <Pagination pagination={pagination} />
+        </div>
       )}
     </div>
   );

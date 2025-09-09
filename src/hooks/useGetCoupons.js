@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useGetCoupons(queries) {
   const { isLoading, data } = useQuery({
-    queryKey: ["coupons"],
+    queryKey: ["coupons", queries],
     queryFn: () => getCouponsApi(queries),
   });
 

@@ -1,16 +1,15 @@
+"use client";
+
+import Pagination from "@/ui/Pagination";
 import PaymentsTable from "../_components/PaymentsTable";
-import { getUserInfoApi } from "@/services/authServices";
-import toStringCookies from "@/utils/toStringCookies";
-import { cookies } from "next/headers";
-import queryString from "query-string";
+import { useSearchParams } from "next/navigation";
+import { useGetUserInfo } from "@/hooks/useGetUsers";
+import Loader from "@/ui/Loader";
 
-async function UserPaymentsPage({ searchParams }) {
-  const cookieStore = await cookies();
-  const strCookies = toStringCookies(cookieStore);
-  const queries = queryString.stringify(searchParams);
-
-  const data = await getUserInfoApi(queries, strCookies);
-  const { payments } = data;
+function UserPaymentsPage() {
+  const searchParams = useSearchParams();
+  const queries = searchParams.toString();
+  const { isLoading, payments, pagination } = useGetUserInfo(queries);
 
   return (
     <div>
@@ -18,13 +17,23 @@ async function UserPaymentsPage({ searchParams }) {
         لیست تمام تراکنش های کاربر
       </h2>
 
-      {(!payments || payments.length <= 0) && (
+      {isLoading && <Loader />}
+
+      {!isLoading && (!payments || payments.length <= 0) && (
         <div className="mt-4 flex items-center justify-center text-black">
           تراکنشی یافت نشد.
         </div>
       )}
 
-      {payments && payments.length > 0 && <PaymentsTable payments={payments} />}
+      {!isLoading && payments && payments.length > 0 && (
+        <PaymentsTable payments={payments} />
+      )}
+
+      {!isLoading && payments && payments.length > 0 && (
+        <div className="mt-6 flex items-center justify-center">
+          <Pagination pagination={pagination} />
+        </div>
+      )}
     </div>
   );
 }

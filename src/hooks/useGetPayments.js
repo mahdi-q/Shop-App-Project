@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useGetPayments(queries) {
   const { isLoading, data } = useQuery({
-    queryKey: ["payments"],
+    queryKey: ["payments", queries],
     queryFn: () => getPaymentsApi(queries),
   });
 

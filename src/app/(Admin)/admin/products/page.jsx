@@ -5,11 +5,12 @@ import ProductsTable from "./_components/ProductsTable";
 import Link from "next/link";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import { useSearchParams } from "next/navigation";
+import Pagination from "@/ui/Pagination";
 
 function ProductsPage() {
   const searchParams = useSearchParams();
   const queries = searchParams.toString();
-  const { isLoading, products } = useGetProducts(queries);
+  const { isLoading, products, pagination } = useGetProducts(queries);
 
   return (
     <div>
@@ -36,6 +37,12 @@ function ProductsPage() {
 
       {!isLoading && products && products.length > 0 && (
         <ProductsTable products={products} />
+      )}
+
+      {!isLoading && products && products.length > 0 && (
+        <div className="mt-6 flex items-center justify-center">
+          <Pagination pagination={pagination} />
+        </div>
       )}
     </div>
   );

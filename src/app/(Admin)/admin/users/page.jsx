@@ -4,11 +4,12 @@ import Loader from "@/ui/Loader";
 import UsersTable from "./_components/UsersTable";
 import { useGetUsers } from "@/hooks/useGetUsers";
 import { useSearchParams } from "next/navigation";
+import Pagination from "@/ui/Pagination";
 
 function UsersPage() {
   const searchParams = useSearchParams();
   const queries = searchParams.toString();
-  const { isLoading, users } = useGetUsers(queries);
+  const { isLoading, users, pagination } = useGetUsers(queries);
 
   return (
     <div>
@@ -25,6 +26,12 @@ function UsersPage() {
       )}
 
       {!isLoading && users && users.length > 0 && <UsersTable users={users} />}
+
+      {!isLoading && users && users.length > 0 && (
+        <div className="mt-6 flex items-center justify-center">
+          <Pagination pagination={pagination} />
+        </div>
+      )}
     </div>
   );
 }

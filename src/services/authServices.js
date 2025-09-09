@@ -14,14 +14,8 @@ export function completeProfileApi(data) {
     .then(({ data }) => data.data);
 }
 
-export function getUserInfoApi(queries, cookies) {
-  return http
-    .get(`/user/profile?${queries}`, {
-      headers: {
-        Cookie: cookies,
-      },
-    })
-    .then(({ data }) => data.data);
+export function getUserInfoApi(queries) {
+  return http.get(`/user/profile?${queries}`).then(({ data }) => data.data);
 }
 
 export function logoutApi() {

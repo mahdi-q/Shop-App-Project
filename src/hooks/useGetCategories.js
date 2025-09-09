@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useGetCategories(queries) {
   const { isLoading, data } = useQuery({
-    queryKey: ["categories"],
+    queryKey: ["categories", queries],
     queryFn: () => getCategoriesApi(queries),
   });
 

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useGetUsers(queries) {
   const { isLoading, data } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["users", queries],
     queryFn: () => getUsersApi(queries),
   });
 
@@ -25,15 +25,15 @@ export function useGetUser(id) {
   return { isLoading, user };
 }
 
-export function useGetUserInfo() {
+export function useGetUserInfo(queries) {
   const { isLoading, data } = useQuery({
-    queryKey: ["user"],
-    queryFn: getUserInfoApi,
+    queryKey: ["user", queries],
+    queryFn: () => getUserInfoApi(queries),
     retry: false,
     refetchOnWindowFocus: true,
   });
 
-  const { user = {}, cart, payments } = data || {};
+  const { user = {}, cart, payments, pagination } = data || {};
 
-  return { isLoading, user, cart, payments };
+  return { isLoading, user, cart, payments, pagination };
 }
