@@ -4,9 +4,12 @@ import Loader from "@/ui/Loader";
 import Link from "next/link";
 import CouponsTable from "./_components/CouponsTable";
 import { useGetCoupons } from "@/hooks/useGetCoupons";
+import { useSearchParams } from "next/navigation";
 
 function CouponsPage() {
-  const { isLoading, coupons } = useGetCoupons();
+  const searchParams = useSearchParams();
+  const queries = searchParams.toString();
+  const { isLoading, coupons } = useGetCoupons(queries);
 
   return (
     <div>
@@ -32,11 +35,7 @@ function CouponsPage() {
       )}
 
       {!isLoading && coupons && coupons.length > 0 && (
-        <CouponsTable
-          coupons={coupons.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-          )}
-        />
+        <CouponsTable coupons={coupons} />
       )}
     </div>
   );

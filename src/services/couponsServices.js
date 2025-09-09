@@ -1,7 +1,9 @@
 import http from "./httpServices";
 
-export function getCouponsApi() {
-  return http.get("/admin/coupon/list").then(({ data }) => data.data);
+export function getCouponsApi(queries) {
+  return http
+    .get(`/admin/coupon/list?${queries}`)
+    .then(({ data }) => data.data);
 }
 
 export function getCouponApi(id) {

@@ -1,15 +1,15 @@
 import { getCouponApi, getCouponsApi } from "@/services/couponsServices";
 import { useQuery } from "@tanstack/react-query";
 
-export function useGetCoupons() {
+export function useGetCoupons(queries) {
   const { isLoading, data } = useQuery({
     queryKey: ["coupons"],
-    queryFn: getCouponsApi,
+    queryFn: () => getCouponsApi(queries),
   });
 
-  const { coupons } = data || {};
+  const { coupons, pagination } = data || {};
 
-  return { isLoading, coupons };
+  return { isLoading, coupons, pagination };
 }
 
 export function useGetCoupon(id) {
