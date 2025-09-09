@@ -14,8 +14,14 @@ export function completeProfileApi(data) {
     .then(({ data }) => data.data);
 }
 
-export function getUserInfoApi() {
-  return http.get("/user/profile").then(({ data }) => data.data);
+export function getUserInfoApi(queries, cookies) {
+  return http
+    .get(`/user/profile?${queries}`, {
+      headers: {
+        Cookie: cookies,
+      },
+    })
+    .then(({ data }) => data.data);
 }
 
 export function logoutApi() {

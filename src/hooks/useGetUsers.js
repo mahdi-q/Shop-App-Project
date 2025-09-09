@@ -8,8 +8,6 @@ export function useGetUsers(queries) {
     queryFn: () => getUsersApi(queries),
   });
 
-  console.log(data);
-
   const { users, pagination } = data || {};
 
   return { isLoading, users, pagination };
