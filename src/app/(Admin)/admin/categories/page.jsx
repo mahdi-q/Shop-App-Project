@@ -4,9 +4,12 @@ import Loader from "@/ui/Loader";
 import Link from "next/link";
 import CategoriesTable from "./_components/CategoriesTable";
 import { useGetCategories } from "@/hooks/useGetCategories";
+import { useSearchParams } from "next/navigation";
 
 function CategoriesPage() {
-  const { isLoading, categories } = useGetCategories();
+  const searchParams = useSearchParams();
+  const queries = searchParams.toString();
+  const { isLoading, categories } = useGetCategories(queries);
 
   return (
     <div>
@@ -32,11 +35,7 @@ function CategoriesPage() {
       )}
 
       {!isLoading && categories && categories.length > 0 && (
-        <CategoriesTable
-          categories={categories.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-          )}
-        />
+        <CategoriesTable categories={categories} />
       )}
     </div>
   );

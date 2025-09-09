@@ -4,15 +4,15 @@ import {
 } from "@/services/categoriesServices";
 import { useQuery } from "@tanstack/react-query";
 
-export function useGetCategories() {
+export function useGetCategories(queries) {
   const { isLoading, data } = useQuery({
     queryKey: ["categories"],
-    queryFn: getCategoriesApi,
+    queryFn: () => getCategoriesApi(queries),
   });
 
-  const { categories } = data || {};
+  const { categories, pagination } = data || {};
 
-  return { isLoading, categories };
+  return { isLoading, categories, pagination };
 }
 
 export function useGetCategory(id) {

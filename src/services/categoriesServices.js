@@ -1,7 +1,7 @@
 import http from "./httpServices";
 
-export function getCategoriesApi() {
-  return http.get("/category/list").then(({ data }) => data.data);
+export function getCategoriesApi(queries) {
+  return http.get(`/category/list?${queries}`).then(({ data }) => data.data);
 }
 
 export function getCategoryApi(id) {
