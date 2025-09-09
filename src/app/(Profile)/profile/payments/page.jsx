@@ -5,6 +5,8 @@ import PaymentsTable from "../_components/PaymentsTable";
 import { useSearchParams } from "next/navigation";
 import { useGetUserInfo } from "@/hooks/useGetUsers";
 import Loader from "@/ui/Loader";
+import SearchBox from "@/ui/SearchBox";
+import SortButton from "@/ui/SortButton";
 
 function UserPaymentsPage() {
   const searchParams = useSearchParams();
@@ -13,9 +15,21 @@ function UserPaymentsPage() {
 
   return (
     <div>
-      <h2 className="mb-6 font-bold text-black sm:text-lg lg:text-xl">
-        لیست تمام تراکنش های کاربر
-      </h2>
+      <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-center">
+        <h2 className="font-bold text-black sm:text-lg lg:text-xl">
+          لیست تمام تراکنش های کاربر
+        </h2>
+
+        <div className="flex max-w-[500px] flex-1 items-center gap-x-2 md:gap-x-4">
+          <div className="flex-1">
+            <SearchBox />
+          </div>
+
+          <div>
+            <SortButton />
+          </div>
+        </div>
+      </div>
 
       {isLoading && <Loader />}
 
