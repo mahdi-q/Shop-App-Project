@@ -2,15 +2,17 @@ import { getUserInfoApi } from "@/services/authServices";
 import { getUserApi, getUsersApi } from "@/services/usersServices";
 import { useQuery } from "@tanstack/react-query";
 
-export function useGetUsers() {
+export function useGetUsers(queries) {
   const { isLoading, data } = useQuery({
     queryKey: ["users"],
-    queryFn: getUsersApi,
+    queryFn: () => getUsersApi(queries),
   });
 
-  const { users } = data || {};
+  console.log(data);
 
-  return { isLoading, users };
+  const { users, pagination } = data || {};
+
+  return { isLoading, users, pagination };
 }
 
 export function useGetUser(id) {

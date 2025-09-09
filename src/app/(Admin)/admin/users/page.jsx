@@ -3,9 +3,12 @@
 import Loader from "@/ui/Loader";
 import UsersTable from "./_components/UsersTable";
 import { useGetUsers } from "@/hooks/useGetUsers";
+import { useSearchParams } from "next/navigation";
 
 function UsersPage() {
-  const { isLoading, users } = useGetUsers();
+  const searchParams = useSearchParams();
+  const queries = searchParams.toString();
+  const { isLoading, users } = useGetUsers(queries);
 
   return (
     <div>
@@ -21,13 +24,7 @@ function UsersPage() {
         </div>
       )}
 
-      {!isLoading && users && users.length > 0 && (
-        <UsersTable
-          users={users.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-          )}
-        />
-      )}
+      {!isLoading && users && users.length > 0 && <UsersTable users={users} />}
     </div>
   );
 }

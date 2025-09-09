@@ -1,7 +1,7 @@
 import http from "./httpServices";
 
-export function getUsersApi() {
-  return http.get("/admin/user/list").then(({ data }) => data.data);
+export function getUsersApi(queries) {
+  return http.get(`/admin/user/list?${queries}`).then(({ data }) => data.data);
 }
 
 export function getUserApi(id) {
