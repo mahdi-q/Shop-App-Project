@@ -3,7 +3,7 @@
 import ButtonIcon from "@/ui/ButtonIcon";
 import Link from "next/link";
 import { HiOutlineXMark } from "react-icons/hi2";
-import { TbLayoutDashboardFilled } from "react-icons/tb";
+import { TbFileLike, TbLayoutDashboardFilled } from "react-icons/tb";
 import { FaUserGear } from "react-icons/fa6";
 import { MdPayments } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
@@ -28,6 +28,12 @@ const sidebarNavs = [
   },
   {
     id: 3,
+    title: "محصولات مورد علاقه",
+    icon: <TbFileLike />,
+    href: "/profile/likes",
+  },
+  {
+    id: 4,
     title: "تراکنش ها",
     icon: <MdPayments />,
     href: "/profile/payments",

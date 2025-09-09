@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import ProductCard from "./ProductCard";
 import { getProductsApi } from "@/services/productsServices";
 import { cookies } from "next/headers";
@@ -20,7 +19,7 @@ async function ProductsList({ searchParams }) {
     );
 
   return (
-    <div className="grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 xl:grid-cols-3">
       {products.map((product) => (
         <ProductCard key={product._id} product={product} />
       ))}
