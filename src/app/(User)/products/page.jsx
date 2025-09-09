@@ -2,6 +2,7 @@ import ProductsList from "./_components/ProductsList";
 import { Suspense } from "react";
 import Loader from "@/ui/Loader";
 import ProductsSidebar from "./_components/ProductsSidebar";
+import SearchBox from "@/ui/SearchBox";
 
 export const metadata = {
   title: "محصولات",
@@ -15,9 +16,15 @@ export const experimental_ppr = true;
 function ProductsPage({ searchParams }) {
   return (
     <div className="px-4 lg:px-6">
-      <h2 className="mb-6 font-bold text-black sm:text-lg lg:text-xl">
-        لیست تمام محصولات
-      </h2>
+      <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-center">
+        <h2 className="font-bold text-black sm:text-lg lg:text-xl">
+          لیست تمام محصولات
+        </h2>
+
+        <div className="flex-1 md:max-w-[400px]">
+          <SearchBox />
+        </div>
+      </div>
 
       <div className="mb-24 grid grid-cols-12 gap-6">
         <div className="col-span-12 h-fit min-h-[400px] rounded-md bg-secondary-50/70 py-4 pr-6 lg:col-span-3 lg:ml-4">
