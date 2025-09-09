@@ -4,9 +4,12 @@ import Loader from "@/ui/Loader";
 import ProductsTable from "./_components/ProductsTable";
 import Link from "next/link";
 import { useGetProducts } from "@/hooks/useGetProducts";
+import { useSearchParams } from "next/navigation";
 
 function ProductsPage() {
-  const { isLoading, products } = useGetProducts();
+  const searchParams = useSearchParams();
+  const queries = searchParams.toString();
+  const { isLoading, products } = useGetProducts(queries);
 
   return (
     <div>
@@ -32,11 +35,7 @@ function ProductsPage() {
       )}
 
       {!isLoading && products && products.length > 0 && (
-        <ProductsTable
-          products={products.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-          )}
-        />
+        <ProductsTable products={products} />
       )}
     </div>
   );

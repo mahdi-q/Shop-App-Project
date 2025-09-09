@@ -1,15 +1,15 @@
 import { getProductByIdApi, getProductsApi } from "@/services/productsServices";
 import { useQuery } from "@tanstack/react-query";
 
-export function useGetProducts() {
+export function useGetProducts(queries) {
   const { isLoading, data } = useQuery({
     queryKey: ["products"],
-    queryFn: getProductsApi,
+    queryFn: () => getProductsApi(queries),
   });
 
-  const { products } = data || {};
+  const { products, pagination } = data || {};
 
-  return { isLoading, products };
+  return { isLoading, products, pagination };
 }
 
 export function useGetProduct(id) {
