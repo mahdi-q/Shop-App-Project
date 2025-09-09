@@ -3,12 +3,13 @@ import { getProductsApi } from "@/services/productsServices";
 import { cookies } from "next/headers";
 import toStringCookies from "@/utils/toStringCookies";
 import queryString from "query-string";
+import Pagination from "@/ui/Pagination";
 
 async function ProductsList({ searchParams }) {
   const cookieStore = await cookies();
   const strCookies = toStringCookies(cookieStore);
 
-  const { products } = await getProductsApi(
+  const { products, pagination } = await getProductsApi(
     queryString.stringify(await searchParams),
     strCookies,
   );
@@ -19,10 +20,16 @@ async function ProductsList({ searchParams }) {
     );
 
   return (
-    <div className="grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 xl:grid-cols-3">
-      {products.map((product) => (
-        <ProductCard key={product._id} product={product} />
-      ))}
+    <div>
+      <div className="grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 xl:grid-cols-3">
+        {products.map((product) => (
+          <ProductCard key={product._id} product={product} />
+        ))}
+      </div>
+
+      <div className="mt-6 flex items-center justify-center">
+        <Pagination pagination={pagination} />
+      </div>
     </div>
   );
 }
