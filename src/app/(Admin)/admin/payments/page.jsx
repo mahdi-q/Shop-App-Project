@@ -3,9 +3,12 @@
 import Loader from "@/ui/Loader";
 import PaymentsTable from "./_components/PaymentsTable";
 import { useGetPayments } from "@/hooks/useGetPayments";
+import { useSearchParams } from "next/navigation";
 
 function PaymentsPage() {
-  const { isLoading, payments } = useGetPayments();
+  const searchParams = useSearchParams();
+  const queries = searchParams.toString();
+  const { isLoading, payments } = useGetPayments(queries);
 
   return (
     <div>
@@ -22,11 +25,7 @@ function PaymentsPage() {
       )}
 
       {!isLoading && payments && payments.length > 0 && (
-        <PaymentsTable
-          payments={payments.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-          )}
-        />
+        <PaymentsTable payments={payments} />
       )}
     </div>
   );
