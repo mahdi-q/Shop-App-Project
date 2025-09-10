@@ -33,7 +33,7 @@ function ProductCard({ product }) {
         {/* Product Image */}
         <div className="relative h-36 w-32 flex-shrink-0 overflow-hidden rounded-lg border border-secondary-200 object-cover">
           <Link href={`/products/${product.slug}`} className="h-full w-full">
-            <ImageCover src={product.imageLink} fill />
+            <ImageCover src={product.imageLinkUrl} fill />
           </Link>
         </div>
       </div>

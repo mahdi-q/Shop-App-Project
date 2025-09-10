@@ -152,7 +152,7 @@ function SingleProductPage() {
           </div>
 
           <div className="flex h-[500px] flex-shrink-0 self-center overflow-hidden rounded-lg border border-secondary-200 lg:w-[450px] xl:self-start">
-            <ImageCover src={product?.imageLink} width={450} height={500} />
+            <ImageCover src={product?.imageLinkUrl} width={450} height={500} />
           </div>
         </div>
       )}

@@ -13,7 +13,7 @@ function ProductDetails({ product }) {
       <div className="flex w-full flex-col gap-6 md:w-2/5">
         {/* Product Image */}
         <div className="relative h-[450px] overflow-hidden rounded-lg border border-secondary-200">
-          <ImageCover src={product.imageLink} fill priority />
+          <ImageCover src={product.imageLinkUrl} fill priority />
         </div>
 
         <div className="fixed bottom-0 left-0 w-full rounded-t-xl bg-secondary-50/70 px-4 py-6 md:relative md:bg-transparent md:px-0">

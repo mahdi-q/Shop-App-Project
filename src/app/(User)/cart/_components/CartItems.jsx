@@ -6,7 +6,6 @@ import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/changeNumbers";
-import Image from "next/image";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { IoTrashOutline } from "react-icons/io5";
@@ -62,7 +61,7 @@ function CartItems() {
         >
           <div className="flex h-full gap-4">
             <div className="relative h-[98px] w-[78px] overflow-hidden rounded">
-              <ImageCover src={product.imageLink} fill priority />
+              <ImageCover src={product.imageLinkUrl} fill priority />
             </div>
 
             <div className="flex flex-col justify-between">

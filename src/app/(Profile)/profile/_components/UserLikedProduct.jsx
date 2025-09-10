@@ -65,7 +65,7 @@ function UserLikedProduct({ productId }) {
                 href={`/products/${product.slug}`}
                 className="h-full w-full"
               >
-                <ImageCover src={product.imageLink} fill />
+                <ImageCover src={product.imageLinkUrl} fill />
               </Link>
             </div>
           </div>
