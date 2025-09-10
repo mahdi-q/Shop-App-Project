@@ -51,7 +51,7 @@ function ProductsPage() {
       {isLoading && <Loader />}
 
       {!isLoading && (!products || products.length <= 0) && (
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center text-black">
           محصولی یافت نشد.
         </div>
       )}

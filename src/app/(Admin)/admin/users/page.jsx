@@ -34,7 +34,7 @@ function UsersPage() {
       {isLoading && <Loader />}
 
       {!isLoading && (!users || users.length <= 0) && (
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center text-black">
           کاربری یافت نشد.
         </div>
       )}

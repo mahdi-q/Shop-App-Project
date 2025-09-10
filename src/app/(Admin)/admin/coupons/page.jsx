@@ -51,7 +51,7 @@ function CouponsPage() {
       {isLoading && <Loader />}
 
       {!isLoading && (!coupons || coupons.length <= 0) && (
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center text-black">
           کد تخفیف ای یافت نشد.
         </div>
       )}

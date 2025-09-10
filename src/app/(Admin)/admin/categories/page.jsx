@@ -51,7 +51,7 @@ function CategoriesPage() {
       {isLoading && <Loader />}
 
       {!isLoading && (!categories || categories.length <= 0) && (
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center text-black">
           دسته‌بندی ای یافت نشد.
         </div>
       )}

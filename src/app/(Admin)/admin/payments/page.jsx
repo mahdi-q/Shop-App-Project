@@ -34,7 +34,7 @@ function PaymentsPage() {
       {isLoading && <Loader />}
 
       {!isLoading && (!payments || payments.length <= 0) && (
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center text-black">
           سفارشی یافت نشد.
         </div>
       )}
