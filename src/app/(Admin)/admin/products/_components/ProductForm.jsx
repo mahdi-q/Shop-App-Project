@@ -2,7 +2,7 @@
 
 import RHFTextField from "@/ui/RHFTextField";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import SvgLoaderComponent from "@/ui/SvgLoaderComponent";
 import RHFSelect from "@/ui/RHFSelect";
 import RHFTagInput from "@/ui/RHFTagInput";
@@ -13,8 +13,18 @@ import toast from "react-hot-toast";
 import useEditProduct from "../_hooks/useEditProduct";
 import { ProductSchema } from "@/constants/validationSchemas";
 import { useGetCategories } from "@/hooks/useGetCategories";
+import ButtonIcon from "@/ui/ButtonIcon";
+import { useEffect, useState } from "react";
+import { imageUrlToFile } from "@/utils/fileFormatter";
+import Image from "next/image";
+import { IoTrashOutline } from "react-icons/io5";
+import FileInput from "@/ui/FileInput";
 
 function ProductForm({ initialData = {}, isUpdating = false }) {
+  const [imageLinkUrl, setImageLinkUrl] = useState(
+    initialData.imageLinkUrl || null,
+  );
+
   const router = useRouter();
   const { isAdding, addProduct } = useAddProduct();
   const { isEditing, editProduct } = useEditProduct(initialData._id);
@@ -44,6 +54,7 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
     handleSubmit,
     reset,
     control,
+    setValue,
     formState: { errors, isDirty },
   } = useForm({
     defaultValues: initialValues,
@@ -51,32 +62,60 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
     mode: "onTouched",
   });
 
+  useEffect(() => {
+    if (initialData.imageLinkUrl) {
+      async function changeImage() {
+        const file = await imageUrlToFile(initialData.imageLinkUrl);
+        setValue("coverImage", file);
+      }
+
+      changeImage();
+    }
+  }, [initialData]);
+
   const onSubmit = (values) => {
+    const formData = new FormData();
+
+    for (const key in values) {
+      if (key === "category") {
+        formData.append("category", values.category.value);
+      } else if (key === "tags") {
+        const tagsArray = Array.isArray(values.tags)
+          ? values.tags
+          : [values.tags];
+
+        tagsArray.forEach((tag) => {
+          formData.append("tags", tag);
+        });
+      } else {
+        formData.append(key, values[key]);
+      }
+    }
+
     if (isUpdating) {
       if (!isDirty) return toast.error("لطفا حداقل یک فیلد را تغییر دهید.");
 
       editProduct(
         {
-          product: { ...values, category: values.category.value },
+          product: formData,
           id: initialData._id,
         },
         {
           onSuccess: () => {
             reset();
+            setImageLinkUrl(null);
             router.push("/admin/products");
           },
         },
       );
     } else {
-      addProduct(
-        { ...values, category: values.category.value },
-        {
-          onSuccess: () => {
-            reset();
-            router.push("/admin/products");
-          },
+      addProduct(formData, {
+        onSuccess: () => {
+          reset();
+          setImageLinkUrl(null);
+          router.push("/admin/products");
         },
-      );
+      });
     }
   };
 
@@ -161,15 +200,6 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
         isRequired
       />
 
-      <RHFTextField
-        label="لینک عکس"
-        register={register}
-        errors={errors}
-        name="imageLink"
-        dir="ltr"
-        isRequired
-      />
-
       <RHFTagInput
         label="تگ‌ها"
         control={control}
@@ -187,6 +217,56 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
         className="col-span-1 xl:col-span-2"
         isRequired
       />
+
+      <div className="flex flex-col gap-2">
+        <div className="">
+          <span className="text-secondary-700">عکس محصول</span>
+          <span className="text-error">*</span>
+        </div>
+
+        <Controller
+          name="imageLink"
+          control={control}
+          rules={{ required: "عکس محصول الزامی است." }}
+          render={({ field: { value, onChange, ...rest } }) => (
+            <FileInput
+              label="انتخاب عکس محصول"
+              name="imageLink"
+              value={value?.fileName}
+              errors={errors}
+              onChange={(event) => {
+                const file = event.target.files[0];
+                onChange(file);
+                setImageLinkUrl(URL.createObjectURL(file));
+                event.target.value = null;
+              }}
+              {...rest}
+            />
+          )}
+        />
+
+        {imageLinkUrl && (
+          <div className="relative aspect-video overflow-hidden rounded-lg">
+            <Image
+              fill
+              alt="product-image"
+              src={imageLinkUrl}
+              className="object-cover object-center"
+            />
+
+            <ButtonIcon
+              varient="danger"
+              className="absolute bottom-2 left-2"
+              onClick={() => {
+                setImageLinkUrl(null);
+                setValue("coverImage", null);
+              }}
+            >
+              <IoTrashOutline />
+            </ButtonIcon>
+          </div>
+        )}
+      </div>
 
       <button
         type="submit"

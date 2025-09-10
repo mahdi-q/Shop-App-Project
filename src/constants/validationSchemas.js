@@ -78,13 +78,25 @@ export const ProductSchema = yup
       .matches(/^\d+$/, "موجودی باید عدد باشد.")
       .test("not-zero", "موجودی نمی‌تواند ۰ باشد.", (value) => value !== "0"),
 
-    imageLink: yup.string().required("ادرس‌ عکس الزامی است.").trim(),
+    imageLink: yup
+      .mixed()
+      .test("required", "عکس محصول الزامی است.", (value) => {
+        return value;
+      })
+      .test("fileSize", "حجم فایل باید کمتر از 2 مگابایت باشد.", (value) => {
+        return value && value.size <= 2 * 1024 * 1024;
+      })
+      .test("fileType", "فرمت فایل نامعتبر است.", (value) => {
+        return (
+          value && ["image/jpeg", "image/png", "image/jpg"].includes(value.type)
+        );
+      }),
 
     tags: yup
       .array()
       .of(yup.string().trim())
       .required("تگ‌ها الزامی است.")
-      .min(1, "حداقل یک تگ باید وارد شود.")
+      .min(2, "حداقل دو تگ باید وارد شود.")
       .max(20, "تگ‌ها نمی‌توانند بیشتر از 20 ایتم باشند."),
 
     description: yup

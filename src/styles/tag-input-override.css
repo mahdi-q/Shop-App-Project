@@ -1,6 +1,6 @@
 /* کانتینر اصلی تگ‌ها */
 .react-tag-input {
-  @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-2 py-2 text-secondary-900 outline-none transition-all duration-200 ease-in-out focus-within:border-primary-300 focus-within:bg-secondary-50 focus-within:shadow-input-focus hover:border-primary-300;
+  @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-0 py-0 text-secondary-900 outline-none transition-all duration-200 ease-in-out focus-within:border-primary-300 focus-within:bg-secondary-50 focus-within:shadow-input-focus hover:border-primary-300;
 }
 
 /* وقتی خطا وجود داره */
@@ -10,7 +10,7 @@
 
 /* خود تگ‌ها */
 .react-tag-input__tag {
-  @apply flex items-center gap-1 rounded-lg bg-primary-200 px-2 py-1 text-sm text-primary-900;
+  @apply m-1 flex items-center gap-1 rounded-lg bg-primary-200 px-2 py-1 text-sm text-primary-900;
 }
 
 /* دکمه حذف تگ */
@@ -20,5 +20,5 @@
 
 /* فیلد ورودی */
 .react-tag-input__input {
-  @apply my-1 w-auto rounded-lg bg-secondary-200/40 px-3 py-5 text-secondary-900 outline-none placeholder:text-secondary-900;
+  @apply m-1 w-auto rounded-lg bg-secondary-200/40 px-3 py-5 text-secondary-900 outline-none placeholder:text-secondary-900;
 }
