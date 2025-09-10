@@ -118,3 +118,7 @@ body {
 table tr:last-of-type td {
   border-bottom: none;
 }
+
+.scroll-none::-webkit-scrollbar {
+  display: none;
+}
