@@ -42,24 +42,24 @@ An e-commerce website where users can browse products by category, place orders,
 ```bash
 project-root/
 │
-├── public/ # Public assets available directly
-│ ├── fonts/ # Custom fonts used in the project
-│ └── images/ # Static images and icons
+├── public/           # Public assets available directly
+│ ├── fonts/          # Custom fonts used in the project
+│ └── images/         # Static images and icons
 │
-├── src/ # Main source code
-│ ├── app/ # Next.js app directory (pages, layouts, routes)
-│ ├── components/ # Reusable UI components
-│ ├── constants/ # Constant values and configuration variables
-│ ├── contexts/ # React context providers for global state
-│ ├── hooks/ # Custom React hooks
-│ ├── providers/ # Application-level providers
-│ ├── services/ # API & data fetching logic
-│ ├── styles/ # Global styles and theme files
-│ ├── ui/ # Shared UI elements (buttons, inputs, modals, etc.)
-│ ├── utils/ # Utility/helper functions
-│ └── middleware.js # Middleware for handling authentication, redirects, etc.
+├── src/              # Main source code
+│ ├── app/            # Next.js app directory (pages, layouts, routes)
+│ ├── components/     # Reusable UI components
+│ ├── constants/      # Constant values and configuration variables
+│ ├── contexts/       # React context providers for global state
+│ ├── hooks/          # Custom React hooks
+│ ├── providers/      # Application-level providers
+│ ├── services/       # API & data fetching logic
+│ ├── styles/         # Global styles and theme files
+│ ├── ui/             # Shared UI elements (buttons, inputs, modals, etc.)
+│ ├── utils/          # Utility/helper functions
+│ └── middleware.js   # Middleware for handling authentication, redirects, etc.
 │
-└── README.md # Project documentation
+└── README.md         # Project documentation
 
 ```
 
