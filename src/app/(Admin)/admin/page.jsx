@@ -63,7 +63,7 @@ function AdminPage() {
           {gettingProducts && <Loader />}
 
           {!gettingProducts && (!products || products.length <= 0) && (
-            <div className="mt-4 flex items-center justify-center">
+            <div className="mt-4 flex items-center justify-center text-black">
               محصولی یافت نشد
             </div>
           )}
@@ -98,7 +98,7 @@ function AdminPage() {
           {gettingCategories && <Loader />}
 
           {!gettingCategories && (!categories || categories.length <= 0) && (
-            <div className="mt-4 flex items-center justify-center">
+            <div className="mt-4 flex items-center justify-center text-black">
               دسته‌بندی ای یافت نشد
             </div>
           )}
@@ -133,7 +133,7 @@ function AdminPage() {
           {gettingCoupons && <Loader />}
 
           {!gettingCoupons && (!coupons || coupons.length <= 0) && (
-            <div className="mt-4 flex items-center justify-center">
+            <div className="mt-4 flex items-center justify-center text-black">
               کد تخفیف ای یافت نشد
             </div>
           )}
