@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import useAddToCart from "@/hooks/useAddToCart";
-import CartActions from "app/(User)/cart/_components/CartActions";
 import { usePathname } from "next/navigation";
 import { useGetUserInfo } from "@/hooks/useGetUsers";
+import CartActions from "app/(Main)/cart/_components/CartActions";
 
 function AddToCartButton({ id }) {
   const pathname = usePathname();

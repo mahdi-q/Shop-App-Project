@@ -1,6 +1,6 @@
 "use client";
 
-import ProductCard from "app/(User)/products/_components/ProductCard";
+import ProductCard from "app/(Main)/products/_components/ProductCard";
 import Link from "next/link";
 import React, { useRef } from "react";
 import { GoArrowLeft } from "react-icons/go";

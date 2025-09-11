@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
-function UserLayout({ children }) {
+function MainLayout({ children }) {
   return (
     <div>
       <Header />
@@ -12,4 +12,4 @@ function UserLayout({ children }) {
     </div>
   );
 }
-export default UserLayout;
+export default MainLayout;
