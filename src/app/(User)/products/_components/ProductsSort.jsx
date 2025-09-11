@@ -9,12 +9,12 @@ const filters = [
   {
     id: 1,
     title: "جدید‌ترین",
-    value: "latest",
+    value: "desc",
   },
   {
     id: 2,
     title: "قدیمی‌ترین",
-    value: "earliest",
+    value: "asc",
   },
   {
     id: 3,
@@ -30,13 +30,13 @@ function ProductsSort() {
   const createQueryString = useCreateQueryString();
 
   const [selected, setSelected] = useState(
-    searchParams.get("sort") || "latest",
+    searchParams.get("order") || "desc",
   );
 
   const radioHandler = (e) => {
     const sortValue = e.target.value;
     setSelected(sortValue);
-    router.push(`${pathname}?${createQueryString("sort", sortValue)}`);
+    router.push(`${pathname}?${createQueryString("order", sortValue)}`);
   };
 
   return (
