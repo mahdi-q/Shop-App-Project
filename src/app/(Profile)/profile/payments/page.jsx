@@ -1,18 +1,10 @@
-"use client";
-
-import Pagination from "@/ui/Pagination";
-import PaymentsTable from "../_components/PaymentsTable";
-import { useSearchParams } from "next/navigation";
-import { useGetUserInfo } from "@/hooks/useGetUsers";
 import Loader from "@/ui/Loader";
 import SearchBox from "@/ui/SearchBox";
 import SortButton from "@/ui/SortButton";
+import { Suspense } from "react";
+import UserPaymentsPageClient from "../_components/UserPaymentsPageClient";
 
 function UserPaymentsPage() {
-  const searchParams = useSearchParams();
-  const queries = searchParams.toString();
-  const { isLoading, payments, pagination } = useGetUserInfo(queries);
-
   return (
     <div>
       <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-center">
@@ -22,32 +14,22 @@ function UserPaymentsPage() {
 
         <div className="flex max-w-[500px] flex-1 items-center gap-x-2 md:gap-x-4">
           <div className="flex-1">
-            <SearchBox />
+            <Suspense fallback={<Loader />}>
+              <SearchBox />
+            </Suspense>
           </div>
 
           <div>
-            <SortButton />
+            <Suspense fallback={<Loader />}>
+              <SortButton />
+            </Suspense>
           </div>
         </div>
       </div>
 
-      {isLoading && <Loader />}
-
-      {!isLoading && (!payments || payments.length <= 0) && (
-        <div className="mt-4 flex items-center justify-center text-black">
-          تراکنشی یافت نشد.
-        </div>
-      )}
-
-      {!isLoading && payments && payments.length > 0 && (
-        <PaymentsTable payments={payments} />
-      )}
-
-      {!isLoading && payments && payments.length > 0 && (
-        <div className="mt-6 flex items-center justify-center">
-          <Pagination pagination={pagination} />
-        </div>
-      )}
+      <Suspense fallback={<Loader />}>
+        <UserPaymentsPageClient />
+      </Suspense>
     </div>
   );
 }

@@ -22,7 +22,9 @@ function ProductsPage({ searchParams }) {
         </h2>
 
         <div className="flex-1 md:max-w-[400px]">
-          <SearchBox />
+          <Suspense fallback={<Loader />}>
+            <SearchBox />
+          </Suspense>
         </div>
       </div>
 

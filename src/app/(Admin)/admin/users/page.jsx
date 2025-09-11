@@ -1,18 +1,10 @@
-"use client";
-
 import Loader from "@/ui/Loader";
-import UsersTable from "./_components/UsersTable";
-import { useGetUsers } from "@/hooks/useGetUsers";
-import { useSearchParams } from "next/navigation";
-import Pagination from "@/ui/Pagination";
 import SearchBox from "@/ui/SearchBox";
 import SortButton from "@/ui/SortButton";
+import { Suspense } from "react";
+import UsersPageClient from "./_components/UsersPageClient";
 
 function UsersPage() {
-  const searchParams = useSearchParams();
-  const queries = searchParams.toString();
-  const { isLoading, users, pagination } = useGetUsers(queries);
-
   return (
     <div>
       <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-center">
@@ -22,30 +14,22 @@ function UsersPage() {
 
         <div className="flex max-w-[500px] flex-1 items-center gap-x-2 md:gap-x-4">
           <div className="flex-1">
-            <SearchBox />
+            <Suspense fallback={<Loader />}>
+              <SearchBox />
+            </Suspense>
           </div>
 
           <div>
-            <SortButton />
+            <Suspense fallback={<Loader />}>
+              <SortButton />
+            </Suspense>
           </div>
         </div>
       </div>
 
-      {isLoading && <Loader />}
-
-      {!isLoading && (!users || users.length <= 0) && (
-        <div className="mt-4 flex items-center justify-center text-black">
-          کاربری یافت نشد.
-        </div>
-      )}
-
-      {!isLoading && users && users.length > 0 && <UsersTable users={users} />}
-
-      {!isLoading && users && users.length > 0 && (
-        <div className="mt-6 flex items-center justify-center">
-          <Pagination pagination={pagination} />
-        </div>
-      )}
+      <Suspense fallback={<Loader />}>
+        <UsersPageClient />
+      </Suspense>
     </div>
   );
 }
