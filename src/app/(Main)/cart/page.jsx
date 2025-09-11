@@ -8,7 +8,7 @@ export const metadata = {
 
 function CartPage() {
   return (
-    <div className="mb-32 grid w-full grid-cols-12 px-4 md:px-8 lg:gap-8">
+    <div className="grid min-h-[50vh] w-full grid-cols-12 px-4 md:px-8 lg:gap-8">
       <div className="col-span-12 lg:col-span-8">
         <CartItems />
       </div>
