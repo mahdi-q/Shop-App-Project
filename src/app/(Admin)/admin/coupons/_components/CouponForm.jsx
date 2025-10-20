@@ -15,7 +15,7 @@ import { useGetProducts } from "@/hooks/useGetProducts";
 
 function CouponForm({ initialData = {}, isUpdating = false }) {
   const router = useRouter();
-  const { isLoading, products } = useGetProducts();
+  const { isLoading, products } = useGetProducts("limit=50");
   const { isAdding, addCoupon } = useAddCoupon();
   const { isEditing, editCoupon } = useEditCoupon();
 

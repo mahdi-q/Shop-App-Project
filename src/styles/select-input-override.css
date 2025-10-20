@@ -1,5 +1,5 @@
 .custom-select__control {
-  @apply w-full rounded-xl border border-secondary-100 bg-secondary-100/30 px-4 py-3 text-secondary-900 outline-none transition-all duration-200 ease-in-out focus-within:border-primary-300 focus-within:bg-secondary-50 focus-within:shadow-input-focus hover:border-primary-300;
+  @apply w-full overflow-hidden rounded-xl border border-secondary-100 bg-secondary-100/30 px-4 py-3 text-secondary-900 outline-none transition-all duration-200 ease-in-out focus-within:border-primary-300 focus-within:bg-secondary-50 focus-within:shadow-input-focus hover:border-primary-300;
 }
 
 .textField--invalid .custom-select__control {
@@ -11,7 +11,7 @@
 }
 
 .custom-select__menu {
-  @apply bg-background my-1 max-h-[250px] overflow-y-auto rounded-md p-1 shadow-md;
+  @apply my-1 overflow-y-hidden rounded-md bg-background p-1 shadow-md;
 }
 
 .custom-select__option {
