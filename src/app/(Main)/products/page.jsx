@@ -11,8 +11,6 @@ export const metadata = {
 
 export const revalidate = 600;
 
-export const experimental_ppr = true;
-
 function ProductsPage({ searchParams }) {
   return (
     <div className="px-4 lg:px-6">
