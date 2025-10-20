@@ -63,11 +63,11 @@ function SingleProductPage() {
               </span>
             </div>
 
-            <div className="flex items-center gap-3 text-base lg:text-lg">
-              <span className="font-medium text-secondary-900">
+            <div className="flex items-start gap-3 text-base lg:text-lg">
+              <span className="whitespace-nowrap font-medium text-secondary-900">
                 توضیحات محصول:
               </span>
-              <span className="font-bold text-black">
+              <span className="whitespace-pre-line font-bold text-black">
                 {" "}
                 {product.description}
               </span>
@@ -151,7 +151,7 @@ function SingleProductPage() {
             </div>
           </div>
 
-          <div className="flex h-[500px] flex-shrink-0 self-center overflow-hidden rounded-lg border border-secondary-200 lg:w-[450px] xl:self-start">
+          <div className="flex h-[500px] flex-shrink-0 self-center overflow-hidden rounded-lg border border-secondary-200 bg-[#fff] lg:w-[450px] xl:self-start">
             <ImageCover src={product?.imageLinkUrl} width={450} height={500} />
           </div>
         </div>

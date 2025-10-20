@@ -21,7 +21,7 @@ function ImageCover({ src, width, height, fill = false, priority = false }) {
         alt="product-image"
         fill
         priority={priority}
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "contain" }}
       />
     );
   } else {
@@ -32,7 +32,7 @@ function ImageCover({ src, width, height, fill = false, priority = false }) {
         width={width}
         height={height}
         priority={priority}
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "contain" }}
       />
     );
   }

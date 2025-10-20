@@ -60,7 +60,7 @@ function CartItems() {
           className="flex justify-between rounded-lg border border-secondary-300 p-2.5"
         >
           <div className="flex h-full gap-4">
-            <div className="relative h-[98px] w-[78px] overflow-hidden rounded">
+            <div className="relative h-[98px] w-[78px] overflow-hidden rounded bg-[#fff]">
               <ImageCover src={product.imageLinkUrl} fill priority />
             </div>
 
@@ -71,7 +71,7 @@ function CartItems() {
                 </h4>
               </Link>
 
-              <div className="mb-2">
+              <div className="mb-2 w-fit">
                 <CartActions id={product._id} quantity={product.quantity} />
               </div>
             </div>

@@ -10,13 +10,13 @@ import ImageCover from "@/components/ImageCover";
 
 function ProductCard({ product }) {
   return (
-    <div className="flex min-h-32 flex-col gap-1 rounded-lg border border-secondary-200 p-2 shadow-md">
-      <div className="mb-3 flex items-start justify-between gap-4">
+    <div className="flex min-h-32 flex-col justify-between rounded-lg border border-secondary-200 p-2 shadow-md">
+      <div className="mb-4 flex items-start justify-between gap-4">
         {/* Product Info */}
         <div className="flex h-[-webkit-fill-available] flex-col justify-between gap-6">
           <div>
             <Link href={`/products/${product.slug}`}>
-              <h3 className="mb-2 text-lg font-bold text-secondary-900 hover:text-primary-900">
+              <h3 className="mb-2 text-lg font-bold text-secondary-900 transition-all duration-200 hover:text-primary-900">
                 {product.title}
               </h3>
             </Link>
@@ -31,41 +31,51 @@ function ProductCard({ product }) {
         </div>
 
         {/* Product Image */}
-        <div className="relative h-36 w-32 flex-shrink-0 overflow-hidden rounded-lg border border-secondary-200 object-cover">
+        <div className="relative h-36 w-32 flex-shrink-0 overflow-hidden rounded-lg border border-secondary-200 bg-[#fff] object-cover">
           <Link href={`/products/${product.slug}`} className="h-full w-full">
             <ImageCover src={product.imageLinkUrl} fill />
           </Link>
         </div>
       </div>
 
-      <div className="mb-3 flex items-center justify-between">
-        {/* Like Button */}
-        <LikeProductButton
-          id={product._id}
-          isLiked={product.isLiked}
-          likesCount={product.likesCount}
-        />
+      <div>
+        <div className="mb-4 flex items-end justify-between">
+          {/* Like Button */}
+          <LikeProductButton
+            id={product._id}
+            isLiked={product.isLiked}
+            likesCount={product.likesCount}
+          />
 
-        {/* Product Price */}
-        <div className="flex items-end gap-2">
-          {product.discount !== 0 && (
-            <span className="badge badge--success text-xs">
-              {toPersianNumbers(product.discount)}%
-            </span>
-          )}
-
-          <span className="flex flex-row-reverse gap-1 text-lg font-bold text-black">
-            <TomanSvgIcon />
-
-            {toPersianNumbersWithComma(
-              product.discount !== 0 ? product.offPrice : product.price,
+          {/* Product Price */}
+          <div className="flex flex-col items-end gap-1">
+            {product.discount !== 0 && (
+              <span className="text-secondary-400 line-through">
+                {toPersianNumbersWithComma(product.price)} تومان
+              </span>
             )}
-          </span>
-        </div>
-      </div>
 
-      {/* Add To Cart Button */}
-      <AddToCartButton id={product._id} />
+            <div className="flex items-end gap-2">
+              {product.discount !== 0 && (
+                <span className="badge badge--success text-xs">
+                  {toPersianNumbers(product.discount)}%
+                </span>
+              )}
+
+              <span className="flex flex-row-reverse gap-1 text-lg font-bold text-black">
+                <TomanSvgIcon />
+
+                {toPersianNumbersWithComma(
+                  product.discount !== 0 ? product.offPrice : product.price,
+                )}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Add To Cart Button */}
+        <AddToCartButton id={product._id} />
+      </div>
     </div>
   );
 }
