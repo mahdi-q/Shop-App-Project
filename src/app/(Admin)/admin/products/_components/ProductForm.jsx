@@ -66,7 +66,7 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
     if (initialData.imageLinkUrl) {
       async function changeImage() {
         const file = await imageUrlToFile(initialData.imageLinkUrl);
-        setValue("coverImage", file);
+        setValue("imageLink", file);
       }
 
       changeImage();
@@ -232,7 +232,7 @@ function ProductForm({ initialData = {}, isUpdating = false }) {
             <FileInput
               label="انتخاب عکس محصول"
               name="imageLink"
-              value={value?.fileName}
+              value={value?.imageLink || ""}
               errors={errors}
               onChange={(event) => {
                 const file = event.target.files[0];

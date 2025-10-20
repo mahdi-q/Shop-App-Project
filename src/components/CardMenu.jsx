@@ -82,13 +82,13 @@ function CardMenu({ products, query, title }) {
   };
 
   return (
-    <div className="min-h-[300px] w-full rounded-lg border-2 border-primary-400 bg-primary-400 py-4">
+    <div className="min-h-[300px] w-full rounded-lg bg-primary-200/60 py-4 dark:bg-primary-100/20">
       <div className="mb-6 flex items-center justify-between gap-2 px-4 text-black">
         <h2 className="text-base font-medium md:text-xl">{title}</h2>
 
         <Link
           href={`/products?${query}`}
-          className="flex items-center gap-2 text-xs font-medium transition-all duration-200 hover:text-white md:text-base"
+          className="flex items-center gap-2 text-xs font-medium transition-all duration-200 hover:text-primary-900 md:text-base"
         >
           <span>
             همه <span className="hidden md:inline-block">محصولات</span>
@@ -105,10 +105,10 @@ function CardMenu({ products, query, title }) {
         onMouseMove={handleMouseMove}
         className="scroll-none flex cursor-grab touch-pan-x items-center gap-4 overflow-x-auto px-4 pb-3"
       >
-        {products.map((product) => (
+        {products.slice(0, 3).map((product) => (
           <div
             key={product._id}
-            className="min-w-[270px] rounded-lg bg-background"
+            className="min-w-[270px] flex-1 rounded-lg bg-background"
           >
             <ProductCard product={product} />
           </div>

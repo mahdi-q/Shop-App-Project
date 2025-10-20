@@ -9,7 +9,7 @@ import { RiAdminLine } from "react-icons/ri";
 
 function Footer() {
   return (
-    <div className="mt-10 min-h-[300px] w-full bg-secondary-200/50">
+    <div className="mt-10 min-h-[300px] w-full bg-primary-100/40">
       <div className="container flex flex-col gap-x-12 gap-y-10 px-6 py-12 text-black md:flex-row lg:gap-x-24 xl:max-w-screen-xl xl:gap-x-32">
         {/* Main Links */}
         <div>

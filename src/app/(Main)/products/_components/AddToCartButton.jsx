@@ -61,7 +61,7 @@ function AddToCartButton({ id }) {
             ادامه سفارش
           </Link>
 
-          {pathname !== "/products" && (
+          {pathname !== "/products" && pathname !== "/" && (
             <CartActions id={id} quantity={quantity} />
           )}
         </div>

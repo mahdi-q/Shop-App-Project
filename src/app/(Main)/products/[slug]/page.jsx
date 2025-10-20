@@ -30,8 +30,8 @@ async function ProductItemPage({ params }) {
     <div className="px-4 md:px-8">
       {/* Back Button */}
       <div className="mb-6 flex items-center gap-1 text-black md:gap-2">
-        <BackButton>
-          <FaChevronRight />
+        <BackButton className="group">
+          <FaChevronRight className="transition-all duration-200 group-hover:text-primary-900" />
         </BackButton>
 
         <span>جزئیات محصول</span>
