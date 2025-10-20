@@ -17,12 +17,12 @@ export default async function Home() {
   const cookieStore = await cookies();
   const strCookies = toStringCookies(cookieStore);
 
-  const { products: mobileProducts } = await getProductsApi(
-    "category=mobile",
+  const { products: lastProducts } = await getProductsApi(
+    "order=desc",
     strCookies,
   );
-  const { products: laptopProducts } = await getProductsApi(
-    "category=laptop",
+  const { products: popularProducts } = await getProductsApi(
+    "order=popular",
     strCookies,
   );
 
@@ -110,9 +110,9 @@ export default async function Home() {
 
       {/* Last Products */}
       <CardMenu
-        products={mobileProducts}
+        products={lastProducts}
         query={"category=mobile"}
-        title={"آخرین محصولات دسته‌بندی موبایل"}
+        title={"جدیدترین محصولات"}
       />
 
       {/* Seperator Line */}
@@ -120,11 +120,11 @@ export default async function Home() {
         <span className="block w-full border border-dashed border-secondary-600"></span>
       </div>
 
-      {/* Last Products */}
+      {/* Popular Products */}
       <CardMenu
-        products={laptopProducts}
+        products={popularProducts}
         query={"category=laptop"}
-        title={"آخرین محصولات دسته‌بندی لپ‌تاپ"}
+        title={"محبوب‌ترین محصولات"}
       />
     </div>
   );

@@ -88,7 +88,7 @@ function CardMenu({ products, query, title }) {
 
         <Link
           href={`/products?${query}`}
-          className="flex items-center gap-2 text-xs font-medium transition-all duration-200 hover:text-primary-900 md:text-base"
+          className="flex items-center gap-2 text-sm font-medium transition-all duration-200 hover:text-primary-900 md:text-base"
         >
           <span>
             همه <span className="hidden md:inline-block">محصولات</span>
@@ -103,12 +103,12 @@ function CardMenu({ products, query, title }) {
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
-        className="scroll-none flex cursor-grab touch-pan-x items-center gap-4 overflow-x-auto px-4 pb-3"
+        className="scroll-none flex h-full cursor-grab touch-pan-x items-stretch gap-4 overflow-x-auto px-4 pb-3"
       >
-        {products.slice(0, 3).map((product) => (
+        {products.map((product) => (
           <div
             key={product._id}
-            className="min-w-[270px] flex-1 rounded-lg bg-background"
+            className="w-[300px] min-w-[300px] self-stretch rounded-lg bg-background"
           >
             <ProductCard product={product} />
           </div>
