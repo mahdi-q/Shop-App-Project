@@ -3,7 +3,7 @@
 import useCreateQueryString from "@/hooks/useCreateQueryString";
 import { CustomRadio } from "@/ui/CustomRadio";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const filters = [
   {
@@ -29,15 +29,18 @@ function ProductsSort() {
   const pathname = usePathname();
   const createQueryString = useCreateQueryString();
 
-  const [selected, setSelected] = useState(
-    searchParams.get("order") || "desc",
-  );
+  const [selected, setSelected] = useState(searchParams.get("order") || "desc");
 
   const radioHandler = (e) => {
     const sortValue = e.target.value;
     setSelected(sortValue);
     router.push(`${pathname}?${createQueryString("order", sortValue)}`);
   };
+
+  useEffect(() => {
+    const orderFromUrl = searchParams.get("order") || "desc";
+    setSelected(orderFromUrl);
+  }, [pathname, searchParams]);
 
   return (
     <div className="flex flex-col gap-3">

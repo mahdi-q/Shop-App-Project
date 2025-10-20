@@ -8,7 +8,7 @@ import {
   useRouter,
   useSearchParams,
 } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ProductsFilter({ categories }) {
   const searchParams = useSearchParams();
@@ -33,6 +33,11 @@ function ProductsFilter({ categories }) {
       router.push(`${pathname}?${createQueryString("category", categories)}`);
     }
   };
+
+  useEffect(() => {
+    const categoriesFromUrl = searchParams.get("category")?.split(",") || [];
+    setSelectedCategories(categoriesFromUrl);
+  }, [pathname, searchParams]);
 
   if (!categories || categories.length <= 0)
     return <span>دسته بندی ای یافت نشد.</span>;
