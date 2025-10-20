@@ -2,19 +2,26 @@
 
 import useLikeProduct from "../_hooks/useLikeProduct";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ButtonIcon from "@/ui/ButtonIcon";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { toPersianNumbers } from "@/utils/changeNumbers";
 import { useGetUserInfo } from "@/hooks/useGetUsers";
 
-function LikeProductButton({ isLiked, id, likesCount }) {
+function LikeProductButton({ id, likesCount }) {
   const { isLiking, likeProduct } = useLikeProduct();
   const { user } = useGetUserInfo();
   const router = useRouter();
 
-  const [isLike, setIsLike] = useState(isLiked);
+  const [isLike, setIsLike] = useState(false);
+
+  useEffect(() => {
+    if (user && user.likedProducts) {
+      const isLiked = user.likedProducts.includes(id);
+      setIsLike(isLiked);
+    }
+  }, [user]);
 
   const handleLikeClick = async () => {
     if (!user.isActive) return toast.error("لطفا وارد حساب کاربری خود شوید.");
