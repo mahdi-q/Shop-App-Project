@@ -14,6 +14,7 @@ An e-commerce website where users can browse products by category, place orders,
 
 - **Developed with Next.js for optimized performance and SEO**
 - **Responsive design with Tailwind CSS**
+- **Dark and Light Theme System**
 - **User authentication and order management**
 - **Admin panel for managing products, categories, and discount codes**
 - **Form validation using React Hook Form**
