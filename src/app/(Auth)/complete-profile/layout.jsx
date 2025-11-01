@@ -5,7 +5,7 @@ export const metadata = {
 
 function CompleteProfileLayout({ children }) {
   return (
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="mx-auto mt-36 flex w-full items-center justify-center">
       {children}
     </div>
   );
